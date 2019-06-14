@@ -80,8 +80,6 @@ public class ConfigurationActivity extends AppCompatActivity {
         player.setEngineerSkill((int) engineerSpinner.getSelectedItem());
         player.setDifficulty((String) difficultySpinner.getSelectedItem());
 
-        configurationViewModel.addPlayer(player);
-
         Log.d("Edit", "Got new player data: " + player);
 
         finish();

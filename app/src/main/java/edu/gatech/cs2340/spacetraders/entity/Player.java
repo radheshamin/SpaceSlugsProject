@@ -78,6 +78,6 @@ public class Player {
     public String toString() {
         return String.format("Student: %s, pilot: %d, fighter: %d, trader: %d, engineer: %d, " +
                         "difficulty: %s.", name, pilotSkill, fighterSkill, traderSkill,
-                        engineerSkill, difficulty);
-
+                engineerSkill, difficulty);
+    }
 }

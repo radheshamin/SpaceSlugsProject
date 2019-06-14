@@ -27,32 +27,5 @@ public class Model {
     private static  Model instance = new Model();
 
     public static Model getInstance() { return instance; }
-
-    /**
-     * Make a new Model instance
-     */
-    private Model() {
-        myRepository = new Repository();
-        interactorMap = new HashMap<>();
-        registerInteractors();
-    }
-
-    /** end Singleton Pattern */
-
-    /**
-     * Create a set of interactors to be used by the application
-     */
-    private void registerInteractors() {
-        interactorMap.put("Student", new StudentInteractor(myRepository));
-        interactorMap.put("Course", new CourseInteractor(myRepository));
-    }
-
-    public CourseInteractor getCourseInteractor() {
-        return (CourseInteractor) interactorMap.get("Course");
-    }
-
-    public StudentInteractor getStudentInteractor() {
-        return (StudentInteractor) interactorMap.get("Student");
-    }
 }
 

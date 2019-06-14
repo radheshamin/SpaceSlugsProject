@@ -14,7 +14,7 @@ public class Repository {
      * Make a new Repository object
      */
     public Repository() {
-        player = new player
+
     }
 
 }
