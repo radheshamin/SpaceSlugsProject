@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/intro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoText="false"
+            android:gravity="center_horizontal"
+            android:text="You did not distribute the appropriate amount of skill points."
+            android:textSize="24sp"
+            tools:layout_conversion_absoluteHeight="32dp"
+            tools:layout_conversion_absoluteWidth="385dp"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="25dp" />
+
+        <TextView
+            android:id="@+id/intro2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoText="false"
+            android:gravity="center_horizontal"
+            android:text="Please Try Again"
+            android:textSize="24sp"
+            tools:layout_conversion_absoluteHeight="61dp"
+            tools:layout_conversion_absoluteWidth="385dp"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="58dp" />
+
+        <TextView
+            android:id="@+id/name_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="What's your name?"
+            android:textSize="18sp"
+            tools:layout_conversion_absoluteHeight="24dp"
+            tools:layout_conversion_absoluteWidth="385dp"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="149dp" />
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name"
+            tools:layout_conversion_absoluteHeight="45dp"
+            tools:layout_conversion_absoluteWidth="385dp"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="179dp" />
+
+        <TextView
+            android:id="@+id/skills_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoText="false"
+            android:gravity="center_horizontal"
+            android:text="Distribute your skill points. You have sixteen points total."
+            android:textSize="16sp"
+            tools:layout_conversion_absoluteHeight="40dp"
+            tools:layout_conversion_absoluteWidth="385dp"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="254dp" />
+
+        <TextView
+            android:id="@+id/pilot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Pilot (determines how well you pilot your ship)"
+            tools:layout_conversion_absoluteHeight="19dp"
+            tools:layout_conversion_absoluteWidth="365dp"
+            tools:layout_editor_absoluteX="15dp"
+            tools:layout_editor_absoluteY="305dp" />
+
+        <Spinner
+            android:id="@+id/pilot_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_conversion_absoluteHeight="24dp"
+            tools:layout_conversion_absoluteWidth="355dp"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="329dp" />
+
+        <TextView
+            android:id="@+id/fighter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Fighter (determines how well you handle your weapons)"
+            tools:layout_conversion_absoluteHeight="19dp"
+            tools:layout_conversion_absoluteWidth="365dp"
+            tools:layout_editor_absoluteX="15dp"
+            tools:layout_editor_absoluteY="363dp" />
+
+        <Spinner
+            android:id="@+id/fighter_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_conversion_absoluteHeight="24dp"
+            tools:layout_conversion_absoluteWidth="355dp"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="387dp" />
+
+        <TextView
+            android:id="@+id/trader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Trader (determines what prices you must pay)"
+            tools:layout_conversion_absoluteHeight="19dp"
+            tools:layout_conversion_absoluteWidth="365dp"
+            tools:layout_editor_absoluteX="15dp"
+            tools:layout_editor_absoluteY="421dp" />
+
+        <Spinner
+            android:id="@+id/trader_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_conversion_absoluteHeight="24dp"
+            tools:layout_conversion_absoluteWidth="355dp"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="446dp" />
+
+        <TextView
+            android:id="@+id/engineer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Engineer (determines how well you keep your ship in shape)"
+            tools:layout_conversion_absoluteHeight="19dp"
+            tools:layout_conversion_absoluteWidth="365dp"
+            tools:layout_editor_absoluteX="15dp"
+            tools:layout_editor_absoluteY="480dp" />
+
+        <Spinner
+            android:id="@+id/engineer_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_conversion_absoluteHeight="24dp"
+            tools:layout_conversion_absoluteWidth="355dp"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="504dp" />
+
+        <TextView
+            android:id="@+id/difficulty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Choose your difficulty"
+            android:textSize="18sp"
+            tools:layout_conversion_absoluteHeight="24dp"
+            tools:layout_conversion_absoluteWidth="385dp"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="558dp" />
+
+        <Spinner
+            android:id="@+id/difficulty_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_conversion_absoluteHeight="24dp"
+            tools:layout_conversion_absoluteWidth="385dp"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="587dp" />
+
+        <Button
+            android:id="@+id/begin_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onBeginPressed"
+            android:text="Begin"
+            tools:layout_conversion_absoluteHeight="48dp"
+            tools:layout_conversion_absoluteWidth="375dp"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="646dp" />
+
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

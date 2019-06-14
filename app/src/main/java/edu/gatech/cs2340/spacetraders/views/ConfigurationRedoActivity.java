@@ -1,8 +1,8 @@
 package edu.gatech.cs2340.spacetraders.views;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
-import android.arch.lifecycle.ViewModelProviders;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -18,10 +18,7 @@ import edu.gatech.cs2340.spacetraders.R;
 import edu.gatech.cs2340.spacetraders.entity.Player;
 import edu.gatech.cs2340.spacetraders.viewmodels.ConfigurationViewModel;
 
-/**
- * This is the starting screen
- */
-public class ConfigurationActivity extends AppCompatActivity {
+public class ConfigurationRedoActivity extends AppCompatActivity {
 
     /** local instance of view model */
     private ConfigurationViewModel configurationViewModel;
@@ -41,7 +38,7 @@ public class ConfigurationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.create_character_activity);
+        setContentView(R.layout.try_again_activity);
 
         nameField = findViewById(R.id.name);
         pilotSpinner = findViewById(R.id.pilot_spinner);
@@ -107,6 +104,4 @@ public class ConfigurationActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HomeScreenActivity.class);
         startActivity(intent);
     }
-
-
 }
