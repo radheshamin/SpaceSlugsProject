@@ -96,6 +96,7 @@ public class ConfigurationActivity extends AppCompatActivity {
             player = new Player(nameField.getText().toString(), (int) pilotSpinner.getSelectedItem(),
                     (int) fighterSpinner.getSelectedItem(), (int) traderSpinner.getSelectedItem(),
                     (int) engineerSpinner.getSelectedItem(), (String) difficultySpinner.getSelectedItem());
+            configurationViewModel.addPlayer(player);
 
             Log.d("Edit", "Got new player data: " + player);
 

@@ -14,7 +14,11 @@ public class Repository {
      * Make a new Repository object
      */
     public Repository() {
+        player = new Player("", 0, 0, 0, 0, "Beginner");
+    }
 
+    public void addPlayer(Player player) {
+        this.player = player;
     }
 
 }
