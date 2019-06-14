@@ -11,8 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity
-            android:name=".views.ConfigurationActivity"
+
+        <activity android:name=".views.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme"
@@ -23,6 +23,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".views.ConfigurationActivity"
+            android:parentActivityName=".views.MainActivity"
+            android:noHistory="true"/>
+
         <activity
             android:name=".views.HomeScreenActivity"
             android:parentActivityName=".views.ConfigurationActivity"
