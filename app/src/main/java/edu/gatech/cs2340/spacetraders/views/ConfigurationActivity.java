@@ -1,11 +1,13 @@
 package edu.gatech.cs2340.spacetraders.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -31,6 +33,7 @@ public class ConfigurationActivity extends AppCompatActivity {
     private Spinner traderSpinner;
     private Spinner engineerSpinner;
     private Spinner difficultySpinner;
+    private Button beginButton;
 
     /** data for player being created */
     private Player player;
@@ -62,6 +65,15 @@ public class ConfigurationActivity extends AppCompatActivity {
         traderSpinner.setAdapter(skillAdapter);
         engineerSpinner.setAdapter(skillAdapter);
 
+        beginButton = findViewById(R.id.begin_button);
+        beginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBeginPressed(view);
+            }
+        });
+
+
         configurationViewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
     }
 
@@ -73,15 +85,31 @@ public class ConfigurationActivity extends AppCompatActivity {
     public void onBeginPressed(View view) {
         Log.d("Edit", "Begin Button Pressed");
 
-        player.setName(nameField.getText().toString());
+/*        if (((int) pilotSpinner.getSelectedItem() + (int) fighterSpinner.getSelectedItem() +
+                (int) traderSpinner.getSelectedItem() +
+                (int) engineerSpinner.getSelectedItem()) != 16) {
+            onBackPressed();
+        }*/
+
+        player = new Player (nameField.getText().toString(), (int) pilotSpinner.getSelectedItem(),
+                (int) fighterSpinner.getSelectedItem(), (int) traderSpinner.getSelectedItem(),
+                (int) engineerSpinner.getSelectedItem(), (String) difficultySpinner.getSelectedItem());
+
+/*        this.player.setName(nameField.getText().toString());
         player.setPilotSkill((int) pilotSpinner.getSelectedItem());
         player.setFighterSkill((int) fighterSpinner.getSelectedItem());
         player.setTraderSkill((int) traderSpinner.getSelectedItem());
         player.setEngineerSkill((int) engineerSpinner.getSelectedItem());
-        player.setDifficulty((String) difficultySpinner.getSelectedItem());
+        player.setDifficulty((String) difficultySpinner.getSelectedItem());*/
 
         Log.d("Edit", "Got new player data: " + player);
 
-        finish();
+        openHomeScreen();
+
+    }
+
+    private void openHomeScreen() {
+        Intent intent = new Intent(this, HomeScreenActivity.class);
+        startActivity(intent);
     }
 }

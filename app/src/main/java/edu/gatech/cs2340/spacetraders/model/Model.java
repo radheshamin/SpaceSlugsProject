@@ -27,5 +27,13 @@ public class Model {
     private static  Model instance = new Model();
 
     public static Model getInstance() { return instance; }
+
+    /**
+     * Make a new Model instance
+     */
+    private Model() {
+        myRepository = new Repository();
+        interactorMap = new HashMap<>();
+    }
 }
 
