@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/intro"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autoText="false"
         android:gravity="center_horizontal"
@@ -34,7 +34,7 @@
 
     <TextView
         android:id="@+id/name_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="What's your name?"
@@ -46,7 +46,7 @@
 
     <EditText
         android:id="@+id/name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
@@ -58,7 +58,7 @@
 
     <TextView
         android:id="@+id/skills_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autoText="false"
         android:gravity="center_horizontal"
@@ -71,7 +71,7 @@
 
     <TextView
         android:id="@+id/pilot"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="Pilot (determines how well you pilot your ship)"
@@ -82,7 +82,7 @@
 
     <Spinner
         android:id="@+id/pilot_spinner"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout_conversion_absoluteHeight="24dp"
         tools:layout_conversion_absoluteWidth="355dp"
@@ -91,7 +91,7 @@
 
     <TextView
         android:id="@+id/fighter"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="Fighter (determines how well you handle your weapons)"
@@ -102,7 +102,7 @@
 
     <Spinner
         android:id="@+id/fighter_spinner"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout_conversion_absoluteHeight="24dp"
         tools:layout_conversion_absoluteWidth="355dp"
@@ -111,7 +111,7 @@
 
     <TextView
         android:id="@+id/trader"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="Trader (determines what prices you must pay)"
@@ -122,7 +122,7 @@
 
     <Spinner
         android:id="@+id/trader_spinner"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout_conversion_absoluteHeight="24dp"
         tools:layout_conversion_absoluteWidth="355dp"
@@ -131,7 +131,7 @@
 
     <TextView
         android:id="@+id/engineer"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="Engineer (determines how well you keep your ship in shape)"
@@ -142,7 +142,7 @@
 
     <Spinner
         android:id="@+id/engineer_spinner"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout_conversion_absoluteHeight="24dp"
         tools:layout_conversion_absoluteWidth="355dp"
@@ -151,7 +151,7 @@
 
     <TextView
         android:id="@+id/difficulty"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="Choose your difficulty"
@@ -163,7 +163,7 @@
 
     <Spinner
         android:id="@+id/difficulty_spinner"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout_conversion_absoluteHeight="24dp"
         tools:layout_conversion_absoluteWidth="385dp"
@@ -172,7 +172,7 @@
 
     <Button
         android:id="@+id/begin_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onBeginPressed"
         android:text="Begin"

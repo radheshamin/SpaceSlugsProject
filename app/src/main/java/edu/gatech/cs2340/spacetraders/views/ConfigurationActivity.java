@@ -85,27 +85,20 @@ public class ConfigurationActivity extends AppCompatActivity {
     public void onBeginPressed(View view) {
         Log.d("Edit", "Begin Button Pressed");
 
-/*        if (((int) pilotSpinner.getSelectedItem() + (int) fighterSpinner.getSelectedItem() +
+        if (((int) pilotSpinner.getSelectedItem() + (int) fighterSpinner.getSelectedItem() +
                 (int) traderSpinner.getSelectedItem() +
                 (int) engineerSpinner.getSelectedItem()) != 16) {
-            onBackPressed();
-        }*/
+            Log.d("Edit", "Not correct number of skill points");
+        } else {
 
-        player = new Player (nameField.getText().toString(), (int) pilotSpinner.getSelectedItem(),
-                (int) fighterSpinner.getSelectedItem(), (int) traderSpinner.getSelectedItem(),
-                (int) engineerSpinner.getSelectedItem(), (String) difficultySpinner.getSelectedItem());
+            player = new Player(nameField.getText().toString(), (int) pilotSpinner.getSelectedItem(),
+                    (int) fighterSpinner.getSelectedItem(), (int) traderSpinner.getSelectedItem(),
+                    (int) engineerSpinner.getSelectedItem(), (String) difficultySpinner.getSelectedItem());
 
-/*        this.player.setName(nameField.getText().toString());
-        player.setPilotSkill((int) pilotSpinner.getSelectedItem());
-        player.setFighterSkill((int) fighterSpinner.getSelectedItem());
-        player.setTraderSkill((int) traderSpinner.getSelectedItem());
-        player.setEngineerSkill((int) engineerSpinner.getSelectedItem());
-        player.setDifficulty((String) difficultySpinner.getSelectedItem());*/
+            Log.d("Edit", "Got new player data: " + player);
 
-        Log.d("Edit", "Got new player data: " + player);
-
-        openHomeScreen();
-
+            openHomeScreen();
+        }
     }
 
     private void openHomeScreen() {
