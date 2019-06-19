@@ -34,6 +34,20 @@ public class Model {
     private Model() {
         myRepository = new Repository();
         interactorMap = new HashMap<>();
+        registerInteractors();
+    }
+
+    /** end Singleton Pattern */
+
+    /**
+     * Create a set of interactors to be used by the application
+     */
+    private void registerInteractors() {
+        interactorMap.put("Player", new PlayerInteractor(myRepository));
+    }
+
+    public PlayerInteractor getPlayerInteractor() {
+        return (PlayerInteractor) interactorMap.get("Player");
     }
 }
 

@@ -97,9 +97,7 @@ public class ConfigurationActivity extends AppCompatActivity {
                     (int) fighterSpinner.getSelectedItem(), (int) traderSpinner.getSelectedItem(),
                     (int) engineerSpinner.getSelectedItem(), (String) difficultySpinner.getSelectedItem());
             configurationViewModel.addPlayer(player);
-
             Log.d("Edit", "Got new player data: " + player);
-
             openHomeScreen();
         }
     }

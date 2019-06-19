@@ -5,7 +5,7 @@ import edu.gatech.cs2340.spacetraders.entity.Player;
 /**
  * This class is an abstraction of the data storage for the business classes
  */
-public class Repository {
+class Repository {
 
     /** player of the application */
     private Player player;
@@ -19,6 +19,10 @@ public class Repository {
 
     public void addPlayer(Player player) {
         this.player = player;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
 }
