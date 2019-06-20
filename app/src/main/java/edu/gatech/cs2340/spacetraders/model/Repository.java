@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.spacetraders.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,7 +21,13 @@ class Repository {
      */
     public Repository() {
         player = new Player("", 0, 0, 0, 0, "Beginner");
-        universe = Arrays.asList(Planet.values());
+        List<Planet> all = new ArrayList<Planet>(Arrays.asList(Planet.values()));
+        universe = new ArrayList<Planet>();
+        for (int i = 0; i < 10; i++) {
+            int n = (int)(Math.random() * all.size());
+            universe.add(all.get(n));
+            all.remove(n);
+        }
     }
 
     public void addPlayer(Player player) {
