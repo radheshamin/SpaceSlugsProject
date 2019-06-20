@@ -8,16 +8,20 @@ import java.util.Random;
 
 
 public enum Planet {
-    NABOO ("Naboo", new ArrayList<String>(Arrays.asList("Naboo")), 25, 100, (int)(Math.random() * 8), (int)(Math.random() * 13)),
-    HOTH ("Hoth", new ArrayList<String>(Arrays.asList("Hoth")), 50, 23, (int)(Math.random() * 8), (int)(Math.random() * 13)),
-    TATOOINE ("Tatooine", new ArrayList<String>(Arrays.asList("Tatooine")), 100, 139, (int)(Math.random() * 8), (int)(Math.random() * 13)),
-    CORUSCANT ("Coruscant", new ArrayList<String>(Arrays.asList("Coruscant")), 65, 90, (int)(Math.random() * 8), (int)(Math.random() * 13)),
-    DAGOBAH ("Dagobah", new ArrayList<String>(Arrays.asList("Dagobah")), 0, 0, (int)(Math.random() * 8), (int)(Math.random() * 13)),
-    ALDERAAN ("Alderaan", new ArrayList<String>(Arrays.asList("Alderaan")), 100, 75, (int)(Math.random() * 8), (int)(Math.random() * 13)),
-    ENDOR ("Endor", new ArrayList<String>(Arrays.asList("Endor")), 59, 130, (int)(Math.random() * 8), (int)(Math.random() * 13)),
-    BESPIN ("Bespin", new ArrayList<String>(Arrays.asList("Bespin")), 15, 28, (int)(Math.random() * 8), (int)(Math.random() * 13)),
-    CANTONICA ("Cantonica", new ArrayList<String>(Arrays.asList("Cantonica")), 90, 120, (int)(Math.random() * 8), (int)(Math.random() * 13)),
-    JAKKU ("Jakku", new ArrayList<String>(Arrays.asList("Jakku")), 60, 145, (int)(Math.random() * 8), (int)(Math.random() * 13));
+    NABOO ("Naboo", new ArrayList<String>(Arrays.asList("Naboo")), 61, 66, (int)(Math.random() * 8), (int)(Math.random() * 13)),
+    HOTH ("Hoth", new ArrayList<String>(Arrays.asList("Hoth")), 46, 84, (int)(Math.random() * 8), (int)(Math.random() * 13)),
+    TATOOINE ("Tatooine", new ArrayList<String>(Arrays.asList("Tatooine")), 82, 63, (int)(Math.random() * 8), (int)(Math.random() * 13)),
+    CORUSCANT ("Coruscant", new ArrayList<String>(Arrays.asList("Coruscant")), 26, 68, (int)(Math.random() * 8), (int)(Math.random() * 13)),
+    DAGOBAH ("Dagobah", new ArrayList<String>(Arrays.asList("Dagobah")), 32, 24, (int)(Math.random() * 8), (int)(Math.random() * 13)),
+    ALDERAAN ("Alderaan", new ArrayList<String>(Arrays.asList("Alderaan")), 25, 26, (int)(Math.random() * 8), (int)(Math.random() * 13)),
+    ENDOR ("Endor", new ArrayList<String>(Arrays.asList("Endor")), 36, 67, (int)(Math.random() * 8), (int)(Math.random() * 13)),
+    BESPIN ("Bespin", new ArrayList<String>(Arrays.asList("Bespin")), 23, 46, (int)(Math.random() * 8), (int)(Math.random() * 13)),
+    CANTONICA ("Cantonica", new ArrayList<String>(Arrays.asList("Cantonica")), 22, 22, (int)(Math.random() * 8), (int)(Math.random() * 13)),
+    JAKKU ("Jakku", new ArrayList<String>(Arrays.asList("Jakku")), 52, 58, (int)(Math.random() * 8), (int)(Math.random() * 13)),
+    CITADEL ("Citadel", new ArrayList<String>(Arrays.asList("Citadel")), 0, 0, (int)(Math.random() * 8), (int)(Math.random() * 13)),
+    THESSIA ("Thessia", new ArrayList<String>(Arrays.asList("Thessia")), 84, 42, (int)(Math.random() * 8), (int)(Math.random() * 13)),
+    VIRMIRE ("Virmire", new ArrayList<String>(Arrays.asList("Virmire")), 57, 26, (int)(Math.random() * 8), (int)(Math.random() * 13)),
+    NORMANDY ("Normandy", new ArrayList<String>(Arrays.asList("Normandy")), 66, 39, (int)(Math.random() * 8), (int)(Math.random() * 13));
 
     private final String name;
 
