@@ -76,8 +76,8 @@ public class Player {
 
     @Override
     public String toString() {
-        return String.format("Student: %s, pilot: %d, fighter: %d, trader: %d, engineer: %d, " +
-                        "difficulty: %s.", name, pilotSkill, fighterSkill, traderSkill,
+        return String.format("Player Name: %s, Pilot: %d, Fighter: %d, Trader: %d, Engineer: %d, " +
+                        "Difficulty: %s.", name, pilotSkill, fighterSkill, traderSkill,
                 engineerSkill, difficulty);
     }
 }
