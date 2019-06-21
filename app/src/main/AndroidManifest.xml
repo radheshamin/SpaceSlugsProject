@@ -36,5 +36,8 @@
             android:name=".views.ConfigurationRedoActivity"
             android:parentActivityName=".views.ConfigurationActivity"
             android:noHistory="true"/>
+        <activity
+            android:name=".views.PlanetDetailActivity"
+            android:parentActivityName=".views.HomeScreenActivity"/>
     </application>
 </manifest>

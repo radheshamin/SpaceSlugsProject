@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.gatech.cs2340.spacetraders.R;
+import edu.gatech.cs2340.spacetraders.entity.City;
 import edu.gatech.cs2340.spacetraders.entity.Planet;
 
 public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.PlanetViewHolder> {
@@ -41,7 +42,14 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Planet
         Planet planet = planetList.get(position);
 
         //now use the view holder to set the appropriate information
-        holder.cities.setText("Cities: " + planet.getCities().toString());
+        String cities = "";
+        for (City c : planet.getCities()) {
+            cities = c.getName();
+            if (planet.getCities().indexOf(c) != planet.getCities().size() - 1) {
+                cities += ", ";
+            }
+        }
+        holder.cities.setText("Cities: " + cities);
         holder.coordinates.setText("Coordinates: " + planet.getCoordinates().toString());
         holder.techLevel.setText("Tech Level: " + (Integer.toString(planet.getTechLevel())));
         holder.resourceLevel.setText("Resource Type: " + (Integer.toString(planet.getResources())));
@@ -55,8 +63,8 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Planet
         return planetList.size();
     }
 
-    public void setPlanetList(List<Planet> courses) {
-        planetList = courses;
+    public void setPlanetList(List<Planet> planets) {
+        planetList = planets;
         notifyDataSetChanged();
     }
 
@@ -81,8 +89,8 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Planet
          */
         public PlanetViewHolder(@NonNull View itemView) {
             super(itemView);
-            cities = itemView.findViewById(R.id.cities);
-            coordinates = itemView.findViewById(R.id.coordinates);
+            cities = itemView.findViewById(R.id.name);
+            coordinates = itemView.findViewById(R.id.location);
             techLevel = itemView.findViewById(R.id.tech_level);
             resourceLevel = itemView.findViewById(R.id.resource_level);
             name = itemView.findViewById(R.id.planet_name);
@@ -106,7 +114,7 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Planet
         void onPlanetClicked(Planet planet);
     }
 
-    public void setOnCourseClickListener(OnPlanetClickListener listener) {
+    public void setOnPlanetClickListener(OnPlanetClickListener listener) {
         this.listener = listener;
     }
 }

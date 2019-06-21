@@ -16,12 +16,12 @@ import java.util.List;
 
 import edu.gatech.cs2340.spacetraders.R;
 import edu.gatech.cs2340.spacetraders.entity.Player;
-import edu.gatech.cs2340.spacetraders.viewmodels.ConfigurationViewModel;
+import edu.gatech.cs2340.spacetraders.viewmodels.PlayerViewModel;
 
 public class ConfigurationRedoActivity extends AppCompatActivity {
 
     /** local instance of view model */
-    private ConfigurationViewModel configurationViewModel;
+    private PlayerViewModel configurationViewModel;
 
     /** widgets for configuration screen */
     private EditText nameField;
@@ -71,7 +71,7 @@ public class ConfigurationRedoActivity extends AppCompatActivity {
         });
 
 
-        configurationViewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
+        configurationViewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
     }
 
     /**
@@ -92,7 +92,7 @@ public class ConfigurationRedoActivity extends AppCompatActivity {
 
             player = new Player(nameField.getText().toString(), (int) pilotSpinner.getSelectedItem(),
                     (int) fighterSpinner.getSelectedItem(), (int) traderSpinner.getSelectedItem(),
-                    (int) engineerSpinner.getSelectedItem(), (String) difficultySpinner.getSelectedItem());
+                    (int) engineerSpinner.getSelectedItem(), (String) difficultySpinner.getSelectedItem(), -1, -1);
             configurationViewModel.addPlayer(player);
             Log.d("Edit", "Got new player data: " + player);
 

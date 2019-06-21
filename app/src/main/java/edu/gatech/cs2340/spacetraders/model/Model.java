@@ -44,10 +44,16 @@ public class Model {
      */
     private void registerInteractors() {
         interactorMap.put("Player", new PlayerInteractor(myRepository));
+        interactorMap.put("Planet", new CityInteractor(myRepository));
+
     }
 
     public PlayerInteractor getPlayerInteractor() {
         return (PlayerInteractor) interactorMap.get("Player");
+    }
+
+    public CityInteractor getCityInteractor() {
+        return (CityInteractor) interactorMap.get("City");
     }
 }
 

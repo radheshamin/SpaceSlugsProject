@@ -30,30 +30,13 @@
             android:text="X"
             tools:ignore="RtlCompat" />
 
-        <TextView
-            android:id="@+id/tech_level"
+        <Button
+            android:id="@+id/travelButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/location"
-            android:paddingEnd="8dp"
-            android:text="F"
-            tools:ignore="RtlCompat" />
-
-        <TextView
-            android:id="@+id/resource_level"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/tech_level"
-            android:layout_below="@id/location"
-            android:text="L" />
-
-        <TextView
-            android:id="@+id/planet_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tech_level"
             android:layout_alignParentEnd="true"
-            android:text="Planet"
+            android:text="Travel Here"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             tools:ignore="RtlCompat" />
 

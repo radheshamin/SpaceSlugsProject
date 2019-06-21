@@ -25,7 +25,7 @@ public enum Planet {
 
     private final String name;
 
-    private final List<String> cities;
+    private final List<City> cities;
 
     private final List<Integer> coordinates;
 
@@ -45,7 +45,14 @@ public enum Planet {
      */
     Planet (String name, List<String> cities, int coordinateX, int coordinateY, int techLevel, int resources) {
         this.name = name;
-        this.cities = cities;
+        this.cities = new ArrayList<City>();
+        int x = 0;
+        int y = 0;
+        for (String s : cities) {
+            x += (int) (Math.random() * 10);
+            y += (int) (Math.random() * 10);
+            this.cities.add(new City(s, x, y, techLevel, resources));
+        }
         coordinates = new ArrayList<Integer>();
         coordinates.add(coordinateX);
         coordinates.add(coordinateY);
@@ -57,7 +64,7 @@ public enum Planet {
         return name;
     }
 
-    public List<String> getCities() {
+    public List<City> getCities() {
         return cities;
     }
 

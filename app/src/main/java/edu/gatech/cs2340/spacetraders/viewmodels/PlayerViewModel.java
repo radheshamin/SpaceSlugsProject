@@ -15,11 +15,11 @@ import edu.gatech.cs2340.spacetraders.model.PlayerInteractor;
  * This viewmodel would support activities that need to create player
  *
  */
-public class ConfigurationViewModel extends AndroidViewModel {
+public class PlayerViewModel extends AndroidViewModel {
 
     private PlayerInteractor interactor;
 
-    public ConfigurationViewModel(@NonNull Application application) {
+    public PlayerViewModel(@NonNull Application application) {
         super(application);
         interactor = Model.getInstance().getPlayerInteractor();
 
