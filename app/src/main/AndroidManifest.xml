@@ -39,5 +39,8 @@
         <activity
             android:name=".views.PlanetDetailActivity"
             android:parentActivityName=".views.HomeScreenActivity"/>
+        <activity
+            android:name=".views.MarketplaceActivity"
+            android:parentActivityName=".views.HomeScreenActivity"/>
     </application>
 </manifest>

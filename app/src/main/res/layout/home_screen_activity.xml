@@ -13,12 +13,12 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/home"
+                android:id="@+id/marketplace"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:text="Player and Universe"
-                android:textSize="36sp" />
+                android:textSize="31sp" />
 
             <TextView
                 android:id="@+id/player_text"
@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:text="TextView"
-                android:textSize="25dp" />
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/current_location"
@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:text="location"
-                android:textSize="25dp" />
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/location"
@@ -42,13 +42,21 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:text="coordinates"
-                android:textSize="25dp" />
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/ship"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="TextView"
+                android:textSize="20dp" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/planet_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:gravity="center_horizontal"/>
         </LinearLayout>
     </ScrollView>

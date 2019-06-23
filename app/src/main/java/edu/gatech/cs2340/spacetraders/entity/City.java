@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class City {
+public class City implements java.io.Serializable{
     private String name;
     private List<Integer> location;
     private HashMap<String, Integer> priceIndex;
@@ -42,7 +42,7 @@ public class City {
         } else if (resources == 8) {
             furCost = furCost * 2;
         }
-        priceIndex.put("Fur", furCost);
+        priceIndex.put("Furs", furCost);
 
         variance = (int) (Math.random() * 2);
         int foodCost;
@@ -131,20 +131,20 @@ public class City {
         variance = (int) (Math.random() * 2);
         int machineCost;
         if (techLevel < 4) {
-            priceIndex.put("Machine", 0);
+            priceIndex.put("Machines", 0);
         } else {
             if (variance == 0) {
                 machineCost = 900 + (-30 * (techLevel - 4)) + (900 * (((int) (Math.random() * 5)) /100 ));
             } else {
                 machineCost = 900 + (-30 * (techLevel - 4)) - (900 * (((int) (Math.random() * 5)) /100 ));
             }
-            priceIndex.put("Machine", machineCost);
+            priceIndex.put("Machines", machineCost);
         }
 
         variance = (int) (Math.random() * 2);
         int narcoticCost;
         if (techLevel < 5) {
-            priceIndex.put("Narcotic", 0);
+            priceIndex.put("Narcotics", 0);
         } else {
             if (variance == 0) {
                 narcoticCost = 3500 + (-125 * (techLevel - 5)) + (3500 * (((int) (Math.random() * 150)) /100 ));
@@ -154,20 +154,20 @@ public class City {
             if (resources == 9) {
                 narcoticCost = narcoticCost / 2;
             }
-            priceIndex.put("Narcotic", narcoticCost);
+            priceIndex.put("Narcotics", narcoticCost);
         }
 
         variance = (int) (Math.random() * 2);
         int robotCost;
         if (techLevel < 6) {
-            priceIndex.put("Robot", 0);
+            priceIndex.put("Robots", 0);
         } else {
             if (variance == 0) {
                 robotCost = 5000 + (-150 * (techLevel - 6)) + (5000 * (((int) (Math.random() * 100)) /100 ));
             } else {
                 robotCost = 5000 + (-150 * (techLevel - 6)) - (5000 * (((int) (Math.random() * 100)) /100 ));
             }
-            priceIndex.put("Robot", robotCost);
+            priceIndex.put("Robots", robotCost);
         }
     }
 

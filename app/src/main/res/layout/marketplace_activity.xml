@@ -1,0 +1,782 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/marketplace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Marketplace"
+            android:textSize="36sp" />
+
+        <TextView
+            android:id="@+id/player"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="player"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/ship"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="ship"
+            android:textSize="25sp" />
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/water_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Water"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/water_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/water_name"
+                    android:gravity="center_horizontal"
+                    android:text="price"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/max_water"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/water_price"
+                    android:gravity="center_horizontal"
+                    android:text="Max Amount of water" />
+
+                <EditText
+                    android:id="@+id/water_buy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/max_water"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/water_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/max_water"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@id/water_buy"
+                    android:text="Buy Water" />
+
+                <EditText
+                    android:id="@+id/water_sell"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/water_buy"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/water_sell_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/water_buy"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@id/water_sell"
+                    android:text="Sell Water" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/furs_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Furs"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/furs_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/furs_name"
+                    android:gravity="center_horizontal"
+                    android:text="price"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/max_furs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/furs_price"
+                    android:gravity="center_horizontal"
+                    android:text="Max Amount of furs" />
+
+                <EditText
+                    android:id="@+id/furs_buy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/max_furs"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/furs_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/max_furs"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_toRightOf="@id/furs_buy"
+                    android:text="Buy furs" />
+
+                <EditText
+                    android:id="@+id/furs_sell"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/furs_buy"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/furs_sell_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/furs_buy"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@id/furs_sell"
+                    android:text="Sell furs" />
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/food_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Food"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/food_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/food_name"
+                    android:gravity="center_horizontal"
+                    android:text="price"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/max_food"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/food_price"
+                    android:gravity="center_horizontal"
+                    android:text="Max Amount of food" />
+
+                <EditText
+                    android:id="@+id/food_buy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/max_food"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/food_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/max_food"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@id/food_buy"
+                    android:text="Buy food" />
+                <EditText
+                    android:id="@+id/food_sell"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/food_buy"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/food_sell_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/food_buy"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_toRightOf="@id/food_sell"
+                    android:text="Sell food" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/ore_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Ore"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/ore_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ore_name"
+                    android:gravity="center_horizontal"
+                    android:text="price"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/max_ore"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ore_price"
+                    android:gravity="center_horizontal"
+                    android:text="Max Amount of ore" />
+
+                <EditText
+                    android:id="@+id/ore_buy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/max_ore"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/ore_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/max_ore"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@id/ore_buy"
+                    android:text="Buy ore" />
+
+                <EditText
+                    android:id="@+id/ore_sell"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ore_buy"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/ore_sell_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ore_buy"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@id/ore_sell"
+                    android:text="Sell ore" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/games_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Games"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/games_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/games_name"
+                    android:gravity="center_horizontal"
+                    android:text="price"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/max_games"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/games_price"
+                    android:gravity="center_horizontal"
+                    android:text="Max Amount of games" />
+
+                <EditText
+                    android:id="@+id/games_buy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/max_games"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/games_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/max_games"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@id/games_buy"
+                    android:text="Buy games" />
+                <EditText
+                    android:id="@+id/games_sell"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/games_buy"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/games_sell_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/games_buy"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@id/games_sell"
+                    android:text="Sell games" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/firearms_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Firearms"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/firearms_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/firearms_name"
+                    android:gravity="center_horizontal"
+                    android:text="price"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/max_firearms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/firearms_price"
+                    android:gravity="center_horizontal"
+                    android:text="Max Amount of firearms" />
+
+                <EditText
+                    android:id="@+id/firearms_buy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/max_firearms"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/firearms_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/max_firearms"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@id/firearms_buy"
+                    android:text="Buy firearms" />
+                <EditText
+                    android:id="@+id/firearms_sell"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/firearms_buy"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/firearms_sell_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/firearms_buy"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@id/firearms_sell"
+                    android:text="Sell firearms" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/medicine_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Medicine"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/medicine_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/medicine_name"
+                    android:gravity="center_horizontal"
+                    android:text="price"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/max_medicine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/medicine_price"
+                    android:gravity="center_horizontal"
+                    android:text="Max Amount of medicine" />
+
+                <EditText
+                    android:id="@+id/medicine_buy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/max_medicine"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/medicine_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/max_medicine"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@id/medicine_buy"
+                    android:text="Buy medicine" />
+                <EditText
+                    android:id="@+id/medicine_sell"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/medicine_buy"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/medicine_sell_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/medicine_buy"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@id/medicine_sell"
+                    android:text="Sell medicine" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/machines_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Machines"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/machines_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/machines_name"
+                    android:gravity="center_horizontal"
+                    android:text="price"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/max_machines"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/machines_price"
+                    android:gravity="center_horizontal"
+                    android:text="Max Amount of machines" />
+
+                <EditText
+                    android:id="@+id/machines_buy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/max_machines"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/machines_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/max_machines"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@id/machines_buy"
+                    android:text="Buy machines" />
+                <EditText
+                    android:id="@+id/machines_sell"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/machines_buy"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/machines_sell_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/machines_buy"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@id/machines_sell"
+                    android:text="Sell machines" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/narcotics_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Narcotics"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/narcotics_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/narcotics_name"
+                    android:gravity="center_horizontal"
+                    android:text="price"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/max_narcotics"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/narcotics_price"
+                    android:gravity="center_horizontal"
+                    android:text="Max Amount of narcotics" />
+
+                <EditText
+                    android:id="@+id/narcotics_buy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/max_narcotics"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/narcotics_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/max_narcotics"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@id/narcotics_buy"
+                    android:text="Buy narcotics" />
+                <EditText
+                    android:id="@+id/narcotics_sell"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/narcotics_buy"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/narcotics_sell_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/narcotics_buy"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@id/narcotics_sell"
+                    android:text="Sell narcotics" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/robots_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Robots"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/robots_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/robots_name"
+                    android:gravity="center_horizontal"
+                    android:text="price"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/max_robots"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/robots_price"
+                    android:gravity="center_horizontal"
+                    android:text="Max Amount of robots" />
+
+                <EditText
+                    android:id="@+id/robots_buy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/max_robots"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/robots_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/max_robots"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@id/robots_buy"
+                    android:text="Buy robots" />
+                <EditText
+                    android:id="@+id/robots_sell"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/robots_buy"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/robots_sell_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/robots_buy"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@id/robots_sell"
+                    android:text="Sell robots" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp">
+
+            <Button
+                android:id="@+id/refill_fuel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Refill Fuel ($50)" />
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+</ScrollView>

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import edu.gatech.cs2340.spacetraders.R;
+import edu.gatech.cs2340.spacetraders.entity.City;
 import edu.gatech.cs2340.spacetraders.entity.Planet;
 import edu.gatech.cs2340.spacetraders.entity.Player;
 import edu.gatech.cs2340.spacetraders.viewmodels.CityViewModel;
@@ -26,6 +27,8 @@ public class PlanetDetailActivity extends AppCompatActivity {
     private CityViewModel cityViewModel;
     private PlanetAdapter adapter;
     private Planet planet;
+    public static final String EXTRA_CITY = "edu.gatech.cs2340.spacetraders.views.EXTRA_CITY";
+
 
     public static final String EXTRA_PLANET = "edu.gatech.cs2340.spacetraders.views.EXTRA_PLANET";
 
@@ -34,12 +37,7 @@ public class PlanetDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_planet_detail);
 
-        if (getIntent().hasExtra(HomeScreenActivity.EXTRA_PLANET)) {
-            planet = (Planet) getIntent().getSerializableExtra(HomeScreenActivity.EXTRA_PLANET);
-        } else {
-            //no planet is an internal error, this should not happen
-            Log.d("APP", "INTERNAL ERROR< NO COURSE PASSED");
-        }
+        planet = (Planet) getIntent().getSerializableExtra(HomeScreenActivity.EXTRA_PLANET);
 
         playerViewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
         cityViewModel = ViewModelProviders.of(this).get(CityViewModel.class);
@@ -64,8 +62,18 @@ public class PlanetDetailActivity extends AppCompatActivity {
 
         adapter = new PlanetAdapter();
         adapter.setCityList(planet.getCities());
+        adapter.setPlanet(planet);
         adapter.setPlayer(player);
         recyclerView.setAdapter(adapter);
+
+        adapter.setOnTravelClickListener(new PlanetAdapter.OnTravelClickListener() {
+            @Override
+            public void onTravelClicked(City city) {
+                Intent intent = new Intent(PlanetDetailActivity.this, MarketplaceActivity.class);
+                intent.putExtra(EXTRA_CITY, city);
+                startActivity(intent);
+            }
+        });
     }
 
 

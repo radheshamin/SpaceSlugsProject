@@ -13,7 +13,9 @@ public class Player {
     private int traderSkill;
     private int engineerSkill;
     private List<Integer> coordinates;
+    private List<Integer> location;
     private String difficulty;
+    private int money;
 
     public static List<String> legalDifficuties = Arrays.asList("Beginner", "Easy",
             "Normal", "Hard", "Impossible");
@@ -29,6 +31,10 @@ public class Player {
         coordinates = new ArrayList<Integer>();
         coordinates.add(coordinateX);
         coordinates.add(coordinateY);
+        location = new ArrayList<Integer>();
+        location.add(-1);
+        location.add(-1);
+        this.money = 1000;
     }
 
     public String getName () {
@@ -88,6 +94,23 @@ public class Player {
         coordinates.set(1, coordinateY);
     }
 
+    public List<Integer> getLocation() {
+        return location;
+    }
+
+    public void setLocation(int latitude, int longitude) {
+        location.set(0, latitude);
+        location.set(1, longitude);
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public int getMoney () {
+        return money;
+    }
+
     public String getCurrentPlanet() {
         List<Planet> all = new ArrayList<Planet>(Arrays.asList(Planet.values()));
         for (Planet p : all) {
@@ -100,8 +123,8 @@ public class Player {
 
     @Override
     public String toString() {
-        return String.format("Player Name: %s, Pilot: %d, Fighter: %d, Trader: %d, Engineer: %d, " +
-                        "Difficulty: %s.", name, pilotSkill, fighterSkill, traderSkill,
+        return String.format("Player Name: %s, Money: $%d, Pilot: %d, Fighter: %d, Trader: %d, Engineer: %d, " +
+                        "Difficulty: %s.", name, money, pilotSkill, fighterSkill, traderSkill,
                 engineerSkill, difficulty);
     }
 }

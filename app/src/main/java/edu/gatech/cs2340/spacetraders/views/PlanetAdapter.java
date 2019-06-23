@@ -13,6 +13,7 @@ import java.util.List;
 
 import edu.gatech.cs2340.spacetraders.R;
 import edu.gatech.cs2340.spacetraders.entity.City;
+import edu.gatech.cs2340.spacetraders.entity.Planet;
 import edu.gatech.cs2340.spacetraders.entity.Player;
 
 public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.CityViewHolder> {
@@ -21,7 +22,9 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.CityViewHo
 
     private Player player;
 
-    private OnCityClickListener listener;
+    private OnTravelClickListener listener;
+
+    private Planet planet;
 
     @NonNull
     @Override
@@ -47,11 +50,14 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.CityViewHo
         //now use the view holder to set the appropriate information
         holder.name.setText("City: " + city.getName());
         holder.location.setText("Location On Planet: " + city.getLocation().toString());
-        if (player.getCurrentPlanet() != null) {
+        /*if (player.getCurrentPlanet().equals(planet.getName()) && player.getLocation().equals(city.getLocation())) {
+            holder.travel.setText("Visit Marketplace");
+        } else if (player.getCurrentPlanet().equals(planet.getName())){
             holder.travel.setText("Travel To This City");
         } else {
             holder.travel.setText("Travel To This Planet And City");
-        }
+        }*/
+        holder.travel.setText("Travel Here");
 
 
 
@@ -76,6 +82,11 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.CityViewHo
         return cityList.get(position);
     }
 
+    public void setPlanet(Planet planet) {
+        this.planet = planet;
+        notifyDataSetChanged();
+    }
+
     class CityViewHolder extends RecyclerView.ViewHolder {
         //View holder needs reference to each widget in the individual item in the list
         private TextView name;
@@ -95,26 +106,25 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.CityViewHo
             location = itemView.findViewById(R.id.location);
             travel = itemView.findViewById(R.id.travelButton);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+            travel.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
 
                     if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onCityClicked(cityList.get(position));
+                        listener.onTravelClicked(cityList.get(position));
                     }
                 }
             });
-
         }
     }
 
-    public interface OnCityClickListener {
-        void onCityClicked(City city);
+    public interface OnTravelClickListener {
+        void onTravelClicked(City city);
     }
 
-    public void setOnCityClickListener(OnCityClickListener listener) {
+    public void setOnTravelClickListener(OnTravelClickListener listener) {
         this.listener = listener;
     }
 
