@@ -771,11 +771,22 @@
             android:layout_height="match_parent"
             android:layout_marginTop="8dp">
 
+            <TextView
+                android:id="@+id/fuel_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Fuel"
+                android:textSize="24sp" />
+
             <Button
                 android:id="@+id/refill_fuel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/fuel_text"
+                android:layout_marginTop="25dp"
                 android:text="Refill Fuel ($50)" />
+
         </android.support.v7.widget.CardView>
 
     </LinearLayout>

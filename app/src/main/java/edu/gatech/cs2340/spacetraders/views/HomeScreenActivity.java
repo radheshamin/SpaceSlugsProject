@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.widget.TextView;
 
 import edu.gatech.cs2340.spacetraders.R;
+import edu.gatech.cs2340.spacetraders.entity.City;
 import edu.gatech.cs2340.spacetraders.entity.Planet;
 import edu.gatech.cs2340.spacetraders.entity.Player;
 import edu.gatech.cs2340.spacetraders.entity.SpaceShip;
@@ -18,6 +19,8 @@ import android.support.v7.widget.RecyclerView;
 
 import org.w3c.dom.Text;
 
+import java.util.HashMap;
+
 public class HomeScreenActivity extends AppCompatActivity {
 
     private Player player;
@@ -26,6 +29,8 @@ public class HomeScreenActivity extends AppCompatActivity {
     private UniverseAdapter adapter;
     private SpaceShip ship;
     public static final String EXTRA_PLANET = "edu.gatech.cs2340.spacetraders.views.EXTRA_PLANET";
+
+    public static final String CITY_AMOUNT = "edu.gatech.cs2340.spacetraders.views.CITY_AMOUNT";
 
 
     @Override
@@ -69,6 +74,9 @@ public class HomeScreenActivity extends AppCompatActivity {
             public void onPlanetClicked(Planet planet) {
                 Intent intent = new Intent(HomeScreenActivity.this, PlanetDetailActivity.class);
                 intent.putExtra(EXTRA_PLANET, planet);
+                if (getIntent().hasExtra(MarketplaceActivity.CITY_AMOUNT)) {
+                    intent.putExtra(CITY_AMOUNT, (HashMap<String, Integer>) getIntent().getSerializableExtra(MarketplaceActivity.CITY_AMOUNT));
+                }
                 startActivity(intent);
             }
         });

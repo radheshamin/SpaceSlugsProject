@@ -1,6 +1,7 @@
 package edu.gatech.cs2340.spacetraders.views;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -58,6 +59,11 @@ public class MarketplaceActivity extends AppCompatActivity {
     private EditText buyRobots;
     private int robotsAmount;
     private EditText sellRobots;
+    private TextView fuelText;
+
+    public HashMap<String, Integer> amountIndex;
+
+    public static final String CITY_AMOUNT = "edu.gatech.cs2340.spacetraders.views.CITY_AMOUNT";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +82,11 @@ public class MarketplaceActivity extends AppCompatActivity {
             //no city is an internal error, this should not happen
             Log.d("APP", "INTERNAL ERROR< NO CITY PASSED");
         }
+        if (getIntent().hasExtra(PlanetDetailActivity.CITY_AMOUNT)) {
+            amountIndex = (HashMap<String, Integer>) getIntent().getSerializableExtra(PlanetDetailActivity.CITY_AMOUNT);
+        } else {
+            amountIndex = new HashMap<String, Integer>();
+        }
 
         playerInfo = (TextView) findViewById(R.id.player);
         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
@@ -91,8 +102,13 @@ public class MarketplaceActivity extends AppCompatActivity {
             waterPrice.setText("Water cannot be bought or sold here.");
         } else {
             waterPrice.setText("Price: $" + Integer.toString(priceIndex.get("Water")));
-            waterAmount = ((int) (Math.random() * 3)) + 8;
+            if (amountIndex.get("Water") != null) {
+                waterAmount = amountIndex.get("Water");
+            } else {
+                waterAmount = ((int) (Math.random() * 3)) + 8;
+            }
         }
+        amountIndex.put("Water", waterAmount);
         final TextView waterMax = (TextView) findViewById(R.id.max_water);
         waterMax.setText("Amount Of Water Available: " + waterAmount);
         buyWater = (EditText)findViewById(R.id.water_buy);
@@ -106,6 +122,7 @@ public class MarketplaceActivity extends AppCompatActivity {
                         player.setMoney(player.getMoney() - (amount * priceIndex.get("Water")));
                         goods.put("Water", goods.get("Water") + amount);
                         waterAmount = waterAmount - amount;
+                        amountIndex.put("Water", waterAmount);
                         waterMax.setText("Amount Of Water Available: " + waterAmount);
                         ship.setGoods(goods);
                         shipViewModel.setShip(ship);
@@ -143,6 +160,7 @@ public class MarketplaceActivity extends AppCompatActivity {
                         sellWater.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
+                        amountIndex.put("Water", waterAmount);
                     }
                 }
             }
@@ -155,8 +173,13 @@ public class MarketplaceActivity extends AppCompatActivity {
             fursPrice.setText("Furs cannot be bought or sold here.");
         } else {
             fursPrice.setText("Price: $" + Integer.toString(priceIndex.get("Furs")));
-            fursAmount = ((int) (Math.random() * 3)) + 7;
+            if (amountIndex.get("Furs") != null) {
+                fursAmount = amountIndex.get("Furs");
+            } else {
+                fursAmount = ((int) (Math.random() * 3)) + 7;
+            }
         }
+        amountIndex.put("Furs", fursAmount);
         final TextView fursMax = (TextView) findViewById(R.id.max_furs);
         fursMax.setText("Amount Of Furs Available: " + fursAmount);
         buyFurs = (EditText)findViewById(R.id.furs_buy);
@@ -174,6 +197,7 @@ public class MarketplaceActivity extends AppCompatActivity {
                         ship.setGoods(goods);
                         shipViewModel.setShip(ship);
                         playerviewModel.addPlayer(player);
+                        amountIndex.put("Furs", fursAmount);
                         buyFurs.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
@@ -207,6 +231,8 @@ public class MarketplaceActivity extends AppCompatActivity {
                         sellFurs.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
+                        amountIndex.put("Furs", fursAmount);
+
                     }
                 }
             }
@@ -219,8 +245,13 @@ public class MarketplaceActivity extends AppCompatActivity {
             foodPrice.setText("Food cannot be bought or sold here.");
         } else {
             foodPrice.setText("Price: $" + Integer.toString(priceIndex.get("Food")));
-            foodAmount = ((int) (Math.random() * 2)) + 7;
+            if (amountIndex.get("Food") != null) {
+                foodAmount = amountIndex.get("Food");
+            } else {
+                foodAmount = ((int) (Math.random() * 2)) + 7;
+            }
         }
+        amountIndex.put("Food", foodAmount);
         final TextView foodMax = (TextView) findViewById(R.id.max_food);
         foodMax.setText("Amount Of Food Available: " + foodAmount);
         buyFood = (EditText)findViewById(R.id.food_buy);
@@ -238,6 +269,7 @@ public class MarketplaceActivity extends AppCompatActivity {
                         ship.setGoods(goods);
                         shipViewModel.setShip(ship);
                         playerviewModel.addPlayer(player);
+                        amountIndex.put("Food", foodAmount);
                         buyFood.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
@@ -271,6 +303,7 @@ public class MarketplaceActivity extends AppCompatActivity {
                         sellFood.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
+                        amountIndex.put("Food", foodAmount);
                     }
                 }
             }
@@ -283,8 +316,13 @@ public class MarketplaceActivity extends AppCompatActivity {
             orePrice.setText("Ore cannot be bought or sold here.");
         } else {
             orePrice.setText("Price: $" + Integer.toString(priceIndex.get("Ore")));
-            oreAmount = ((int) (Math.random() * 3)) + 5;
+            if (amountIndex.get("Ore") != null) {
+                oreAmount = amountIndex.get("Ore");
+            } else {
+                oreAmount = ((int) (Math.random() * 3)) + 5;
+            }
         }
+        amountIndex.put("Ore", oreAmount);
         final TextView oreMax = (TextView) findViewById(R.id.max_ore);
         oreMax.setText("Amount Of Ore Available: " + oreAmount);
         buyOre = (EditText)findViewById(R.id.ore_buy);
@@ -305,6 +343,7 @@ public class MarketplaceActivity extends AppCompatActivity {
                         buyOre.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
+                        amountIndex.put("Ore", oreAmount);
                     } else if (ship.getCargoSpace() < amount) {
                         oreMax.setText("Amount Of Ore Available: " + oreAmount +
                                 " You do not have enough cargo space for that amount.");
@@ -335,6 +374,7 @@ public class MarketplaceActivity extends AppCompatActivity {
                         sellOre.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
+                        amountIndex.put("Ore", oreAmount);
                     }
                 }
             }
@@ -347,8 +387,13 @@ public class MarketplaceActivity extends AppCompatActivity {
             gamesPrice.setText("Games cannot be bought or sold here.");
         } else {
             gamesPrice.setText("Price: $" + Integer.toString(priceIndex.get("Games")));
-            gamesAmount = ((int) (Math.random() * 2)) + 6;
+            if (amountIndex.get("Games") != null) {
+                gamesAmount = amountIndex.get("Games");
+            } else {
+                gamesAmount = ((int) (Math.random() * 2)) + 6;
+            }
         }
+        amountIndex.put("Games", gamesAmount);
         final TextView gamesMax = (TextView) findViewById(R.id.max_games);
         gamesMax.setText("Amount Of Games Available: " + gamesAmount);
         buyGames = (EditText)findViewById(R.id.games_buy);
@@ -367,6 +412,7 @@ public class MarketplaceActivity extends AppCompatActivity {
                         shipViewModel.setShip(ship);
                         playerviewModel.addPlayer(player);
                         buyGames.getText().clear();
+                        amountIndex.put("Games", gamesAmount);
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
                     } else if (ship.getCargoSpace() < amount) {
@@ -399,6 +445,7 @@ public class MarketplaceActivity extends AppCompatActivity {
                         sellGames.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
+                        amountIndex.put("Games", gamesAmount);
                     }
                 }
             }
@@ -411,8 +458,13 @@ public class MarketplaceActivity extends AppCompatActivity {
             firearmsPrice.setText("Firearms cannot be bought or sold here.");
         } else {
             firearmsPrice.setText("Price: $" + Integer.toString(priceIndex.get("Firearms")));
-            firearmsAmount = ((int) (Math.random() * 2)) + 4;
+            if (amountIndex.get("Firearms") != null) {
+                firearmsAmount = amountIndex.get("Firearms");
+            } else {
+                firearmsAmount = ((int) (Math.random() * 2)) + 4;
+            }
         }
+        amountIndex.put("Firearms", firearmsAmount);
         final TextView firearmsMax = (TextView) findViewById(R.id.max_firearms);
         firearmsMax.setText("Amount Of Firearms Available: " + firearmsAmount);
         buyFirearms = (EditText)findViewById(R.id.firearms_buy);
@@ -433,6 +485,7 @@ public class MarketplaceActivity extends AppCompatActivity {
                         buyFirearms.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
+                        amountIndex.put("Firearms", firearmsAmount);
                     }else if (ship.getCargoSpace() < amount) {
                         firearmsMax.setText("Amount Of Firearms Available: " + firearmsAmount +
                                 " You do not have enough cargo space for that amount.");
@@ -463,6 +516,7 @@ public class MarketplaceActivity extends AppCompatActivity {
                         sellFirearms.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
+                        amountIndex.put("Firearms", firearmsAmount);
                     }
                 }
             }
@@ -475,8 +529,13 @@ public class MarketplaceActivity extends AppCompatActivity {
             medicinePrice.setText("Medicine cannot be bought or sold here.");
         } else {
             medicinePrice.setText("Price: $" + Integer.toString(priceIndex.get("Medicine")));
-            medicineAmount = ((int) (Math.random() * 1)) + 5;
+            if (amountIndex.get("Medicine") != null) {
+                medicineAmount = amountIndex.get("Medicine");
+            } else {
+                medicineAmount = ((int) (Math.random() * 1)) + 5;
+            }
         }
+        amountIndex.put("Medicine", medicineAmount);
         final TextView medicineMax = (TextView) findViewById(R.id.max_medicine);
         medicineMax.setText("Amount Of Medicine Available: " + medicineAmount);
         buyMedicine = (EditText)findViewById(R.id.medicine_buy);
@@ -494,6 +553,7 @@ public class MarketplaceActivity extends AppCompatActivity {
                         ship.setGoods(goods);
                         shipViewModel.setShip(ship);
                         playerviewModel.addPlayer(player);
+                        amountIndex.put("Medicine", medicineAmount);
                         buyMedicine.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
@@ -527,6 +587,7 @@ public class MarketplaceActivity extends AppCompatActivity {
                         sellMedicine.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
+                        amountIndex.put("Medicine", medicineAmount);
                     }
                 }
             }
@@ -539,8 +600,13 @@ public class MarketplaceActivity extends AppCompatActivity {
             machinesPrice.setText("Machines cannot be bought or sold here.");
         } else {
             machinesPrice.setText("Price: $" + Integer.toString(priceIndex.get("Machines")));
-            machinesAmount = ((int) (Math.random() * 2)) + 3;
+            if (amountIndex.get("Machines") != null) {
+                machinesAmount = amountIndex.get("Machines");
+            } else {
+                machinesAmount = ((int) (Math.random() * 2)) + 3;
+            }
         }
+        amountIndex.put("Machines", machinesAmount);
         final TextView machinesMax = (TextView) findViewById(R.id.max_machines);
         machinesMax.setText("Amount Of Machines Available: " + machinesAmount);
         buyMachines = (EditText)findViewById(R.id.machines_buy);
@@ -559,6 +625,7 @@ public class MarketplaceActivity extends AppCompatActivity {
                         shipViewModel.setShip(ship);
                         playerviewModel.addPlayer(player);
                         buyMachines.getText().clear();
+                        amountIndex.put("Machines", machinesAmount);
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
                     } else if (ship.getCargoSpace() < amount) {
@@ -588,6 +655,7 @@ public class MarketplaceActivity extends AppCompatActivity {
                         ship.setGoods(goods);
                         shipViewModel.setShip(ship);
                         playerviewModel.addPlayer(player);
+                        amountIndex.put("Machines", machinesAmount);
                         sellMachines.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
@@ -603,8 +671,13 @@ public class MarketplaceActivity extends AppCompatActivity {
             narcoticsPrice.setText("Narcotics cannot be bought or sold here.");
         } else {
             narcoticsPrice.setText("Price: $" + Integer.toString(priceIndex.get("Narcotics")));
-            narcoticsAmount = ((int) (Math.random() * 2)) + 4;
+            if (amountIndex.get("Narcotics") != null) {
+                narcoticsAmount = amountIndex.get("Narcotics");
+            } else {
+                narcoticsAmount = ((int) (Math.random() * 2)) + 4;
+            }
         }
+        amountIndex.put("Narcotics", narcoticsAmount);
         final TextView narcoticsMax = (TextView) findViewById(R.id.max_narcotics);
         narcoticsMax.setText("Amount Of Narcotics Available: " + narcoticsAmount);
         buyNarcotics = (EditText)findViewById(R.id.narcotics_buy);
@@ -620,6 +693,7 @@ public class MarketplaceActivity extends AppCompatActivity {
                         narcoticsAmount = narcoticsAmount - amount;
                         narcoticsMax.setText("Amount Of Narcotics Available: " + narcoticsAmount);
                         ship.setGoods(goods);
+                        amountIndex.put("Narcotics", narcoticsAmount);
                         shipViewModel.setShip(ship);
                         playerviewModel.addPlayer(player);
                         buyNarcotics.getText().clear();
@@ -655,6 +729,7 @@ public class MarketplaceActivity extends AppCompatActivity {
                         sellNarcotics.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
+                        amountIndex.put("Narcotics", narcoticsAmount);
                     }
                 }
             }
@@ -667,8 +742,13 @@ public class MarketplaceActivity extends AppCompatActivity {
             robotsPrice.setText("Robots cannot be bought or sold here.");
         } else {
             robotsPrice.setText("Price: $" + Integer.toString(priceIndex.get("Robots")));
-            robotsAmount = ((int) (Math.random() * 2)) + 2;
+            if (amountIndex.get("Robots") != null) {
+                robotsAmount = amountIndex.get("Robots");
+            } else {
+                robotsAmount = ((int) (Math.random() * 2)) + 2;
+            }
         }
+        amountIndex.put("Robots", robotsAmount);
         final TextView robotsMax = (TextView) findViewById(R.id.max_robots);
         robotsMax.setText("Amount Of Robots Available: " + robotsAmount);
         buyRobots = (EditText)findViewById(R.id.robots_buy);
@@ -689,6 +769,7 @@ public class MarketplaceActivity extends AppCompatActivity {
                         buyRobots.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
+                        amountIndex.put("Robots", robotsAmount);
                     } else if (ship.getCargoSpace() < amount) {
                         robotsMax.setText("Amount Of Robots Available: " + robotsAmount +
                                 " You do not have enough cargo space for that amount.");
@@ -719,21 +800,40 @@ public class MarketplaceActivity extends AppCompatActivity {
                         sellRobots.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
+                        amountIndex.put("Robots", robotsAmount);
                     }
                 }
             }
         });
 
-        Button refillFuel = (Button)findViewById(R.id.refill_fuel);
+        final Button refillFuel = (Button)findViewById(R.id.refill_fuel);
+        fuelText = (TextView) findViewById(R.id.fuel_text);
         refillFuel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (player.getMoney() > 50 && ship.getFuel() != ship.getMaxFuel()) {
+                if (player.getMoney() >= 50 && ship.getFuel() != ship.getMaxFuel()) {
                     ship.setFuel(ship.getMaxFuel());
                     player.setMoney(player.getMoney() - 50);
                     playerviewModel.addPlayer(player);
                     shipViewModel.setShip(ship);
+                    playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
+                    shipInfo.setText(ship.toString());
+                } else if (player.getMoney() < 50){
+                    fuelText.setText("You Cannot Afford To Buy Fuel");
+                } else if (ship.getFuel() == ship.getMaxFuel()) {
+                    fuelText.setText("You Have Max Fuel");
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        Intent currMarket = new Intent(MarketplaceActivity.this, HomeScreenActivity.class);
+        currMarket.putExtra(CITY_AMOUNT, amountIndex);
+        startActivity(currMarket);
+        finish();
+
     }
 }

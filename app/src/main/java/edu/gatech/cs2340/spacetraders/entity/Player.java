@@ -89,18 +89,16 @@ public class Player {
         return coordinates;
     }
 
-    public void setCoordinates(int coordinateX, int coordinateY) {
-        coordinates.set(0, coordinateX);
-        coordinates.set(1, coordinateY);
+    public void setCoordinates(List<Integer> coordinates) {
+        this.coordinates = coordinates;
     }
 
     public List<Integer> getLocation() {
         return location;
     }
 
-    public void setLocation(int latitude, int longitude) {
-        location.set(0, latitude);
-        location.set(1, longitude);
+    public void setLocation(List<Integer> location) {
+        this.location = location;
     }
 
     public void setMoney(int money) {

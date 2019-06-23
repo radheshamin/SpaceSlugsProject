@@ -19,9 +19,9 @@ public enum Planet {
     CANTONICA ("Cantonica", new ArrayList<String>(Arrays.asList("Cantonica")), 22, 22, (int)(Math.random() * 8), (int)(Math.random() * 13)),
     JAKKU ("Jakku", new ArrayList<String>(Arrays.asList("Jakku")), 52, 58, (int)(Math.random() * 8), (int)(Math.random() * 13)),
     CITADEL ("Citadel", new ArrayList<String>(Arrays.asList("Citadel")), 0, 0, (int)(Math.random() * 8), (int)(Math.random() * 13)),
-    THESSIA ("Thessia", new ArrayList<String>(Arrays.asList("Thessia")), 84, 42, (int)(Math.random() * 8), (int)(Math.random() * 13)),
-    VIRMIRE ("Virmire", new ArrayList<String>(Arrays.asList("Virmire")), 57, 26, (int)(Math.random() * 8), (int)(Math.random() * 13)),
-    NORMANDY ("Normandy", new ArrayList<String>(Arrays.asList("Normandy")), 66, 39, (int)(Math.random() * 8), (int)(Math.random() * 13));
+    THESSIA ("Thessia", new ArrayList<String>(Arrays.asList("Thessia", "Liara")), 84, 42, (int)(Math.random() * 8), (int)(Math.random() * 13)),
+    VIRMIRE ("Virmire", new ArrayList<String>(Arrays.asList("Virmire", "Wrex")), 57, 26, (int)(Math.random() * 8), (int)(Math.random() * 13)),
+    NORMANDY ("Normandy", new ArrayList<String>(Arrays.asList("Normandy", "Shepard")), 66, 39, (int)(Math.random() * 8), (int)(Math.random() * 13));
 
     private final String name;
 

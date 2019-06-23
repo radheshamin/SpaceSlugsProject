@@ -44,7 +44,7 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Planet
         //now use the view holder to set the appropriate information
         String cities = "";
         for (City c : planet.getCities()) {
-            cities = c.getName();
+            cities = cities + c.getName();
             if (planet.getCities().indexOf(c) != planet.getCities().size() - 1) {
                 cities += ", ";
             }
