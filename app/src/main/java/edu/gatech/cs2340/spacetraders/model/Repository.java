@@ -32,7 +32,7 @@ class Repository {
             universe.add(all.get(n));
             all.remove(n);
         }
-        ship = new SpaceShip("Gnat", 15, 15, 10);
+        ship = new SpaceShip("Gnat", 15, 15, 15);
     }
 
     public void addPlayer(Player player) {

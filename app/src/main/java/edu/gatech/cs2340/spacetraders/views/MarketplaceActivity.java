@@ -73,7 +73,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         if (getIntent().hasExtra(PlanetDetailActivity.EXTRA_CITY)) {
             city = (City) getIntent().getSerializableExtra(PlanetDetailActivity.EXTRA_CITY);
         } else {
-            //no course is an internal error, this should not happen
+            //no city is an internal error, this should not happen
             Log.d("APP", "INTERNAL ERROR< NO CITY PASSED");
         }
 
@@ -100,7 +100,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         Button buyWaterButton = (Button)findViewById(R.id.water_button);
         buyWaterButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (priceIndex.get("Water") > 0) {
+                if (priceIndex.get("Water") > 0 && !buyWater.getText().toString().trim().isEmpty()) {
                     int amount = Integer.parseInt(buyWater.getText().toString());
                     if (ship.getCargoSpace() >= amount && player.getMoney() >= (amount * priceIndex.get("Water")) && amount <= waterAmount) {
                         player.setMoney(player.getMoney() - (amount * priceIndex.get("Water")));
@@ -113,6 +113,16 @@ public class MarketplaceActivity extends AppCompatActivity {
                         buyWater.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
+                    } else if (ship.getCargoSpace() < amount) {
+                        waterMax.setText("Amount Of Water Available: " + waterAmount +
+                                " You do not have enough cargo space for that amount.");
+                        buyWater.getText().clear();
+                    } else if (player.getMoney() < (amount * priceIndex.get("Water"))) {
+                        waterMax.setText("Amount Of Water Available: " + waterAmount +
+                                " You do not have enough money for that amount.");
+                    } else if (amount > waterAmount) {
+                        waterMax.setText("Amount Of Water Available: " + waterAmount +
+                                " There are not that many water for sale.");
                     }
                 }
             }
@@ -120,7 +130,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         Button sellWaterButton = (Button)findViewById(R.id.water_sell_button);
         sellWaterButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (priceIndex.get("Water") > 0) {
+                if (priceIndex.get("Water") > 0 && !sellWater.getText().toString().trim().isEmpty()) {
                     int amount = Integer.parseInt(sellWater.getText().toString());
                     if (goods.get("Water") >= amount) {
                         player.setMoney(player.getMoney() + (amount * priceIndex.get("Water")));
@@ -154,7 +164,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         Button buyFursButton = (Button)findViewById(R.id.furs_button);
         buyFursButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (priceIndex.get("Furs") > 0) {
+                if (priceIndex.get("Furs") > 0 && !buyFurs.getText().toString().trim().isEmpty()) {
                     int amount = Integer.parseInt(buyFurs.getText().toString());
                     if (ship.getCargoSpace() >= amount && player.getMoney() >= (amount * priceIndex.get("Furs")) && amount <= fursAmount) {
                         player.setMoney(player.getMoney() - (amount * priceIndex.get("Furs")));
@@ -167,6 +177,16 @@ public class MarketplaceActivity extends AppCompatActivity {
                         buyFurs.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
+                    } else if (ship.getCargoSpace() < amount) {
+                        fursMax.setText("Amount Of Furs Available: " + fursAmount +
+                                " You do not have enough cargo space for that amount.");
+                        buyFurs.getText().clear();
+                    } else if (player.getMoney() < (amount * priceIndex.get("Furs"))) {
+                        fursMax.setText("Amount Of Furs Available: " + fursAmount +
+                                " You do not have enough money for that amount.");
+                    } else if (amount > fursAmount) {
+                        fursMax.setText("Amount Of Furs Available: " + fursAmount +
+                                " There are not that many fur for sale.");
                     }
                 }
             }
@@ -174,7 +194,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         Button sellFursButton = (Button)findViewById(R.id.furs_sell_button);
         sellFursButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (priceIndex.get("Furs") > 0) {
+                if (priceIndex.get("Furs") > 0 && !sellFurs.getText().toString().trim().isEmpty()) {
                     int amount = Integer.parseInt(sellFurs.getText().toString());
                     if (goods.get("Furs") >= amount) {
                         player.setMoney(player.getMoney() + (amount * priceIndex.get("Furs")));
@@ -208,7 +228,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         Button buyFoodButton = (Button)findViewById(R.id.food_button);
         buyFoodButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (priceIndex.get("Food") > 0) {
+                if (priceIndex.get("Food") > 0 && !buyFood.getText().toString().trim().isEmpty()) {
                     int amount = Integer.parseInt(buyFood.getText().toString());
                     if (ship.getCargoSpace() >= amount && player.getMoney() >= (amount * priceIndex.get("Food")) && amount <= foodAmount) {
                         player.setMoney(player.getMoney() - (amount * priceIndex.get("Food")));
@@ -221,6 +241,16 @@ public class MarketplaceActivity extends AppCompatActivity {
                         buyFood.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
+                    } else if (ship.getCargoSpace() < amount) {
+                        foodMax.setText("Amount Of Food Available: " + foodAmount +
+                                " You do not have enough cargo space for that amount.");
+                        buyFood.getText().clear();
+                    } else if (player.getMoney() < (amount * priceIndex.get("Food"))) {
+                        foodMax.setText("Amount Of Food Available: " + foodAmount +
+                                " You do not have enough money for that amount.");
+                    } else if (amount > foodAmount) {
+                        foodMax.setText("Amount Of Food Available: " + foodAmount +
+                                " There are not that many food for sale.");
                     }
                 }
             }
@@ -228,7 +258,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         Button sellFoodButton = (Button)findViewById(R.id.food_sell_button);
         sellFoodButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (priceIndex.get("Food") > 0) {
+                if (priceIndex.get("Food") > 0 && !sellFood.getText().toString().trim().isEmpty()) {
                     int amount = Integer.parseInt(sellFood.getText().toString());
                     if (goods.get("Food") >= amount) {
                         player.setMoney(player.getMoney() + (amount * priceIndex.get("Food")));
@@ -262,7 +292,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         Button buyOreButton = (Button)findViewById(R.id.ore_button);
         buyOreButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (priceIndex.get("Ore") > 0) {
+                if (priceIndex.get("Ore") > 0 && !buyOre.getText().toString().trim().isEmpty()) {
                     int amount = Integer.parseInt(buyOre.getText().toString());
                     if (ship.getCargoSpace() >= amount && player.getMoney() >= (amount * priceIndex.get("Ore")) && amount <= oreAmount) {
                         player.setMoney(player.getMoney() - (amount * priceIndex.get("Ore")));
@@ -275,6 +305,16 @@ public class MarketplaceActivity extends AppCompatActivity {
                         buyOre.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
+                    } else if (ship.getCargoSpace() < amount) {
+                        oreMax.setText("Amount Of Ore Available: " + oreAmount +
+                                " You do not have enough cargo space for that amount.");
+                        buyOre.getText().clear();
+                    } else if (player.getMoney() < (amount * priceIndex.get("Ore"))) {
+                        oreMax.setText("Amount Of Ore Available: " + oreAmount +
+                                " You do not have enough money for that amount.");
+                    } else if (amount > oreAmount) {
+                        oreMax.setText("Amount Of Ore Available: " + oreAmount +
+                                " There are not that many ore for sale.");
                     }
                 }
             }
@@ -282,7 +322,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         Button sellOreButton = (Button)findViewById(R.id.ore_sell_button);
         sellOreButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (priceIndex.get("Ore") > 0) {
+                if (priceIndex.get("Ore") > 0 && !sellOre.getText().toString().trim().isEmpty()) {
                     int amount = Integer.parseInt(sellOre.getText().toString());
                     if (goods.get("Ore") >= amount) {
                         player.setMoney(player.getMoney() + (amount * priceIndex.get("Ore")));
@@ -316,7 +356,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         Button buyGamesButton = (Button)findViewById(R.id.games_button);
         buyGamesButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (priceIndex.get("Games") > 0) {
+                if (priceIndex.get("Games") > 0 && !buyGames.getText().toString().trim().isEmpty()) {
                     int amount = Integer.parseInt(buyGames.getText().toString());
                     if (ship.getCargoSpace() >= amount && player.getMoney() >= (amount * priceIndex.get("Games")) && amount <= gamesAmount) {
                         player.setMoney(player.getMoney() - (amount * priceIndex.get("Games")));
@@ -329,6 +369,16 @@ public class MarketplaceActivity extends AppCompatActivity {
                         buyGames.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
+                    } else if (ship.getCargoSpace() < amount) {
+                        gamesMax.setText("Amount Of Games Available: " + gamesAmount +
+                                " You do not have enough cargo space for that amount.");
+                        buyGames.getText().clear();
+                    } else if (player.getMoney() < (amount * priceIndex.get("Games"))) {
+                        gamesMax.setText("Amount Of Games Available: " + gamesAmount +
+                                " You do not have enough money for that amount.");
+                    } else if (amount > gamesAmount) {
+                        gamesMax.setText("Amount Of Games Available: " + gamesAmount +
+                                " There are not that many games for sale.");
                     }
                 }
             }
@@ -336,7 +386,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         Button sellGamesButton = (Button)findViewById(R.id.games_sell_button);
         sellGamesButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (priceIndex.get("Games") > 0) {
+                if (priceIndex.get("Games") > 0 && !sellGames.getText().toString().trim().isEmpty()) {
                     int amount = Integer.parseInt(sellGames.getText().toString());
                     if (goods.get("Games") >= amount) {
                         player.setMoney(player.getMoney() + (amount * priceIndex.get("Games")));
@@ -370,7 +420,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         Button buyFirearmsButton = (Button)findViewById(R.id.firearms_button);
         buyFirearmsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (priceIndex.get("Firearms") > 0) {
+                if (priceIndex.get("Firearms") > 0 && !buyFirearms.getText().toString().trim().isEmpty()) {
                     int amount = Integer.parseInt(buyFirearms.getText().toString());
                     if (ship.getCargoSpace() >= amount && player.getMoney() >= (amount * priceIndex.get("Firearms")) && amount <= firearmsAmount) {
                         player.setMoney(player.getMoney() - (amount * priceIndex.get("Firearms")));
@@ -383,6 +433,16 @@ public class MarketplaceActivity extends AppCompatActivity {
                         buyFirearms.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
+                    }else if (ship.getCargoSpace() < amount) {
+                        firearmsMax.setText("Amount Of Firearms Available: " + firearmsAmount +
+                                " You do not have enough cargo space for that amount.");
+                        buyFirearms.getText().clear();
+                    } else if (player.getMoney() < (amount * priceIndex.get("Firearms"))) {
+                        firearmsMax.setText("Amount Of Firearms Available: " + firearmsAmount +
+                                " You do not have enough money for that amount.");
+                    } else if (amount > firearmsAmount) {
+                        firearmsMax.setText("Amount Of Firearms Available: " + firearmsAmount +
+                                " There are not that many firearms for sale.");
                     }
                 }
             }
@@ -390,7 +450,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         Button sellFirearmsButton = (Button)findViewById(R.id.firearms_sell_button);
         sellFirearmsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (priceIndex.get("Firearms") > 0) {
+                if (priceIndex.get("Firearms") > 0 && !sellFirearms.getText().toString().trim().isEmpty()) {
                     int amount = Integer.parseInt(sellFirearms.getText().toString());
                     if (goods.get("Firearms") >= amount) {
                         player.setMoney(player.getMoney() + (amount * priceIndex.get("Firearms")));
@@ -424,7 +484,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         Button buyMedicineButton = (Button)findViewById(R.id.medicine_button);
         buyMedicineButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (priceIndex.get("Medicine") > 0) {
+                if (priceIndex.get("Medicine") > 0 && !buyMedicine.getText().toString().trim().isEmpty()) {
                     int amount = Integer.parseInt(buyMedicine.getText().toString());
                     if (ship.getCargoSpace() >= amount && player.getMoney() >= (amount * priceIndex.get("Medicine")) && amount <= medicineAmount) {
                         player.setMoney(player.getMoney() - (amount * priceIndex.get("Medicine")));
@@ -437,6 +497,16 @@ public class MarketplaceActivity extends AppCompatActivity {
                         buyMedicine.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
+                    } else if (ship.getCargoSpace() < amount) {
+                        medicineMax.setText("Amount Of Medicine Available: " + medicineAmount +
+                                " You do not have enough cargo space for that amount.");
+                        buyMedicine.getText().clear();
+                    } else if (player.getMoney() < (amount * priceIndex.get("Medicine"))) {
+                        medicineMax.setText("Amount Of Medicine Available: " + medicineAmount +
+                                " You do not have enough money for that amount.");
+                    } else if (amount > medicineAmount) {
+                        medicineMax.setText("Amount Of Medicine Available: " + medicineAmount +
+                                " There are not that many medicine for sale.");
                     }
                 }
             }
@@ -444,7 +514,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         Button sellMedicineButton = (Button)findViewById(R.id.medicine_sell_button);
         sellMedicineButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (priceIndex.get("Medicine") > 0) {
+                if (priceIndex.get("Medicine") > 0 && !sellMedicine.getText().toString().trim().isEmpty()) {
                     int amount = Integer.parseInt(sellMedicine.getText().toString());
                     if (goods.get("Medicine") >= amount) {
                         player.setMoney(player.getMoney() + (amount * priceIndex.get("Medicine")));
@@ -478,7 +548,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         Button buyMachinesButton = (Button)findViewById(R.id.machines_button);
         buyMachinesButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (priceIndex.get("Machines") > 0) {
+                if (priceIndex.get("Machines") > 0 && !buyMachines.getText().toString().trim().isEmpty()) {
                     int amount = Integer.parseInt(buyMachines.getText().toString());
                     if (ship.getCargoSpace() >= amount && player.getMoney() >= (amount * priceIndex.get("Machines")) && amount <= machinesAmount) {
                         player.setMoney(player.getMoney() - (amount * priceIndex.get("Machines")));
@@ -491,6 +561,16 @@ public class MarketplaceActivity extends AppCompatActivity {
                         buyMachines.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
+                    } else if (ship.getCargoSpace() < amount) {
+                        machinesMax.setText("Amount Of Machines Available: " + machinesAmount +
+                                " You do not have enough cargo space for that amount.");
+                        buyMachines.getText().clear();
+                    } else if (player.getMoney() < (amount * priceIndex.get("Machines"))) {
+                        machinesMax.setText("Amount Of Machines Available: " + machinesAmount +
+                                " You do not have enough money for that amount.");
+                    } else if (amount > machinesAmount) {
+                        machinesMax.setText("Amount Of Machines Available: " + machinesAmount +
+                                " There are not that many machines for sale.");
                     }
                 }
             }
@@ -498,7 +578,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         Button sellMachinesButton = (Button)findViewById(R.id.machines_sell_button);
         sellMachinesButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (priceIndex.get("Machines") > 0) {
+                if (priceIndex.get("Machines") > 0 && !sellMachines.getText().toString().trim().isEmpty()) {
                     int amount = Integer.parseInt(sellMachines.getText().toString());
                     if (goods.get("Machines") >= amount) {
                         player.setMoney(player.getMoney() + (amount * priceIndex.get("Machines")));
@@ -532,7 +612,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         Button buyNarcoticsButton = (Button)findViewById(R.id.narcotics_button);
         buyNarcoticsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (priceIndex.get("Narcotics") > 0) {
+                if (priceIndex.get("Narcotics") > 0 && !buyNarcotics.getText().toString().trim().isEmpty()) {
                     int amount = Integer.parseInt(buyNarcotics.getText().toString());
                     if (ship.getCargoSpace() >= amount && player.getMoney() >= (amount * priceIndex.get("Narcotics")) && amount <= narcoticsAmount) {
                         player.setMoney(player.getMoney() - (amount * priceIndex.get("Narcotics")));
@@ -545,6 +625,16 @@ public class MarketplaceActivity extends AppCompatActivity {
                         buyNarcotics.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
+                    } else if (ship.getCargoSpace() < amount) {
+                        narcoticsMax.setText("Amount Of Narcotics Available: " + narcoticsAmount +
+                                " You do not have enough cargo space for that amount.");
+                        buyNarcotics.getText().clear();
+                    } else if (player.getMoney() < (amount * priceIndex.get("Narcotics"))) {
+                        narcoticsMax.setText("Amount Of Narcotics Available: " + narcoticsAmount +
+                                " You do not have enough money for that amount.");
+                    } else if (amount > narcoticsAmount) {
+                        narcoticsMax.setText("Amount Of Narcotics Available: " + narcoticsAmount +
+                                " There are not that many narcotics for sale.");
                     }
                 }
             }
@@ -552,7 +642,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         Button sellNarcoticsButton = (Button)findViewById(R.id.narcotics_sell_button);
         sellNarcoticsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (priceIndex.get("Narcotics") > 0) {
+                if (priceIndex.get("Narcotics") > 0 && !sellNarcotics.getText().toString().trim().isEmpty()) {
                     int amount = Integer.parseInt(sellNarcotics.getText().toString());
                     if (goods.get("Narcotics") >= amount) {
                         player.setMoney(player.getMoney() + (amount * priceIndex.get("Narcotics")));
@@ -586,7 +676,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         Button buyRobotsButton = (Button)findViewById(R.id.robots_button);
         buyRobotsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (priceIndex.get("Robots") > 0) {
+                if (priceIndex.get("Robots") > 0 && !buyRobots.getText().toString().trim().isEmpty()) {
                     int amount = Integer.parseInt(buyRobots.getText().toString());
                     if (ship.getCargoSpace() >= amount && player.getMoney() >= (amount * priceIndex.get("Robots")) && amount <= robotsAmount) {
                         player.setMoney(player.getMoney() - (amount * priceIndex.get("Robots")));
@@ -599,6 +689,16 @@ public class MarketplaceActivity extends AppCompatActivity {
                         buyRobots.getText().clear();
                         playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                         shipInfo.setText(ship.toString());
+                    } else if (ship.getCargoSpace() < amount) {
+                        robotsMax.setText("Amount Of Robots Available: " + robotsAmount +
+                                " You do not have enough cargo space for that amount.");
+                        buyRobots.getText().clear();
+                    } else if (player.getMoney() < (amount * priceIndex.get("Robots"))) {
+                        robotsMax.setText("Amount Of Robots Available: " + robotsAmount +
+                                " You do not have enough money for that amount.");
+                    } else if (amount > robotsAmount) {
+                        robotsMax.setText("Amount Of Robots Available: " + robotsAmount +
+                                " There are not that many robots for sale.");
                     }
                 }
             }
@@ -606,7 +706,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         Button sellRobotsButton = (Button)findViewById(R.id.robots_sell_button);
         sellRobotsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (priceIndex.get("Robots") > 0) {
+                if (priceIndex.get("Robots") > 0 && !sellRobots.getText().toString().trim().isEmpty()) {
                     int amount = Integer.parseInt(sellRobots.getText().toString());
                     if (goods.get("Robots") >= amount) {
                         player.setMoney(player.getMoney() + (amount * priceIndex.get("Robots")));
