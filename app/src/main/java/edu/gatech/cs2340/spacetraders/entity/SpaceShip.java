@@ -33,6 +33,13 @@ public class SpaceShip {
     public int getCargoSpace() {
         return cargoSpace;
     }
+    public int getCargoSpaceLeft() {
+        int total = 0;
+        for (String key: goods.keySet()) {
+            total += goods.get(key);
+        }
+        return cargoSpace - total;
+    }
     public void setFuel(int fuel) {
         this.fuel = fuel;
     }

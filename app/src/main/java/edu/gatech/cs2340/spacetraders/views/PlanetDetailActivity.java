@@ -82,7 +82,7 @@ public class PlanetDetailActivity extends AppCompatActivity {
         adapter.setOnTravelClickListener(new PlanetAdapter.OnTravelClickListener() {
             @Override
             public void onTravelClicked(City city) {
-                if (player.getCoordinates().get(0) < 0 || player.getCoordinates().get(1) < 0) {
+                if (player.getCoordinates().get(0) < 0 || player.getCoordinates().get(1) < 0 && ship.getFuel() >= 5) {
                     ship.setFuel(ship.getFuel() - 5);
                     shipViewModel.setShip(ship);
                     player.setCoordinates(planet.getCoordinates());
