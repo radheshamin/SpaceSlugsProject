@@ -22,4 +22,7 @@ public class PlayerInteractor extends Interactor {
     public List<Planet> getUniverse() {
         return getRepository().getUniverse();
     }
+
+
+    public void setUniverse(List<Planet> universe) {getRepository().setUniverse(universe); }
 }

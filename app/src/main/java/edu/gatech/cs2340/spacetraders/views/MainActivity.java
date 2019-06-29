@@ -11,6 +11,9 @@ import edu.gatech.cs2340.spacetraders.R;
 public class MainActivity extends AppCompatActivity {
 
     private Button continueButton;
+    private Button loadButton;
+
+    public static final String CHECK = "edu.gatech.cs2340.spacetraders.views.CHECK";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +24,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, ConfigurationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        loadButton = findViewById(R.id.load_button);
+        loadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, HomeScreenActivity.class);
+                intent.putExtra(CHECK, true);
                 startActivity(intent);
             }
         });

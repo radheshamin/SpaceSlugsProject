@@ -24,7 +24,7 @@ class Repository {
      * Make a new Repository object
      */
     public Repository() {
-        player = new Player("Name", 0, 0, 0, 0, "Beginner", -1 , -1);
+        player = new Player("Name", 4, 4, 4, 4, "Beginner", -1 , -1);
         List<Planet> all = new ArrayList<Planet>(Arrays.asList(Planet.values()));
         universe = new ArrayList<Planet>();
         for (int i = 0; i < 10; i++) {
@@ -53,4 +53,6 @@ class Repository {
     public void setShip(SpaceShip ship) {
         this.ship = ship;
     }
+
+    public void setUniverse(List<Planet> universe) {this.universe = universe; }
 }

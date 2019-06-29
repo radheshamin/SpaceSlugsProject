@@ -35,4 +35,6 @@ public class PlayerViewModel extends AndroidViewModel {
     }
 
     public List<Planet> getUniverse() {return interactor.getUniverse(); }
+
+    public void setUniverse(List<Planet> universe) {interactor.setUniverse(universe); }
 }

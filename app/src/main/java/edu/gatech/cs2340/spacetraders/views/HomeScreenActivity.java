@@ -5,7 +5,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Space;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 
 import edu.gatech.cs2340.spacetraders.R;
 import edu.gatech.cs2340.spacetraders.entity.City;
@@ -15,11 +27,15 @@ import edu.gatech.cs2340.spacetraders.entity.SpaceShip;
 import edu.gatech.cs2340.spacetraders.viewmodels.PlayerViewModel;
 import edu.gatech.cs2340.spacetraders.viewmodels.ShipViewModel;
 
+
 import android.support.v7.widget.RecyclerView;
 
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class HomeScreenActivity extends AppCompatActivity {
 
@@ -28,6 +44,11 @@ public class HomeScreenActivity extends AppCompatActivity {
     private ShipViewModel shipViewModel;
     private UniverseAdapter adapter;
     private SpaceShip ship;
+    private List<Planet> universe;
+
+
+    private Gson gson;
+
     public static final String EXTRA_PLANET = "edu.gatech.cs2340.spacetraders.views.EXTRA_PLANET";
 
     public static final String CITY_AMOUNT = "edu.gatech.cs2340.spacetraders.views.CITY_AMOUNT";
@@ -37,10 +58,74 @@ public class HomeScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen_activity);
+
+
         viewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
         shipViewModel = ViewModelProviders.of(this).get(ShipViewModel.class);
-        ship = shipViewModel.getShip();
-        player = viewModel.getPlayer();
+
+        gson = new Gson();
+
+        if (getIntent().hasExtra(MainActivity.CHECK)) {
+            //read file
+            File path = getApplicationContext().getFilesDir();
+            File file = new File(path, "Player.json");
+            try {
+                int length = (int) file.length();
+                byte[] bytes = new byte[length];
+                FileInputStream in = new FileInputStream(file);
+                in.read(bytes);
+                String contents = new String(bytes);
+                in.close();
+                Log.d("Check Player", contents);
+                if (!contents.equals("")) {
+                    player = gson.fromJson(contents, Player.class);
+                    viewModel.addPlayer(player);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            File shipFile = new File(path, "Ship.json");
+            try {
+                int length = (int) shipFile.length();
+                byte[] bytes = new byte[length];
+                FileInputStream in = new FileInputStream(shipFile);
+                in.read(bytes);
+                String contents = new String(bytes);
+                in.close();
+                Log.d("Check Ship", contents);
+                if (!contents.equals("")) {
+                    ship = gson.fromJson(contents, SpaceShip.class);
+                    shipViewModel.setShip(ship);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            Type listType = new TypeToken<ArrayList<Planet>>() {
+            }.getType();
+            File universeFile = new File(path, "Universe.json");
+            try {
+                int length = (int) universeFile.length();
+                byte[] bytes = new byte[length];
+                FileInputStream in = new FileInputStream(universeFile);
+                in.read(bytes);
+                String contents = new String(bytes);
+                in.close();
+                Log.d("Check Universe", contents);
+                if (!contents.equals("")) {
+                    universe = new Gson().fromJson(contents, listType);
+                    viewModel.setUniverse(universe);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            ship = shipViewModel.getShip();
+            player = viewModel.getPlayer();
+            universe = viewModel.getUniverse();
+        }
+
         TextView playerText = (TextView)findViewById(R.id.player_text);
         playerText.setText(player.toString());
 
@@ -66,7 +151,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         adapter = new UniverseAdapter();
-        adapter.setPlanetList(viewModel.getUniverse());
+        adapter.setPlanetList(universe);
         recyclerView.setAdapter(adapter);
 
         adapter.setOnPlanetClickListener(new UniverseAdapter.OnPlanetClickListener() {
@@ -78,6 +163,54 @@ public class HomeScreenActivity extends AppCompatActivity {
                     intent.putExtra(CITY_AMOUNT, (HashMap<String, Integer>) getIntent().getSerializableExtra(MarketplaceActivity.CITY_AMOUNT));
                 }
                 startActivity(intent);
+            }
+        });
+
+        Button saveGame = findViewById(R.id.save);
+        saveGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String json = gson.toJson(player);
+                String jsonShip = gson.toJson(ship);
+                String jsonUniverse = gson.toJson(viewModel.getUniverse());
+                Log.d("Check Player", json);
+                Log.d("Check Ship", jsonShip);
+                Log.d("Check Universe", jsonUniverse);
+
+
+                //Make file
+                File path = getApplicationContext().getFilesDir();
+                File player = new File(path, "Player.json");
+                File ship = new File(path, "Ship.json");
+                File universe = new File(path, "Universe.json");
+
+
+
+                //write to file
+                try {
+                    FileOutputStream stream = new FileOutputStream(player);
+                    stream.write(json.getBytes());
+                    stream.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    FileOutputStream stream = new FileOutputStream(ship);
+                    stream.write(jsonShip.getBytes());
+                    stream.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    FileOutputStream stream = new FileOutputStream(universe);
+                    stream.write(jsonUniverse.getBytes());
+                    stream.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
             }
         });
     }
