@@ -90,6 +90,7 @@ public class PlanetDetailActivity extends AppCompatActivity {
                     playerViewModel.addPlayer(player);
                     Intent cityIntent = new Intent(PlanetDetailActivity.this, MarketplaceActivity.class);
                     cityIntent.putExtra(EXTRA_CITY, city);
+                    cityIntent.putExtra(EXTRA_PLANET, planet);
                     startActivity(cityIntent);
                 } else if (!player.getCurrentPlanet().equals(planet.getName()) && ship.getFuel() >= 5) {
                     ship.setFuel(ship.getFuel() - 5);
@@ -99,6 +100,7 @@ public class PlanetDetailActivity extends AppCompatActivity {
                     playerViewModel.addPlayer(player);
                     Intent cityIntent = new Intent(PlanetDetailActivity.this, MarketplaceActivity.class);
                     cityIntent.putExtra(EXTRA_CITY, city);
+                    cityIntent.putExtra(EXTRA_PLANET, planet);
                     startActivity(cityIntent);
                 } else if (player.getCurrentPlanet().equals(planet.getName())
                         && (player.getLocation().get(0) < 0 || player.getLocation().get(1) < 0)) {
@@ -109,6 +111,7 @@ public class PlanetDetailActivity extends AppCompatActivity {
                     playerViewModel.addPlayer(player);
                     Intent cityIntent = new Intent(PlanetDetailActivity.this, MarketplaceActivity.class);
                     cityIntent.putExtra(EXTRA_CITY, city);
+                    cityIntent.putExtra(EXTRA_PLANET, planet);
                     startActivity(cityIntent);
                 } else if (player.getCurrentPlanet().equals(planet.getName())
                         && (!player.getLocation().equals(city.getLocation()))) {
@@ -116,11 +119,13 @@ public class PlanetDetailActivity extends AppCompatActivity {
                     playerViewModel.addPlayer(player);
                     Intent cityIntent = new Intent(PlanetDetailActivity.this, MarketplaceActivity.class);
                     cityIntent.putExtra(EXTRA_CITY, city);
+                    cityIntent.putExtra(EXTRA_PLANET, planet);
                     startActivity(cityIntent);
                 } else if (player.getCurrentPlanet().equals(planet.getName())
                         && (player.getLocation().equals(city.getLocation()))) {
                     Intent cityIntent = new Intent(PlanetDetailActivity.this, MarketplaceActivity.class);
                     cityIntent.putExtra(EXTRA_CITY, city);
+                    cityIntent.putExtra(EXTRA_PLANET, planet);
                     if (getIntent().hasExtra(HomeScreenActivity.CITY_AMOUNT)) {
                         cityIntent.putExtra(CITY_AMOUNT, (HashMap<String, Integer>) getIntent().getSerializableExtra(MarketplaceActivity.CITY_AMOUNT));
                     }
@@ -135,7 +140,11 @@ public class PlanetDetailActivity extends AppCompatActivity {
     public void onBackPressed()
     {
         super.onBackPressed();
-        startActivity(new Intent(PlanetDetailActivity.this, HomeScreenActivity.class));
+        Intent planetDetail = new Intent(PlanetDetailActivity.this, HomeScreenActivity.class);
+        if (getIntent().hasExtra(MarketplaceActivity.CITY_AMOUNT)) {
+            planetDetail.putExtra(CITY_AMOUNT, (HashMap<String, Integer>) getIntent().getSerializableExtra(MarketplaceActivity.CITY_AMOUNT));
+        }
+        startActivity(planetDetail);
         finish();
 
     }

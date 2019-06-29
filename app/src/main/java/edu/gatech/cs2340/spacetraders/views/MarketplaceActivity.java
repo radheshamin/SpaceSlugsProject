@@ -14,10 +14,12 @@ import java.util.HashMap;
 
 import edu.gatech.cs2340.spacetraders.R;
 import edu.gatech.cs2340.spacetraders.entity.City;
+import edu.gatech.cs2340.spacetraders.entity.Planet;
 import edu.gatech.cs2340.spacetraders.entity.Player;
 import edu.gatech.cs2340.spacetraders.entity.SpaceShip;
 import edu.gatech.cs2340.spacetraders.viewmodels.PlayerViewModel;
 import edu.gatech.cs2340.spacetraders.viewmodels.ShipViewModel;
+
 
 public class MarketplaceActivity extends AppCompatActivity {
 
@@ -65,6 +67,8 @@ public class MarketplaceActivity extends AppCompatActivity {
 
     public static final String CITY_AMOUNT = "edu.gatech.cs2340.spacetraders.views.CITY_AMOUNT";
 
+    public static final String EXTRA_PLANET = "edu.gatech.cs2340.spacetraders.views.EXTRA_PLANET";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +97,10 @@ public class MarketplaceActivity extends AppCompatActivity {
 
         shipInfo = (TextView) findViewById(R.id.ship);
         shipInfo.setText(ship.toString());
+
+        TextView planetInfo = findViewById(R.id.planet);
+        Planet planet = (Planet) getIntent().getSerializableExtra(PlanetDetailActivity.EXTRA_PLANET);
+        planetInfo.setText("Planet: " + planet.getName() + ", City: " + city.getName());
 
         final HashMap<String, Integer> priceIndex = city.getPriceIndex();
 
@@ -830,8 +838,9 @@ public class MarketplaceActivity extends AppCompatActivity {
     public void onBackPressed()
     {
         super.onBackPressed();
-        Intent currMarket = new Intent(MarketplaceActivity.this, HomeScreenActivity.class);
+        Intent currMarket = new Intent(MarketplaceActivity.this, PlanetDetailActivity.class);
         currMarket.putExtra(CITY_AMOUNT, amountIndex);
+        currMarket.putExtra(EXTRA_PLANET, getIntent().getSerializableExtra(MarketplaceActivity.EXTRA_PLANET));
         startActivity(currMarket);
         finish();
 

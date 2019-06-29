@@ -16,7 +16,9 @@ import java.util.List;
 
 import edu.gatech.cs2340.spacetraders.R;
 import edu.gatech.cs2340.spacetraders.entity.Player;
+import edu.gatech.cs2340.spacetraders.entity.SpaceShip;
 import edu.gatech.cs2340.spacetraders.viewmodels.PlayerViewModel;
+import edu.gatech.cs2340.spacetraders.viewmodels.ShipViewModel;
 
 /**
  * This is the starting screen
@@ -25,6 +27,10 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     /** local instance of view model */
     private PlayerViewModel configurationViewModel;
+    private ShipViewModel shipViewModel;
+
+    private SpaceShip ship;
+
 
     /** widgets for configuration screen */
     private EditText nameField;
@@ -75,6 +81,7 @@ public class ConfigurationActivity extends AppCompatActivity {
 
 
         configurationViewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
+        shipViewModel = ViewModelProviders.of(this).get(ShipViewModel.class);
     }
 
     /**
@@ -97,6 +104,8 @@ public class ConfigurationActivity extends AppCompatActivity {
                     (int) fighterSpinner.getSelectedItem(), (int) traderSpinner.getSelectedItem(),
                     (int) engineerSpinner.getSelectedItem(), (String) difficultySpinner.getSelectedItem(), -1, -1);
             configurationViewModel.addPlayer(player);
+            ship = new SpaceShip("Gnat", 15, 15, 15);
+            shipViewModel.setShip(ship);
             Log.d("Edit", "Got new player data: " + player);
             openHomeScreen();
         }
