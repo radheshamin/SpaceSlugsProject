@@ -85,42 +85,17 @@ public class PlanetDetailActivity extends AppCompatActivity {
                 if (player.getCoordinates().get(0) < 0 || player.getCoordinates().get(1) < 0 && ship.getFuel() >= 5) {
                     ship.setFuel(ship.getFuel() - 5);
                     shipViewModel.setShip(ship);
-                    player.setCoordinates(planet.getCoordinates());
-                    player.setLocation(city.getLocation());
-                    playerViewModel.addPlayer(player);
-                    Intent cityIntent = new Intent(PlanetDetailActivity.this, MarketplaceActivity.class);
-                    cityIntent.putExtra(EXTRA_CITY, city);
-                    cityIntent.putExtra(EXTRA_PLANET, planet);
-                    startActivity(cityIntent);
+                    travel(city);
                 } else if (!player.getCurrentPlanet().equals(planet.getName()) && ship.getFuel() >= 5) {
                     ship.setFuel(ship.getFuel() - 5);
                     shipViewModel.setShip(ship);
-                    player.setCoordinates(planet.getCoordinates());
-                    player.setLocation(city.getLocation());
-                    playerViewModel.addPlayer(player);
-                    Intent cityIntent = new Intent(PlanetDetailActivity.this, MarketplaceActivity.class);
-                    cityIntent.putExtra(EXTRA_CITY, city);
-                    cityIntent.putExtra(EXTRA_PLANET, planet);
-                    startActivity(cityIntent);
+                    travel(city);
                 } else if (player.getCurrentPlanet().equals(planet.getName())
                         && (player.getLocation().get(0) < 0 || player.getLocation().get(1) < 0)) {
-                    ship.setFuel(ship.getFuel() - 5);
-                    shipViewModel.setShip(ship);
-                    player.setCoordinates(planet.getCoordinates());
-                    player.setLocation(city.getLocation());
-                    playerViewModel.addPlayer(player);
-                    Intent cityIntent = new Intent(PlanetDetailActivity.this, MarketplaceActivity.class);
-                    cityIntent.putExtra(EXTRA_CITY, city);
-                    cityIntent.putExtra(EXTRA_PLANET, planet);
-                    startActivity(cityIntent);
+                    travel(city);
                 } else if (player.getCurrentPlanet().equals(planet.getName())
                         && (!player.getLocation().equals(city.getLocation()))) {
-                    player.setLocation(city.getLocation());
-                    playerViewModel.addPlayer(player);
-                    Intent cityIntent = new Intent(PlanetDetailActivity.this, MarketplaceActivity.class);
-                    cityIntent.putExtra(EXTRA_CITY, city);
-                    cityIntent.putExtra(EXTRA_PLANET, planet);
-                    startActivity(cityIntent);
+                    travel(city);
                 } else if (player.getCurrentPlanet().equals(planet.getName())
                         && (player.getLocation().equals(city.getLocation()))) {
                     Intent cityIntent = new Intent(PlanetDetailActivity.this, MarketplaceActivity.class);
@@ -147,5 +122,24 @@ public class PlanetDetailActivity extends AppCompatActivity {
         startActivity(planetDetail);
         finish();
 
+    }
+
+    public void travel(City city) {
+        player.setCoordinates(planet.getCoordinates());
+        player.setLocation(city.getLocation());
+        playerViewModel.addPlayer(player);
+        int random = (int) (Math.random() * 10);
+        if (random < 1) {
+            Intent intent = new Intent(PlanetDetailActivity.this, PoliceEncounterActivity.class);
+            intent.putExtra(EXTRA_CITY, city);
+            intent.putExtra(EXTRA_PLANET, planet);
+            startActivity(intent);
+            Log.d("Check", "Police Encounter");
+        } else {
+            Intent cityIntent = new Intent(PlanetDetailActivity.this, MarketplaceActivity.class);
+            cityIntent.putExtra(EXTRA_CITY, city);
+            cityIntent.putExtra(EXTRA_PLANET, planet);
+            startActivity(cityIntent);
+        }
     }
 }

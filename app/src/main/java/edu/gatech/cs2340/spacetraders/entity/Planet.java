@@ -49,8 +49,8 @@ public enum Planet {
         int x = 0;
         int y = 0;
         for (String s : cities) {
-            x += (int) (Math.random() * 10);
-            y += (int) (Math.random() * 10);
+            x += (int) (Math.random() * 10) + 1;
+            y += (int) (Math.random() * 10) + 1;
             this.cities.add(new City(s, x, y, techLevel, resources));
         }
         coordinates = new ArrayList<Integer>();

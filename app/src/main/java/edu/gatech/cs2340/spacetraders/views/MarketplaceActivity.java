@@ -24,6 +24,7 @@ import edu.gatech.cs2340.spacetraders.viewmodels.ShipViewModel;
 public class MarketplaceActivity extends AppCompatActivity {
 
     private Player player;
+    private Planet planet;
     private PlayerViewModel playerviewModel;
     private ShipViewModel shipViewModel;
     private SpaceShip ship;
@@ -82,9 +83,8 @@ public class MarketplaceActivity extends AppCompatActivity {
 
         if (getIntent().hasExtra(PlanetDetailActivity.EXTRA_CITY)) {
             city = (City) getIntent().getSerializableExtra(PlanetDetailActivity.EXTRA_CITY);
-        } else {
-            //no city is an internal error, this should not happen
-            Log.d("APP", "INTERNAL ERROR< NO CITY PASSED");
+        } else if (getIntent().hasExtra(PoliceEncounterActivity.EXTRA_CITY)) {
+            city = (City) getIntent().getSerializableExtra(PoliceEncounterActivity.EXTRA_CITY);
         }
         if (getIntent().hasExtra(PlanetDetailActivity.CITY_AMOUNT)) {
             amountIndex = (HashMap<String, Integer>) getIntent().getSerializableExtra(PlanetDetailActivity.CITY_AMOUNT);
@@ -99,7 +99,11 @@ public class MarketplaceActivity extends AppCompatActivity {
         shipInfo.setText(ship.toString());
 
         TextView planetInfo = findViewById(R.id.planet);
-        Planet planet = (Planet) getIntent().getSerializableExtra(PlanetDetailActivity.EXTRA_PLANET);
+        if (getIntent().hasExtra(PlanetDetailActivity.EXTRA_PLANET)) {
+            planet = (Planet) getIntent().getSerializableExtra(PlanetDetailActivity.EXTRA_PLANET);
+        } else if ((getIntent().hasExtra(PoliceEncounterActivity.EXTRA_PLANET))) {
+            planet = (Planet) getIntent().getSerializableExtra(PoliceEncounterActivity.EXTRA_PLANET);
+        }
         planetInfo.setText("Planet: " + planet.getName() + ", City: " + city.getName());
 
         final HashMap<String, Integer> priceIndex = city.getPriceIndex();

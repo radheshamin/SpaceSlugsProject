@@ -45,5 +45,10 @@
             android:name=".views.MarketplaceActivity"
             android:parentActivityName=".views.HomeScreenActivity"
             android:noHistory="true"/>
+        <activity
+            android:name=".views.PoliceEncounterActivity"
+            android:parentActivityName=".views.PlanetDetailActivity"
+            android:noHistory="true"/>
+
     </application>
 </manifest>
