@@ -4,13 +4,13 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import edu.gatech.cs2340.spacetraders.R;
 import edu.gatech.cs2340.spacetraders.entity.City;
@@ -106,7 +106,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         }
         planetInfo.setText("Planet: " + planet.getName() + ", City: " + city.getName());
 
-        final HashMap<String, Integer> priceIndex = city.getPriceIndex();
+        final Map<String, Integer> priceIndex = city.getPriceIndex();
 
         TextView waterPrice = (TextView) findViewById(R.id.water_price);
         waterAmount = 0;
@@ -829,6 +829,7 @@ public class MarketplaceActivity extends AppCompatActivity {
                     shipViewModel.setShip(ship);
                     playerInfo.setText("Money: $" + Integer.toString(player.getMoney()));
                     shipInfo.setText(ship.toString());
+                    fuelText.setText("You Have Max Fuel");
                 } else if (player.getMoney() < 50){
                     fuelText.setText("You Cannot Afford To Buy Fuel");
                 } else if (ship.getFuel() == ship.getMaxFuel()) {

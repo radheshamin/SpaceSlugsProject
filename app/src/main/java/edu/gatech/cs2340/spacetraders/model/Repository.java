@@ -1,7 +1,5 @@
 package edu.gatech.cs2340.spacetraders.model;
 
-import android.widget.Space;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,10 +21,10 @@ class Repository {
     /**
      * Make a new Repository object
      */
-    public Repository() {
+    Repository() {
         player = new Player("Name", 4, 4, 4, 4, "Beginner", -1 , -1);
-        List<Planet> all = new ArrayList<Planet>(Arrays.asList(Planet.values()));
-        universe = new ArrayList<Planet>();
+        List<Planet> all = new ArrayList<>(Arrays.asList(Planet.values()));
+        universe = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             int n = (int)(Math.random() * all.size());
             universe.add(all.get(n));
@@ -35,7 +33,7 @@ class Repository {
         ship = new SpaceShip("Gnat", 15, 15, 15);
     }
 
-    public void addPlayer(Player player) {
+    void addPlayer(Player player) {
         this.player = player;
     }
 
@@ -43,7 +41,7 @@ class Repository {
         return player;
     }
 
-    public List<Planet> getUniverse() {
+    List<Planet> getUniverse() {
         return universe;
     }
 
@@ -54,5 +52,5 @@ class Repository {
         this.ship = ship;
     }
 
-    public void setUniverse(List<Planet> universe) {this.universe = universe; }
+    void setUniverse(List<Planet> universe) {this.universe = universe; }
 }

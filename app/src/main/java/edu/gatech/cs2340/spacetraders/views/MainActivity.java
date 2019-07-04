@@ -10,16 +10,13 @@ import edu.gatech.cs2340.spacetraders.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button continueButton;
-    private Button loadButton;
-
     public static final String CHECK = "edu.gatech.cs2340.spacetraders.views.CHECK";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        continueButton = findViewById(R.id.button);
+        Button continueButton = findViewById(R.id.button);
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -28,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        loadButton = findViewById(R.id.load_button);
+        Button loadButton = findViewById(R.id.load_button);
         loadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

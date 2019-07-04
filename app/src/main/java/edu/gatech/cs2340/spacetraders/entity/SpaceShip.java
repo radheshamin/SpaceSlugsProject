@@ -1,5 +1,7 @@
 package edu.gatech.cs2340.spacetraders.entity;
 
+import android.support.annotation.NonNull;
+
 import java.util.HashMap;
 
 public class SpaceShip {
@@ -13,7 +15,7 @@ public class SpaceShip {
         this.cargoSpace = cargoSpace;
         this.name = name;
         this.fuel = fuel;
-        goods = new HashMap<String, Integer>();
+        goods = new HashMap<>();
         goods.put("Water", 0);
         goods.put("Furs", 0);
         goods.put("Food", 0);
@@ -27,12 +29,7 @@ public class SpaceShip {
         this.maxFuel = maxFuel;
     }
 
-    public void setCargoSpace(int space) {
-        cargoSpace = space;
-    }
-    public int getCargoSpace() {
-        return cargoSpace;
-    }
+
     public int getCargoSpaceLeft() {
         int total = 0;
         for (String key: goods.keySet()) {
@@ -58,16 +55,17 @@ public class SpaceShip {
     public int getMaxFuel() {
         return maxFuel;
     }
+
+    @NonNull
     @Override
     public String toString() {
-        String state = "";
-        state = state + "Ship: " + name + ", Fuel: " + fuel;
+        StringBuilder state = new StringBuilder("Ship: " + name + ", Fuel: " + fuel);
         int total = 0;
         for (String key: goods.keySet()) {
-            state = state + ", " + key + ": " + goods.get(key);
+            state.append(", ").append(key).append(": ").append(goods.get(key));
             total += goods.get(key);
         }
-        state = state +", Cargo Space Left: " + Integer.toString(cargoSpace - total);
-        return state;
+        state.append(", Cargo Space Left: ").append((cargoSpace - total));
+        return state.toString();
     }
 }

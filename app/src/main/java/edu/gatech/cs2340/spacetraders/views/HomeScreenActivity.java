@@ -8,7 +8,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Space;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -20,7 +19,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
 import edu.gatech.cs2340.spacetraders.R;
-import edu.gatech.cs2340.spacetraders.entity.City;
 import edu.gatech.cs2340.spacetraders.entity.Planet;
 import edu.gatech.cs2340.spacetraders.entity.Player;
 import edu.gatech.cs2340.spacetraders.entity.SpaceShip;
@@ -30,19 +28,14 @@ import edu.gatech.cs2340.spacetraders.viewmodels.ShipViewModel;
 
 import android.support.v7.widget.RecyclerView;
 
-import org.w3c.dom.Text;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class HomeScreenActivity extends AppCompatActivity {
 
     private Player player;
     private PlayerViewModel viewModel;
-    private ShipViewModel shipViewModel;
-    private UniverseAdapter adapter;
     private SpaceShip ship;
     private List<Planet> universe;
 
@@ -59,9 +52,8 @@ public class HomeScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen_activity);
 
-
         viewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
-        shipViewModel = ViewModelProviders.of(this).get(ShipViewModel.class);
+        ShipViewModel shipViewModel = ViewModelProviders.of(this).get(ShipViewModel.class);
 
         gson = new Gson();
 
@@ -73,7 +65,8 @@ public class HomeScreenActivity extends AppCompatActivity {
                 int length = (int) file.length();
                 byte[] bytes = new byte[length];
                 FileInputStream in = new FileInputStream(file);
-                in.read(bytes);
+                int i = in.read(bytes);
+                Log.d("Bytes", Integer.toString(i));
                 String contents = new String(bytes);
                 in.close();
                 Log.d("Check Player", contents);
@@ -90,7 +83,8 @@ public class HomeScreenActivity extends AppCompatActivity {
                 int length = (int) shipFile.length();
                 byte[] bytes = new byte[length];
                 FileInputStream in = new FileInputStream(shipFile);
-                in.read(bytes);
+                int i = in.read(bytes);
+                Log.d("Bytes", Integer.toString(i));
                 String contents = new String(bytes);
                 in.close();
                 Log.d("Check Ship", contents);
@@ -109,7 +103,8 @@ public class HomeScreenActivity extends AppCompatActivity {
                 int length = (int) universeFile.length();
                 byte[] bytes = new byte[length];
                 FileInputStream in = new FileInputStream(universeFile);
-                in.read(bytes);
+                int i = in.read(bytes);
+                Log.d("Bytes", Integer.toString(i));
                 String contents = new String(bytes);
                 in.close();
                 Log.d("Check Universe", contents);
@@ -126,31 +121,35 @@ public class HomeScreenActivity extends AppCompatActivity {
             universe = viewModel.getUniverse();
         }
 
-        TextView playerText = (TextView)findViewById(R.id.player_text);
+        TextView playerText = findViewById(R.id.player_text);
         playerText.setText(player.toString());
 
-        TextView location = (TextView)findViewById(R.id.current_location);
+        TextView location = findViewById(R.id.current_location);
         if (player.getCurrentPlanet() == null) {
-            location.setText("You are not at a planet.");
+            StringBuilder loc = new StringBuilder("You are not at a planet.");
+            location.setText(loc);
         } else {
-            location.setText("You are at planet " + player.getCurrentPlanet());
+            StringBuilder loc = new StringBuilder("You are at planet ");
+            location.setText(loc.append(player.getCurrentPlanet()));
         }
 
-        TextView coordinates = (TextView)findViewById(R.id.location);
+        TextView coordinates = findViewById(R.id.location);
         if (player.getCoordinates().get(0) == -1 || player.getCoordinates().get(1) == -1) {
-            coordinates.setText("You are on your ship. Visit a planet.");
+            StringBuilder coordinatesList = new StringBuilder("You are on your ship. Visit a planet.");
+            coordinates.setText(coordinatesList);
         } else {
-            coordinates.setText("Coordinates: " + player.getCoordinates().toString());
+            StringBuilder coordinatesList = new StringBuilder("Coordinates: " + player.getCoordinates().toString());
+            coordinates.setText(coordinatesList);
         }
 
-        TextView shipText = (TextView)findViewById(R.id.ship);
+        TextView shipText = findViewById(R.id.ship);
         shipText.setText(ship.toString());
 
         RecyclerView recyclerView = findViewById(R.id.planet_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        adapter = new UniverseAdapter();
+        UniverseAdapter adapter = new UniverseAdapter();
         adapter.setPlanetList(universe);
         recyclerView.setAdapter(adapter);
 
@@ -160,13 +159,13 @@ public class HomeScreenActivity extends AppCompatActivity {
                 Intent intent = new Intent(HomeScreenActivity.this, PlanetDetailActivity.class);
                 intent.putExtra(EXTRA_PLANET, planet);
                 if (getIntent().hasExtra(MarketplaceActivity.CITY_AMOUNT)) {
-                    intent.putExtra(CITY_AMOUNT, (HashMap<String, Integer>) getIntent().getSerializableExtra(MarketplaceActivity.CITY_AMOUNT));
+                    intent.putExtra(CITY_AMOUNT, getIntent().getSerializableExtra(MarketplaceActivity.CITY_AMOUNT));
                 }
                 startActivity(intent);
             }
         });
 
-        Button saveGame = findViewById(R.id.save);
+        final Button saveGame = findViewById(R.id.save);
         saveGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -210,7 +209,8 @@ public class HomeScreenActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
+                StringBuilder save = new StringBuilder("GameSaved");
+            saveGame.setText(save);
             }
         });
     }

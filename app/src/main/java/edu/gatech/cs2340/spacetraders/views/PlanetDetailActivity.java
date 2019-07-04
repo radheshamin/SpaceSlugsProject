@@ -9,14 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.TextView;
 
-import java.util.HashMap;
-
 import edu.gatech.cs2340.spacetraders.R;
 import edu.gatech.cs2340.spacetraders.entity.City;
 import edu.gatech.cs2340.spacetraders.entity.Planet;
 import edu.gatech.cs2340.spacetraders.entity.Player;
 import edu.gatech.cs2340.spacetraders.entity.SpaceShip;
-import edu.gatech.cs2340.spacetraders.viewmodels.CityViewModel;
 import edu.gatech.cs2340.spacetraders.viewmodels.PlayerViewModel;
 import edu.gatech.cs2340.spacetraders.viewmodels.ShipViewModel;
 
@@ -29,10 +26,8 @@ public class PlanetDetailActivity extends AppCompatActivity {
 
     private Player player;
     private PlayerViewModel playerViewModel;
-    private CityViewModel cityViewModel;
     private ShipViewModel shipViewModel;
     private SpaceShip ship;
-    private PlanetAdapter adapter;
     private Planet planet;
     public static final String EXTRA_CITY = "edu.gatech.cs2340.spacetraders.views.EXTRA_CITY";
 
@@ -49,30 +44,29 @@ public class PlanetDetailActivity extends AppCompatActivity {
         planet = (Planet) getIntent().getSerializableExtra(HomeScreenActivity.EXTRA_PLANET);
 
         playerViewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
-        cityViewModel = ViewModelProviders.of(this).get(CityViewModel.class);
         shipViewModel = ViewModelProviders.of(this).get(ShipViewModel.class);
 
         ship = shipViewModel.getShip();
 
         player = playerViewModel.getPlayer();
-        TextView planetText = (TextView)findViewById(R.id.planet);
+        TextView planetText = findViewById(R.id.planet);
         planetText.setText(planet.getName());
 
-        TextView location = (TextView)findViewById(R.id.coordinates);
-        location.setText("Coordinates: " + planet.getCoordinates().toString());
+        TextView location = findViewById(R.id.coordinates);
+        location.setText(new StringBuilder("Coordinates: ").append(planet.getCoordinates().toString()));
 
-        TextView techLevel = (TextView)findViewById(R.id.tech_level);
-        techLevel.setText("Tech Level: " + (Integer.toString(planet.getTechLevel())));
+        TextView techLevel = findViewById(R.id.tech_level);
+        techLevel.setText(new StringBuilder("Tech Level: ").append(planet.getTechLevel()));
 
 
-        TextView resources = (TextView)findViewById(R.id.resources);
-        resources.setText("Resource Type: " + (Integer.toString(planet.getResources())));
+        TextView resources = findViewById(R.id.resources);
+        resources.setText(new StringBuilder("Resource Type: ").append(planet.getResources()));
 
         RecyclerView recyclerView = findViewById(R.id.city_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        adapter = new PlanetAdapter();
+        PlanetAdapter adapter = new PlanetAdapter();
         adapter.setCityList(planet.getCities());
         adapter.setPlanet(planet);
         adapter.setPlayer(player);
@@ -102,7 +96,7 @@ public class PlanetDetailActivity extends AppCompatActivity {
                     cityIntent.putExtra(EXTRA_CITY, city);
                     cityIntent.putExtra(EXTRA_PLANET, planet);
                     if (getIntent().hasExtra(HomeScreenActivity.CITY_AMOUNT)) {
-                        cityIntent.putExtra(CITY_AMOUNT, (HashMap<String, Integer>) getIntent().getSerializableExtra(MarketplaceActivity.CITY_AMOUNT));
+                        cityIntent.putExtra(CITY_AMOUNT, getIntent().getSerializableExtra(MarketplaceActivity.CITY_AMOUNT));
                     }
                     startActivity(cityIntent);
                 }
@@ -117,7 +111,7 @@ public class PlanetDetailActivity extends AppCompatActivity {
         super.onBackPressed();
         Intent planetDetail = new Intent(PlanetDetailActivity.this, HomeScreenActivity.class);
         if (getIntent().hasExtra(MarketplaceActivity.CITY_AMOUNT)) {
-            planetDetail.putExtra(CITY_AMOUNT, (HashMap<String, Integer>) getIntent().getSerializableExtra(MarketplaceActivity.CITY_AMOUNT));
+            planetDetail.putExtra(CITY_AMOUNT, getIntent().getSerializableExtra(MarketplaceActivity.CITY_AMOUNT));
         }
         startActivity(planetDetail);
         finish();

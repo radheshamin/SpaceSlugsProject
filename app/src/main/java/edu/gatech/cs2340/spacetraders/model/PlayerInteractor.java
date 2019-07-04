@@ -7,7 +7,7 @@ import edu.gatech.cs2340.spacetraders.entity.Player;
 
 public class PlayerInteractor extends Interactor {
 
-    public PlayerInteractor(Repository repo) {
+    PlayerInteractor(Repository repo) {
         super(repo);
     }
 

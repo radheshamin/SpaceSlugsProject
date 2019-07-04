@@ -1,21 +1,22 @@
 package edu.gatech.cs2340.spacetraders.entity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class City implements java.io.Serializable{
-    private String name;
-    private List<Integer> location;
-    private HashMap<String, Integer> priceIndex;
+    private final String name;
+    private final List<Integer> location;
+    private final HashMap<String, Integer> priceIndex;
 
-    public City(String name, int latitude, int longitude, int techLevel, int resources) {
+    City(String name, int latitude, int longitude, int techLevel, int resources) {
         this.name = name;
-        location = new ArrayList<Integer>();
+        location = new ArrayList<>();
         location.add(latitude);
         location.add(longitude);
-        priceIndex = new HashMap<String, Integer>();
+        priceIndex = new HashMap<>();
         calculateGoodPrice("Water", 30, 3, 4, techLevel, 0, resources);
         calculateGoodPrice("Furs", 250, 10, 10, techLevel, 0, resources);
         calculateGoodPrice("Food", 100, 5, 5, techLevel, 1, resources);
@@ -28,7 +29,9 @@ public class City implements java.io.Serializable{
         calculateGoodPrice("Robots", 5000, -150, 100, techLevel, 6, resources);
     }
 
-    private void calculateGoodPrice(String good, int basePrice, int increase, int varianceAmount, int techLevel, int baseTech, int resources) {
+    private void calculateGoodPrice(String good, int basePrice, int increase,
+                                    int varianceAmount, int techLevel,
+                                    int baseTech, int resources) {
         int variance = (int) (Math.random() * 2);
         int cost;
         double varianceMoney = ((Math.random() * varianceAmount));
@@ -36,33 +39,35 @@ public class City implements java.io.Serializable{
             priceIndex.put(good, 0);
         } else {
             if (variance == 0) {
-                cost = basePrice + (increase * (techLevel - baseTech)) + (int)((basePrice * varianceMoney)/100);
+                cost = basePrice + (increase * (techLevel - baseTech)) +
+                        (int)((basePrice * varianceMoney)/100);
             } else {
-                cost = basePrice + (increase * (techLevel - baseTech)) - (int)((basePrice * varianceMoney)/100);
+                cost = (basePrice + (increase * (techLevel - baseTech))) -
+                        (int) ((basePrice * varianceMoney) / 100);
             }
-            if (good.equals("Water") && resources == 4) {
+            if ("Water".equals(good) && (resources == 4)) {
                 cost = cost / 2;
-            } else if (good.equals("Water") && resources == 3) {
+            } else if ("Water".equals(good) && (resources == 3)) {
                 cost = cost * 2;
-            } else if (good.equals("Furs") && resources == 7) {
+            } else if ("Furs".equals(good) && (resources == 7)) {
                 cost = cost / 2;
-            } else if (good.equals("Furs") && resources == 8) {
+            } else if ("Furs".equals(good) && (resources == 8)) {
                 cost = cost * 2;
-            } else if (good.equals("Food") && resources == 5) {
+            } else if ("Food".equals(good) && (resources == 5)) {
                 cost = cost / 2;
-            } else if (good.equals("Food") && resources == 6) {
+            } else if ("Food".equals(good) && (resources == 6)) {
                 cost = cost * 2;
-            } else if (good.equals("Ore") && resources == 1) {
+            } else if ("Ore".equals(good) && (resources == 1)) {
                 cost = cost / 2;
-            } else if (good.equals("Ore") && resources == 2) {
+            } else if ("Ore".equals(good) && (resources == 2)) {
                 cost = cost * 2;
-            } else if (good.equals("Games") && resources == 11) {
+            } else if ("Games".equals(good) && (resources == 11)) {
                 cost = cost / 2;
-            } else if (good.equals("Firearms") && resources == 12) {
+            } else if ("Firearms".equals(good) && (resources == 12)) {
                 cost = cost / 2;
-            } else if (good.equals("Medicine") && resources == 10) {
+            } else if ("Medicine".equals(good) && (resources == 10)) {
                 cost = cost / 2;
-            } else if (good.equals("Narcotics") && resources == 9) {
+            } else if ("Narcotics".equals(good) && (resources == 9)) {
                 cost = cost / 2;
             }
             priceIndex.put(good, cost);
@@ -74,10 +79,10 @@ public class City implements java.io.Serializable{
     }
 
     public List<Integer> getLocation() {
-        return location;
+        return Collections.unmodifiableList(location);
     }
 
-    public HashMap<String, Integer> getPriceIndex() {
-        return priceIndex;
+    public Map<String, Integer> getPriceIndex() {
+        return Collections.unmodifiableMap(priceIndex);
     }
 }

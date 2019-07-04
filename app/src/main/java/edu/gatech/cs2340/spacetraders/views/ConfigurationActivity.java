@@ -29,8 +29,6 @@ public class ConfigurationActivity extends AppCompatActivity {
     private PlayerViewModel configurationViewModel;
     private ShipViewModel shipViewModel;
 
-    private SpaceShip ship;
-
 
     /** widgets for configuration screen */
     private EditText nameField;
@@ -39,10 +37,6 @@ public class ConfigurationActivity extends AppCompatActivity {
     private Spinner traderSpinner;
     private Spinner engineerSpinner;
     private Spinner difficultySpinner;
-    private Button beginButton;
-
-    /** data for player being created */
-    private Player player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +54,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         difficultySpinner.setAdapter(adapter);
 
-        List<Integer> skillPoints = new ArrayList<Integer>();
+        List<Integer> skillPoints = new ArrayList<>();
         for (int i = 0; i <= 16; i++) {
             skillPoints.add(i);
         }
@@ -71,7 +65,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         traderSpinner.setAdapter(skillAdapter);
         engineerSpinner.setAdapter(skillAdapter);
 
-        beginButton = findViewById(R.id.begin_button);
+        Button beginButton = findViewById(R.id.begin_button);
         beginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,11 +94,11 @@ public class ConfigurationActivity extends AppCompatActivity {
             startActivity(intent);
         } else {
 
-            player = new Player(nameField.getText().toString(), (int) pilotSpinner.getSelectedItem(),
+            Player player = new Player(nameField.getText().toString(), (int) pilotSpinner.getSelectedItem(),
                     (int) fighterSpinner.getSelectedItem(), (int) traderSpinner.getSelectedItem(),
                     (int) engineerSpinner.getSelectedItem(), (String) difficultySpinner.getSelectedItem(), -1, -1);
             configurationViewModel.addPlayer(player);
-            ship = new SpaceShip("Gnat", 15, 15, 15);
+            SpaceShip ship = new SpaceShip("Gnat", 15, 15, 15);
             shipViewModel.setShip(ship);
             Log.d("Edit", "Got new player data: " + player);
             openHomeScreen();

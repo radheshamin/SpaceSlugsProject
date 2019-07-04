@@ -16,7 +16,6 @@ import edu.gatech.cs2340.spacetraders.entity.City;
 import edu.gatech.cs2340.spacetraders.entity.Planet;
 import edu.gatech.cs2340.spacetraders.entity.Player;
 import edu.gatech.cs2340.spacetraders.entity.SpaceShip;
-import edu.gatech.cs2340.spacetraders.viewmodels.CityViewModel;
 import edu.gatech.cs2340.spacetraders.viewmodels.PlayerViewModel;
 import edu.gatech.cs2340.spacetraders.viewmodels.ShipViewModel;
 
@@ -28,7 +27,6 @@ public class PoliceEncounterActivity extends AppCompatActivity {
     private PlayerViewModel playerViewModel;
     private ShipViewModel shipViewModel;
     private SpaceShip ship;
-    private Planet planet;
     private HashMap<String, Integer> goods;
     private int illegalAmount;
     private int illegalMoney;
@@ -76,10 +74,10 @@ public class PoliceEncounterActivity extends AppCompatActivity {
                 shipViewModel.setShip(ship);
                 playerViewModel.addPlayer(player);
                 if (illegalAmount == 0) {
-                    result.setText("You had no illegal goods and left the police peacefully. Click any of the buttons to continue");
+                    result.setText(new StringBuilder("You had no illegal goods and left the police peacefully. Click any of the buttons to continue"));
                 } else {
-                    result.setText("You surrendered your illegal goods and paid a fine of $" +
-                            Integer.toString((int) (illegalMoney * .1)) + ". Click any of the buttons to continue.");
+                    result.setText(new StringBuilder("You surrendered your illegal goods and paid a fine of $")
+                            .append((int) (illegalMoney * .1)).append(". Click any of the buttons to continue."));
                 }
                 setContinue();
             }
@@ -96,13 +94,12 @@ public class PoliceEncounterActivity extends AppCompatActivity {
                     player.setMoney(money - ((int)(illegalMoney * .25)));
                     shipViewModel.setShip(ship);
                     playerViewModel.addPlayer(player);
-                    result.setText("The police caught your bluff. You forfeited your illegal goods and paid a fine of $" +
-                            Integer.toString((int)(illegalMoney * .25)) +
-                            ". Click any of the buttons to continue.");
+                    result.setText(new StringBuilder("The police caught your bluff. You forfeited your illegal goods and paid a fine of $")
+                            .append(((int)(illegalMoney * .25))).append(
+                            ". Click any of the buttons to continue."));
                 } else {
-                    result.setText("You successfully bluffed your way out of the situation." +
-                            " You kept your illegal goods." +
-                            " Click any of the buttons to continue.");
+                    result.setText(new StringBuilder("You successfully bluffed your way out of the situation.")
+                            .append(" You kept your illegal goods.").append(" Click any of the buttons to continue."));
                 }
                 setContinue();
             }
@@ -118,9 +115,8 @@ public class PoliceEncounterActivity extends AppCompatActivity {
                     if (amount > (illegalMoney / 2) && amount <= money) {
                         player.setMoney(money - amount);
                         playerViewModel.addPlayer(player);
-                        result.setText("Your bribe was successful. You kept your illegal goods and paid $" +
-                                Integer.toString((amount)) +
-                                ". Click any of the buttons to continue.");
+                        result.setText(new StringBuilder("Your bribe was successful. You kept your illegal goods and paid $")
+                                .append(amount).append(". Click any of the buttons to continue."));
                     } else {
                         goods.put("Firearms", 0);
                         goods.put("Narcotics", 0);
@@ -128,10 +124,9 @@ public class PoliceEncounterActivity extends AppCompatActivity {
                         player.setMoney(money - ((int)(illegalMoney * .25)));
                         shipViewModel.setShip(ship);
                         playerViewModel.addPlayer(player);
-                        result.setText("The police didn't accept your bribe. " +
-                                "You forfeited your illegal goods and paid a fine of $" +
-                                Integer.toString((int)(illegalMoney * .25)) +
-                                ". Click any of the buttons to continue.");
+                        result.setText(new StringBuilder("The police didn't accept your bribe. ")
+                                .append("You forfeited your illegal goods and paid a fine of $")
+                                .append((int)(illegalMoney * .25)).append(". Click any of the buttons to continue."));
                     }
                 }
                 setContinue();
@@ -149,14 +144,12 @@ public class PoliceEncounterActivity extends AppCompatActivity {
                     player.setMoney(money - ((int)(illegalMoney * .25)));
                     shipViewModel.setShip(ship);
                     playerViewModel.addPlayer(player);
-                    result.setText("The police caught you while you were attempting to flee. " +
-                            "You forfeited your illegal goods and paid a fine of $" +
-                            Integer.toString((int)(illegalMoney * .25)) +
-                            ". Click any of the buttons to continue.");
+                    result.setText(new StringBuilder("The police caught you while you were attempting to flee. ")
+                            .append("You forfeited your illegal goods and paid a fine of $")
+                            .append((int)(illegalMoney * .25)).append(". Click any of the buttons to continue."));
                 } else {
-                    result.setText("You successfully fled from the police. " +
-                            "You kept your illegal goods" +
-                            ". Click any of the buttons to continue.");
+                    result.setText(new StringBuilder("You successfully fled from the police. ")
+                            .append("You kept your illegal goods").append(". Click any of the buttons to continue."));
                 }
                 setContinue();
             }
@@ -181,25 +174,26 @@ public class PoliceEncounterActivity extends AppCompatActivity {
         shipInfo.setText(ship.toString());
         playerInfo.setText(player.toString());
         shipInfo.setText(ship.toString());
-        truth.setText("Continue");
+        StringBuilder continueText = new StringBuilder("Continue");
+        truth.setText(continueText);
         truth.setOnClickListener(new View.OnClickListener() {
             public void onClick (View v){
                 finishEncounter();
             }
         });
-        bluff.setText("Continue");
+        bluff.setText(continueText);
         bluff.setOnClickListener(new View.OnClickListener() {
             public void onClick (View v){
                 finishEncounter();
             }
         });
-        bribe.setText("Continue");
+        bribe.setText(continueText);
         bribe.setOnClickListener(new View.OnClickListener() {
             public void onClick (View v){
                 finishEncounter();
             }
         });
-        flee.setText("Continue");
+        flee.setText(continueText);
         flee.setOnClickListener(new View.OnClickListener() {
             public void onClick (View v){
                 finishEncounter();

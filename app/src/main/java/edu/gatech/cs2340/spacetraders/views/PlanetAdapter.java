@@ -50,18 +50,18 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.CityViewHo
         City city = cityList.get(position);
 
         //now use the view holder to set the appropriate information
-        holder.name.setText("City: " + city.getName());
-        holder.location.setText("Location On Planet: " + city.getLocation().toString());
+        holder.name.setText(new StringBuilder("City: ").append(city.getName()));
+        holder.location.setText(new StringBuilder("Location On Planet: " ).append(city.getLocation().toString()));
         if (player.getCoordinates().get(0) < 0 || player.getCoordinates().get(1) < 0){
-            holder.travel.setText("Travel To This Planet And City");
+            holder.travel.setText(new StringBuilder("Travel To This Planet And City"));
         } else if (player.getCurrentPlanet().equals(planet.getName()) && player.getLocation().equals(city.getLocation())) {
-            holder.travel.setText("Visit Marketplace");
+            holder.travel.setText(new StringBuilder("Visit Marketplace"));
         } else if (player.getCurrentPlanet().equals(planet.getName())){
-            holder.travel.setText("Travel To This City");
+            holder.travel.setText(new StringBuilder("Travel To This City"));
         } else if (ship.getFuel() < 5) {
-            holder.travel.setText("You Do Not Have Enough Fuel");
+            holder.travel.setText(new StringBuilder("You Do Not Have Enough Fuel"));
         } else {
-            holder.travel.setText("Travel To This Planet And City");
+            holder.travel.setText(new StringBuilder("Travel To This Planet And City"));
         }
 
 
@@ -73,7 +73,7 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.CityViewHo
         return cityList.size();
     }
 
-    public void setCityList(List<City> cities) {
+    void setCityList(List<City> cities) {
         cityList = cities;
         notifyDataSetChanged();
     }
@@ -81,10 +81,6 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.CityViewHo
     public void setPlayer(Player player) {
         this.player = player;
         notifyDataSetChanged();
-    }
-
-    public City getCityAt(int position) {
-        return cityList.get(position);
     }
 
     public void setPlanet(Planet planet) {
@@ -107,9 +103,9 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.CityViewHo
          * Construct a new view holder, grab all the widget references and setup the
          * listener to detect a click on this item.
          *
-         * @param itemView
+         * @param itemView the current view
          */
-        public CityViewHolder(@NonNull View itemView) {
+        CityViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
             location = itemView.findViewById(R.id.location);
@@ -133,7 +129,7 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.CityViewHo
         void onTravelClicked(City city);
     }
 
-    public void setOnTravelClickListener(OnTravelClickListener listener) {
+    void setOnTravelClickListener(OnTravelClickListener listener) {
         this.listener = listener;
     }
 

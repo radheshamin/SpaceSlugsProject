@@ -37,24 +37,17 @@ public class Model {
         registerInteractors();
     }
 
-    /** end Singleton Pattern */
-
     /**
      * Create a set of interactors to be used by the application
      */
     private void registerInteractors() {
         interactorMap.put("Player", new PlayerInteractor(myRepository));
-        interactorMap.put("City", new CityInteractor(myRepository));
         interactorMap.put("Ship", new ShipInteractor(myRepository));
 
     }
 
     public PlayerInteractor getPlayerInteractor() {
         return (PlayerInteractor) interactorMap.get("Player");
-    }
-
-    public CityInteractor getCityInteractor() {
-        return (CityInteractor) interactorMap.get("City");
     }
 
     public ShipInteractor getShipInteractor() {

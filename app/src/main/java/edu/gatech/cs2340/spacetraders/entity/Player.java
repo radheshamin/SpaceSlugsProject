@@ -1,8 +1,11 @@
 package edu.gatech.cs2340.spacetraders.entity;
 
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class Player {
 
@@ -28,10 +31,10 @@ public class Player {
         this.traderSkill = traderSkill;
         this.engineerSkill = engineerSkill;
         this.difficulty = difficulty;
-        coordinates = new ArrayList<Integer>();
+        coordinates = new ArrayList<>();
         coordinates.add(coordinateX);
         coordinates.add(coordinateY);
-        location = new ArrayList<Integer>();
+        location = new ArrayList<>();
         location.add(-1);
         location.add(-1);
         this.money = 1000;
@@ -43,46 +46,6 @@ public class Player {
 
     public void setName(String name) {
 		this.name = name;
-    }
-
-    public int getPilotSkill () {
-        return pilotSkill;
-    }
-
-    public void setPilotSkill(int pilotSkill) {
-        this.pilotSkill = pilotSkill;
-    }
-
-    public int getFighterSkill () {
-        return fighterSkill;
-    }
-
-    public void setFighterSkill(int fighterSkill) {
-        this.fighterSkill = fighterSkill;
-    }
-
-    public int getTraderSkill () {
-        return traderSkill;
-    }
-
-    public void setTraderSkill(int traderSkill) {
-        this.traderSkill = traderSkill;
-    }
-
-    public int getEngineerSkill () {
-        return engineerSkill;
-    }
-
-    public void setEngineerSkill(int engineerSkill) {
-        this.engineerSkill = engineerSkill;
-    }
-
-    public String getDifficulty () {
-        return difficulty;
-    }
-
-    public void setDifficulty(String difficulty) {
-        this.difficulty = difficulty;
     }
 
     public List<Integer> getCoordinates() {
@@ -110,7 +73,7 @@ public class Player {
     }
 
     public String getCurrentPlanet() {
-        List<Planet> all = new ArrayList<Planet>(Arrays.asList(Planet.values()));
+        List<Planet> all = new ArrayList<>(Arrays.asList(Planet.values()));
         for (Planet p : all) {
             if (this.getCoordinates().equals(p.getCoordinates())) {
                 return p.getName();
@@ -120,8 +83,9 @@ public class Player {
     }
 
     @Override
+    @NonNull
     public String toString() {
-        return String.format("Player Name: %s, Money: $%d, Pilot: %d, Fighter: %d, Trader: %d, Engineer: %d, " +
+        return String.format(Locale.getDefault(), "Player Name: %s, Money: $%d, Pilot: %d, Fighter: %d, Trader: %d, Engineer: %d, " +
                         "Difficulty: %s.", name, money, pilotSkill, fighterSkill, traderSkill,
                 engineerSkill, difficulty);
     }

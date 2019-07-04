@@ -42,17 +42,17 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Planet
         Planet planet = planetList.get(position);
 
         //now use the view holder to set the appropriate information
-        String cities = "";
+        StringBuilder cities = new StringBuilder();
         for (City c : planet.getCities()) {
-            cities = cities + c.getName();
+            cities.append(c.getName());
             if (planet.getCities().indexOf(c) != planet.getCities().size() - 1) {
-                cities += ", ";
+                cities.append(", ");
             }
         }
-        holder.cities.setText("Cities: " + cities);
-        holder.coordinates.setText("Coordinates: " + planet.getCoordinates().toString());
-        holder.techLevel.setText("Tech Level: " + (Integer.toString(planet.getTechLevel())));
-        holder.resourceLevel.setText("Resource Type: " + (Integer.toString(planet.getResources())));
+        holder.cities.setText(new StringBuilder("Cities: ").append(cities));
+        holder.coordinates.setText(new StringBuilder("Coordinates: ").append(planet.getCoordinates().toString()));
+        holder.techLevel.setText(new StringBuilder("Tech Level: ").append(planet.getTechLevel()));
+        holder.resourceLevel.setText(new StringBuilder("Resource Type: ").append(planet.getResources()));
         holder.name.setText(planet.getName());
 
 
@@ -63,13 +63,9 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Planet
         return planetList.size();
     }
 
-    public void setPlanetList(List<Planet> planets) {
+    void setPlanetList(List<Planet> planets) {
         planetList = planets;
         notifyDataSetChanged();
-    }
-
-    public Planet getPlanetAt(int position) {
-        return planetList.get(position);
     }
 
     class PlanetViewHolder extends RecyclerView.ViewHolder {
@@ -85,9 +81,9 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Planet
          * Construct a new view holder, grab all the widget references and setup the
          * listener to detect a click on this item.
          *
-         * @param itemView
+         * @param itemView the current view
          */
-        public PlanetViewHolder(@NonNull View itemView) {
+        PlanetViewHolder(@NonNull View itemView) {
             super(itemView);
             cities = itemView.findViewById(R.id.name);
             coordinates = itemView.findViewById(R.id.location);
@@ -114,7 +110,7 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Planet
         void onPlanetClicked(Planet planet);
     }
 
-    public void setOnPlanetClickListener(OnPlanetClickListener listener) {
+    void setOnPlanetClickListener(OnPlanetClickListener listener) {
         this.listener = listener;
     }
 }
