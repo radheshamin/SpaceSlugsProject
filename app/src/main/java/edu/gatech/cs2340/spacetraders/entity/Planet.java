@@ -5,7 +5,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-
+/**
+ * This is an enum of the planet object
+ */
 
 public enum Planet {
     NABOO ("Naboo", new ArrayList<>(Arrays.asList("Naboo", "Theed")), 61, 66,
@@ -75,22 +77,42 @@ public enum Planet {
         this.resources = resources;
     }
 
+    /**
+     * method to get the name of planet
+     * @return name of the planet
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * method to get the cities in the planet
+     * @return a collection of cities in the planet
+     */
     public List<City> getCities() {
         return Collections.unmodifiableList(cities);
     }
 
+    /**
+     * method to get the coordinates of the planet
+     * @return coordinates of the planet
+     */
     public List<Integer> getCoordinates() {
         return Collections.unmodifiableList(coordinates);
     }
 
+    /**
+     * method to get the technology level of the planet
+     * @return technology of the planet
+     */
     public int getTechLevel() {
         return techLevel;
     }
 
+    /**
+     * method to get the resources of the planet
+     * @return resources of the planet
+     */
     public int getResources() {
         return resources;
     }

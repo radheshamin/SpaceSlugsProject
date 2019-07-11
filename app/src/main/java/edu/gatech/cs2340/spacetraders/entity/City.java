@@ -6,12 +6,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This is a class of the city object
+ */
 public class City implements java.io.Serializable{
     private final String name;
     private final List<Integer> location;
     private final HashMap<String, Integer> priceIndex;
 
-    City(String name, int latitude, int longitude, int techLevel, int resources) {
+    /**
+     * constructor for a city
+     * @param name name of city
+     * @param latitude latitude of city
+     * @param longitude longitude of city
+     * @param techLevel tech level of city
+     * @param resources resources of city
+     */
+    public City(String name, int latitude, int longitude, int techLevel, int resources) {
         this.name = name;
         location = new ArrayList<>();
         location.add(latitude);
@@ -39,8 +50,8 @@ public class City implements java.io.Serializable{
             priceIndex.put(good, 0);
         } else {
             if (variance == 0) {
-                cost = basePrice + (increase * (techLevel - baseTech)) +
-                        (int)((basePrice * varianceMoney)/100);
+                cost = (basePrice + (increase * (techLevel - baseTech))) +
+                        (int) ((basePrice * varianceMoney) / 100);
             } else {
                 cost = (basePrice + (increase * (techLevel - baseTech))) -
                         (int) ((basePrice * varianceMoney) / 100);
@@ -74,14 +85,26 @@ public class City implements java.io.Serializable{
         }
     }
 
+    /**
+     * method to get the name of city
+     * @return name of the city
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * method to get the location of city
+     * @return location of the city
+     */
     public List<Integer> getLocation() {
         return Collections.unmodifiableList(location);
     }
 
+    /**
+     * method to get the collection of goods and their costs in the city
+     * @return collection of goods and costs in the city
+     */
     public Map<String, Integer> getPriceIndex() {
         return Collections.unmodifiableMap(priceIndex);
     }

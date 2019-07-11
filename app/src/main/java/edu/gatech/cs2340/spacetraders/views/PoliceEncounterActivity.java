@@ -66,6 +66,7 @@ public class PoliceEncounterActivity extends AppCompatActivity {
 
         truth = findViewById(R.id.truth);
         truth.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 goods.put("Firearms", 0);
                 goods.put("Narcotics", 0);
@@ -85,6 +86,7 @@ public class PoliceEncounterActivity extends AppCompatActivity {
 
         bluff = findViewById(R.id.bluff);
         bluff.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 int random = (int)(Math.random() * illegalAmount);
                 if (random >= 2) {
@@ -109,6 +111,7 @@ public class PoliceEncounterActivity extends AppCompatActivity {
 
         bribe = findViewById(R.id.bribe_button);
         bribe.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 if (!bribeAmount.getText().toString().trim().isEmpty()) {
                     int amount = Integer.parseInt(bribeAmount.getText().toString());
@@ -135,6 +138,7 @@ public class PoliceEncounterActivity extends AppCompatActivity {
 
         flee = findViewById(R.id.flee);
         flee.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 int random = (int)(Math.random() * illegalAmount);
                 if (random >= 2) {
@@ -177,24 +181,28 @@ public class PoliceEncounterActivity extends AppCompatActivity {
         StringBuilder continueText = new StringBuilder("Continue");
         truth.setText(continueText);
         truth.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick (View v){
                 finishEncounter();
             }
         });
         bluff.setText(continueText);
         bluff.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick (View v){
                 finishEncounter();
             }
         });
         bribe.setText(continueText);
         bribe.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick (View v){
                 finishEncounter();
             }
         });
         flee.setText(continueText);
         flee.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick (View v){
                 finishEncounter();
             }

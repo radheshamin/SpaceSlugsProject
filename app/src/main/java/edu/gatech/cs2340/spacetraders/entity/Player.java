@@ -7,6 +7,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * This is a class of the player object
+ */
 public class Player {
 
     /** name, skills, and difficulty of player */
@@ -20,9 +23,20 @@ public class Player {
     private String difficulty;
     private int money;
 
-    public static List<String> legalDifficuties = Arrays.asList("Beginner", "Easy",
+    public static List<String> legalDifficulties = Arrays.asList("Beginner", "Easy",
             "Normal", "Hard", "Impossible");
 
+    /**
+     * Constructor for a Player
+     * @param name name of player
+     * @param pilotSkill pilot skill of player
+     * @param fighterSkill fighter skill of player
+     * @param traderSkill trader skill of player
+     * @param engineerSkill engineer skill of player
+     * @param difficulty difficulty of game
+     * @param coordinateX coordinate x of player
+     * @param coordinateY coordinate y of player
+     */
     public Player (String name, int pilotSkill, int fighterSkill, int traderSkill, int engineerSkill,
                    String difficulty, int coordinateX, int coordinateY) {
         this.name = name;
@@ -40,38 +54,74 @@ public class Player {
         this.money = 1000;
     }
 
+    /**
+     * method to get the name of player
+     * @return name of the player
+     */
     public String getName () {
         return name;
     }
 
+    /**
+     * method to set the name of player
+     * @param name new name of the player
+     */
     public void setName(String name) {
 		this.name = name;
     }
 
+    /**
+     * method to get the coordinates of player
+     * @return coordinates of the player
+     */
     public List<Integer> getCoordinates() {
         return coordinates;
     }
 
+    /**
+     * method to set the coordinates of player
+     * @param coordinates new coordinates of the player
+     */
     public void setCoordinates(List<Integer> coordinates) {
         this.coordinates = coordinates;
     }
 
+    /**
+     * method to get the location of player
+     * @return location of the player
+     */
     public List<Integer> getLocation() {
         return location;
     }
 
+    /**
+     * method to set the location of player
+     * @param location new location of the player
+     */
     public void setLocation(List<Integer> location) {
         this.location = location;
     }
 
+    /**
+     * method to set the money of player
+     * @param money new amount of money of the player
+     */
     public void setMoney(int money) {
         this.money = money;
     }
 
+    /**
+     * method to get the money of player
+     * @return the amount of money of the player
+     */
     public int getMoney () {
         return money;
     }
 
+    /**
+     * method to get the current planet where player is
+     * @return the planet where player is currently at
+     */
     public String getCurrentPlanet() {
         List<Planet> all = new ArrayList<>(Arrays.asList(Planet.values()));
         for (Planet p : all) {
@@ -82,6 +132,10 @@ public class Player {
         return null;
     }
 
+    /**
+     * method to convert player object to string
+     * @return a string that contains all attributes of a player
+     */
     @Override
     @NonNull
     public String toString() {
