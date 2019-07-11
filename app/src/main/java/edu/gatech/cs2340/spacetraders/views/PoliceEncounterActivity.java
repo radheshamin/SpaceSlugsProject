@@ -75,10 +75,14 @@ public class PoliceEncounterActivity extends AppCompatActivity {
                 shipViewModel.setShip(ship);
                 playerViewModel.addPlayer(player);
                 if (illegalAmount == 0) {
-                    result.setText(new StringBuilder("You had no illegal goods and left the police peacefully. Click any of the buttons to continue"));
+                    result.setText(new StringBuilder(
+                            "You had no illegal goods and left the police peacefully. " +
+                                    "Click any of the buttons to continue"));
                 } else {
-                    result.setText(new StringBuilder("You surrendered your illegal goods and paid a fine of $")
-                            .append((int) (illegalMoney * .1)).append(". Click any of the buttons to continue."));
+                    result.setText(new StringBuilder(
+                            "You surrendered your illegal goods and paid a fine of $")
+                            .append((int) (illegalMoney * .1))
+                            .append(". Click any of the buttons to continue."));
                 }
                 setContinue();
             }
@@ -96,12 +100,16 @@ public class PoliceEncounterActivity extends AppCompatActivity {
                     player.setMoney(money - ((int)(illegalMoney * .25)));
                     shipViewModel.setShip(ship);
                     playerViewModel.addPlayer(player);
-                    result.setText(new StringBuilder("The police caught your bluff. You forfeited your illegal goods and paid a fine of $")
+                    result.setText(new StringBuilder(
+                            "The police caught your bluff." +
+                                    " You forfeited your illegal goods and paid a fine of $")
                             .append(((int)(illegalMoney * .25))).append(
                             ". Click any of the buttons to continue."));
                 } else {
-                    result.setText(new StringBuilder("You successfully bluffed your way out of the situation.")
-                            .append(" You kept your illegal goods.").append(" Click any of the buttons to continue."));
+                    result.setText(new StringBuilder(
+                            "You successfully bluffed your way out of the situation.")
+                            .append(" You kept your illegal goods.")
+                            .append(" Click any of the buttons to continue."));
                 }
                 setContinue();
             }
@@ -115,10 +123,11 @@ public class PoliceEncounterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!bribeAmount.getText().toString().trim().isEmpty()) {
                     int amount = Integer.parseInt(bribeAmount.getText().toString());
-                    if (amount > (illegalMoney / 2) && amount <= money) {
+                    if ((amount > (illegalMoney / 2)) && (amount <= money)) {
                         player.setMoney(money - amount);
                         playerViewModel.addPlayer(player);
-                        result.setText(new StringBuilder("Your bribe was successful. You kept your illegal goods and paid $")
+                        result.setText(new StringBuilder(
+                                "Your bribe was successful. You kept your illegal goods and paid $")
                                 .append(amount).append(". Click any of the buttons to continue."));
                     } else {
                         goods.put("Firearms", 0);
@@ -129,7 +138,8 @@ public class PoliceEncounterActivity extends AppCompatActivity {
                         playerViewModel.addPlayer(player);
                         result.setText(new StringBuilder("The police didn't accept your bribe. ")
                                 .append("You forfeited your illegal goods and paid a fine of $")
-                                .append((int)(illegalMoney * .25)).append(". Click any of the buttons to continue."));
+                                .append((int)(illegalMoney * .25))
+                                .append(". Click any of the buttons to continue."));
                     }
                 }
                 setContinue();
@@ -148,12 +158,15 @@ public class PoliceEncounterActivity extends AppCompatActivity {
                     player.setMoney(money - ((int)(illegalMoney * .25)));
                     shipViewModel.setShip(ship);
                     playerViewModel.addPlayer(player);
-                    result.setText(new StringBuilder("The police caught you while you were attempting to flee. ")
+                    result.setText(new StringBuilder(
+                            "The police caught you while you were attempting to flee. ")
                             .append("You forfeited your illegal goods and paid a fine of $")
-                            .append((int)(illegalMoney * .25)).append(". Click any of the buttons to continue."));
+                            .append((int)(illegalMoney * .25))
+                            .append(". Click any of the buttons to continue."));
                 } else {
                     result.setText(new StringBuilder("You successfully fled from the police. ")
-                            .append("You kept your illegal goods").append(". Click any of the buttons to continue."));
+                            .append("You kept your illegal goods")
+                            .append(". Click any of the buttons to continue."));
                 }
                 setContinue();
             }
@@ -210,9 +223,11 @@ public class PoliceEncounterActivity extends AppCompatActivity {
     }
 
     public void finishEncounter() {
-        Intent detail = new Intent(PoliceEncounterActivity.this, MarketplaceActivity.class);
+        Intent detail = new Intent(PoliceEncounterActivity.this,
+                MarketplaceActivity.class);
 
-        Planet planet = (Planet) getIntent().getSerializableExtra(PlanetDetailActivity.EXTRA_PLANET);
+        Planet planet = (Planet) getIntent().getSerializableExtra(
+                PlanetDetailActivity.EXTRA_PLANET);
         detail.putExtra(EXTRA_PLANET, planet);
         City city =(City) getIntent().getSerializableExtra(PlanetDetailActivity.EXTRA_CITY);
         detail.putExtra(EXTRA_CITY, city);
