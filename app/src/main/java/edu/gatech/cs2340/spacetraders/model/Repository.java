@@ -25,7 +25,7 @@ class Repository {
         player = new Player("Name", 4, 4, 4, 4, "Beginner", -1 , -1);
         List<Planet> all = new ArrayList<>(Arrays.asList(Planet.values()));
         universe = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 14; i++) {
             int n = (int)(Math.random() * all.size());
             universe.add(all.get(n));
             all.remove(n);

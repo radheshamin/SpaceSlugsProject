@@ -6,12 +6,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 public class City implements java.io.Serializable{
     private final String name;
     private final List<Integer> location;
-    private final HashMap<String, Integer> priceIndex;
+    private final Map<String, Integer> priceIndex;
 
-    City(String name, int latitude, int longitude, int techLevel, int resources) {
+    /**
+     * city object (variance amounts: 4, 10, 5, 10, 5, 100, 10, 5, 150, 100)
+     *
+     * @param name name of city
+     * @param latitude latitude of city
+     * @param longitude longitude of city
+     * @param techLevel tech level of city
+     * @param resources resources of city
+     */
+    public City(String name, int latitude, int longitude, int techLevel, int resources) {
         this.name = name;
         location = new ArrayList<>();
         location.add(latitude);

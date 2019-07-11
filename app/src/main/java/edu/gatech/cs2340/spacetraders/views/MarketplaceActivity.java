@@ -133,12 +133,14 @@ public class MarketplaceActivity extends AppCompatActivity {
         sellWater = findViewById(R.id.water_sell);
         Button buyWaterButton = findViewById(R.id.water_button);
         buyWaterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 waterAmount = buttonHelper("Water", waterMax, buyWater, waterAmount);
             }
         });
         Button sellWaterButton = findViewById(R.id.water_sell_button);
         sellWaterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 waterAmount = sellButtonHelper("Water", waterMax, sellWater, waterAmount);
             }
@@ -164,12 +166,14 @@ public class MarketplaceActivity extends AppCompatActivity {
         sellFurs = findViewById(R.id.furs_sell);
         Button buyFursButton = findViewById(R.id.furs_button);
         buyFursButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 fursAmount = buttonHelper("Furs", fursMax, buyFurs, fursAmount);
             }
         });
         Button sellFursButton = findViewById(R.id.furs_sell_button);
         sellFursButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 fursAmount = sellButtonHelper("Furs", fursMax, sellFurs, fursAmount);
             }
@@ -195,12 +199,14 @@ public class MarketplaceActivity extends AppCompatActivity {
         sellFood = findViewById(R.id.food_sell);
         Button buyFoodButton = findViewById(R.id.food_button);
         buyFoodButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 foodAmount = buttonHelper("Food", foodMax, buyFood, foodAmount);
             }
         });
         Button sellFoodButton = findViewById(R.id.food_sell_button);
         sellFoodButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 foodAmount = sellButtonHelper("Food", foodMax, sellFood, foodAmount);
             }
@@ -226,12 +232,14 @@ public class MarketplaceActivity extends AppCompatActivity {
         sellOre = findViewById(R.id.ore_sell);
         Button buyOreButton = findViewById(R.id.ore_button);
         buyOreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 oreAmount = buttonHelper("Ore", oreMax, buyOre, oreAmount);
             }
         });
         Button sellOreButton = findViewById(R.id.ore_sell_button);
         sellOreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 oreAmount = sellButtonHelper("Ore", oreMax, sellOre, oreAmount);
             }
@@ -257,12 +265,14 @@ public class MarketplaceActivity extends AppCompatActivity {
         sellGames = findViewById(R.id.games_sell);
         Button buyGamesButton = findViewById(R.id.games_button);
         buyGamesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 gamesAmount = buttonHelper("Games", gamesMax, buyGames, gamesAmount);
             }
         });
         Button sellGamesButton = findViewById(R.id.games_sell_button);
         sellGamesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 gamesAmount = sellButtonHelper("Games", gamesMax, sellGames, gamesAmount);
             }
@@ -289,6 +299,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         sellFirearms = findViewById(R.id.firearms_sell);
         Button buyFirearmsButton = findViewById(R.id.firearms_button);
         buyFirearmsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 firearmsAmount = buttonHelper("Firearms", firearmsMax,
                         buyFirearms, firearmsAmount);
@@ -296,6 +307,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         });
         Button sellFirearmsButton = findViewById(R.id.firearms_sell_button);
         sellFirearmsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 firearmsAmount = sellButtonHelper("Firearms", firearmsMax,
                         sellFirearms, firearmsAmount);
@@ -323,6 +335,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         sellMedicine = findViewById(R.id.medicine_sell);
         Button buyMedicineButton = findViewById(R.id.medicine_button);
         buyMedicineButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 medicineAmount = buttonHelper("Medicine", medicineMax,
                         buyMedicine, medicineAmount);
@@ -330,6 +343,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         });
         Button sellMedicineButton = findViewById(R.id.medicine_sell_button);
         sellMedicineButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 medicineAmount = sellButtonHelper("Medicine", medicineMax,
                         sellMedicine, medicineAmount);
@@ -357,6 +371,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         sellMachines = findViewById(R.id.machines_sell);
         Button buyMachinesButton = findViewById(R.id.machines_button);
         buyMachinesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 machinesAmount = buttonHelper("Machines", machinesMax,
                         buyMachines, machinesAmount);
@@ -364,6 +379,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         });
         Button sellMachinesButton = findViewById(R.id.machines_sell_button);
         sellMachinesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 machinesAmount = sellButtonHelper("Machines", machinesMax,
                         sellMachines, machinesAmount);
@@ -392,6 +408,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         sellNarcotics = findViewById(R.id.narcotics_sell);
         Button buyNarcoticsButton = findViewById(R.id.narcotics_button);
         buyNarcoticsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 narcoticsAmount = buttonHelper("Narcotics", narcoticsMax,
                         buyNarcotics, narcoticsAmount);
@@ -399,6 +416,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         });
         Button sellNarcoticsButton = findViewById(R.id.narcotics_sell_button);
         sellNarcoticsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 narcoticsAmount = sellButtonHelper("Narcotics", narcoticsMax,
                         sellNarcotics, narcoticsAmount);
@@ -425,12 +443,14 @@ public class MarketplaceActivity extends AppCompatActivity {
         sellRobots = findViewById(R.id.robots_sell);
         Button buyRobotsButton = findViewById(R.id.robots_button);
         buyRobotsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 robotsAmount = buttonHelper("Robots", robotsMax, buyRobots, robotsAmount);
             }
         });
         Button sellRobotsButton = findViewById(R.id.robots_sell_button);
         sellRobotsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 robotsAmount = sellButtonHelper("Robots", robotsMax, sellRobots, robotsAmount);
             }
@@ -439,6 +459,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         final Button refillFuel = findViewById(R.id.refill_fuel);
         fuelText =  findViewById(R.id.fuel_text);
         refillFuel.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 if ((player.getMoney() >= 50) && (ship.getFuel() != ship.getMaxFuel())) {
                     ship.setFuel(ship.getMaxFuel());
