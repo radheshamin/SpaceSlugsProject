@@ -12,7 +12,7 @@ import java.util.Map;
  * It is a Singleton so that it can be accessed from anywhere in the application
  */
 
-public class Model {
+public final class Model {
 
     /** the data repository */
     private Repository myRepository;
@@ -26,6 +26,10 @@ public class Model {
      */
     private static  Model instance = new Model();
 
+    /**
+     * method to get the model
+     * @return model as the instance
+     */
     public static Model getInstance() { return instance; }
 
     /**
@@ -46,10 +50,18 @@ public class Model {
 
     }
 
+    /**
+     * method to get the player interactor of the model
+     * @return player interactor of the model
+     */
     public PlayerInteractor getPlayerInteractor() {
         return (PlayerInteractor) interactorMap.get("Player");
     }
 
+    /**
+     * method to get the ship interactor of the model
+     * @return ship interactor of the model
+     */
     public ShipInteractor getShipInteractor() {
         return (ShipInteractor) interactorMap.get("Ship");
     }

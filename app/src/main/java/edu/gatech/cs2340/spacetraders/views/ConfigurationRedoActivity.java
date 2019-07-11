@@ -47,7 +47,7 @@ public class ConfigurationRedoActivity extends AppCompatActivity {
         engineerSpinner = findViewById(R.id.engineer_spinner);
         difficultySpinner = findViewById(R.id.difficulty_spinner);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Player.legalDifficuties);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Player.legalDifficulties);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         difficultySpinner.setAdapter(adapter);
 

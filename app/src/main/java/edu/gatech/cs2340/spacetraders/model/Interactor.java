@@ -7,10 +7,18 @@ abstract class Interactor {
 
     private Repository myRepository;
 
+    /**
+     * constructor of an interactor
+     * @param repo repository for the interactor
+     */
     Interactor(Repository repo) {
         myRepository = repo;
     }
 
+    /**
+     * method to get the repository of the interactor
+     * @return repository of the interactor
+     */
     Repository getRepository() {
         return myRepository;
     }

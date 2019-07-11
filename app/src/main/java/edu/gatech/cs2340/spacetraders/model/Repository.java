@@ -33,24 +33,49 @@ class Repository {
         ship = new SpaceShip("Gnat", 15, 15, 15);
     }
 
+    /**
+     * method to set the player in this repository
+     * @param player new player in the repository
+     */
     void addPlayer(Player player) {
         this.player = player;
     }
 
+    /**
+     * method to get the player in this repository
+     * @return player in the repository
+     */
     public Player getPlayer() {
         return player;
     }
 
+    /**
+     * method to get the universe in this repository
+     * @return universe in the repository
+     */
     List<Planet> getUniverse() {
         return universe;
     }
 
+    /**
+     * method to get the ship in this repository
+     * @return ship in the repository
+     */
     public SpaceShip getShip() {
         return ship;
     }
+
+    /**
+     * method to set the ship in this repository
+     * @param ship new ship in the repository
+     */
     public void setShip(SpaceShip ship) {
         this.ship = ship;
     }
 
+    /**
+     * method to set the universe in this repository
+     * @param universe new universe in this repository
+     */
     void setUniverse(List<Planet> universe) {this.universe = universe; }
 }

@@ -19,6 +19,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
 import edu.gatech.cs2340.spacetraders.R;
+import edu.gatech.cs2340.spacetraders.entity.City;
 import edu.gatech.cs2340.spacetraders.entity.Planet;
 import edu.gatech.cs2340.spacetraders.entity.Player;
 import edu.gatech.cs2340.spacetraders.entity.SpaceShip;
@@ -30,7 +31,10 @@ import android.support.v7.widget.RecyclerView;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class HomeScreenActivity extends AppCompatActivity {
 
@@ -70,7 +74,7 @@ public class HomeScreenActivity extends AppCompatActivity {
                 String contents = new String(bytes);
                 in.close();
                 Log.d("Check Player", contents);
-                if (!contents.equals("")) {
+                if (!"".equals(contents)) {
                     player = gson.fromJson(contents, Player.class);
                     viewModel.addPlayer(player);
                 }
@@ -88,7 +92,7 @@ public class HomeScreenActivity extends AppCompatActivity {
                 String contents = new String(bytes);
                 in.close();
                 Log.d("Check Ship", contents);
-                if (!contents.equals("")) {
+                if (!"".equals(contents)) {
                     ship = gson.fromJson(contents, SpaceShip.class);
                     shipViewModel.setShip(ship);
                 }
@@ -108,9 +112,60 @@ public class HomeScreenActivity extends AppCompatActivity {
                 String contents = new String(bytes);
                 in.close();
                 Log.d("Check Universe", contents);
-                if (!contents.equals("")) {
+                if (!"".equals(contents)) {
                     universe = new Gson().fromJson(contents, listType);
                     viewModel.setUniverse(universe);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            Map<Planet, List<Integer>> levels = new HashMap<>();
+            Type mapType = new TypeToken<Map<Planet, List<Integer>>>() {
+            }.getType();
+            File planetFile = new File(path, "Planets.json");
+            try {
+                int length = (int) planetFile.length();
+                byte[] bytes = new byte[length];
+                FileInputStream in = new FileInputStream(planetFile);
+                int i = in.read(bytes);
+                Log.d("Bytes", Integer.toString(i));
+                String contents = new String(bytes);
+                in.close();
+                Log.d("Check Planets", contents);
+                if (!"".equals(contents)) {
+                     levels = new Gson().fromJson(contents, mapType);
+                     Log.d("Hashmap", levels.toString());
+                     for (Planet planet: levels.keySet()) {
+                         planet.setTechLevel(levels.get(planet).get(0));
+                         planet.setResources(levels.get(planet).get(1));
+                     }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            Map<String, Map<String,Integer>> priceIndeces = new HashMap<>();
+            Type mapCities = new TypeToken<Map<String, Map<String,Integer>>>() {
+            }.getType();
+            File cityFile = new File(path, "Cities.json");
+            try {
+                int length = (int) cityFile.length();
+                byte[] bytes = new byte[length];
+                FileInputStream in = new FileInputStream(cityFile);
+                int i = in.read(bytes);
+                Log.d("Bytes", Integer.toString(i));
+                String contents = new String(bytes);
+                in.close();
+                Log.d("Check Cities", contents);
+                if (!"".equals(contents)) {
+                    priceIndeces = new Gson().fromJson(contents, mapCities);
+                    Log.d("Hashmap", priceIndeces.toString());
+                    for (Planet planet : viewModel.getUniverse()) {
+                        for (City city : planet.getCities()) {
+                            city.setPriceIndex(priceIndeces.get(city.getName()));
+                        }
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -126,7 +181,7 @@ public class HomeScreenActivity extends AppCompatActivity {
 
         TextView location = findViewById(R.id.current_location);
         if (player.getCurrentPlanet() == null) {
-            StringBuilder loc = new StringBuilder("You are not at a planet.");
+            CharSequence loc = new StringBuilder("You are not at a planet.");
             location.setText(loc);
         } else {
             StringBuilder loc = new StringBuilder("You are at planet ");
@@ -134,11 +189,11 @@ public class HomeScreenActivity extends AppCompatActivity {
         }
 
         TextView coordinates = findViewById(R.id.location);
-        if (player.getCoordinates().get(0) == -1 || player.getCoordinates().get(1) == -1) {
-            StringBuilder coordinatesList = new StringBuilder("You are on your ship. Visit a planet.");
+        if ((player.getCoordinates().get(0) == -1) || (player.getCoordinates().get(1) == -1)) {
+            CharSequence coordinatesList = new StringBuilder("You are on your ship. Visit a planet.");
             coordinates.setText(coordinatesList);
         } else {
-            StringBuilder coordinatesList = new StringBuilder("Coordinates: " + player.getCoordinates().toString());
+            CharSequence coordinatesList = new StringBuilder("Coordinates: " + player.getCoordinates().toString());
             coordinates.setText(coordinatesList);
         }
 
@@ -172,9 +227,22 @@ public class HomeScreenActivity extends AppCompatActivity {
                 String json = gson.toJson(player);
                 String jsonShip = gson.toJson(ship);
                 String jsonUniverse = gson.toJson(viewModel.getUniverse());
+                Map<Planet, List<Integer>> levels = new HashMap<>();
+                Map<String, Map<String,Integer>> priceIndeces = new HashMap<>();
+                for (Planet planet : viewModel.getUniverse()) {
+                    levels.put(planet, new ArrayList<>(Arrays.asList(planet.getTechLevel(),
+                            planet.getResources())));
+                    for (City city : planet.getCities()) {
+                        priceIndeces.put(city.getName(), city.getPriceIndex());
+                    }
+                }
+                String jsonPlanetLevels = gson.toJson(levels);
+                String jsonCities = gson.toJson(priceIndeces);
                 Log.d("Check Player", json);
                 Log.d("Check Ship", jsonShip);
                 Log.d("Check Universe", jsonUniverse);
+                Log.d("Check Planets", jsonPlanetLevels);
+                Log.d("Check Cities", jsonCities);
 
 
                 //Make file
@@ -182,6 +250,8 @@ public class HomeScreenActivity extends AppCompatActivity {
                 File player = new File(path, "Player.json");
                 File ship = new File(path, "Ship.json");
                 File universe = new File(path, "Universe.json");
+                File planets = new File(path, "Planets.json");
+                File cities = new File(path, "Cities.json");
 
 
 
@@ -209,7 +279,24 @@ public class HomeScreenActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                StringBuilder save = new StringBuilder("GameSaved");
+
+                try {
+                    FileOutputStream stream = new FileOutputStream(planets);
+                    stream.write(jsonPlanetLevels.getBytes());
+                    stream.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    FileOutputStream stream = new FileOutputStream(cities);
+                    stream.write(jsonCities.getBytes());
+                    stream.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                CharSequence save = new StringBuilder("Game Saved");
             saveGame.setText(save);
             }
         });

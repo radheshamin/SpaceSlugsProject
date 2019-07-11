@@ -9,8 +9,8 @@ import java.util.Map;
 
 public class City implements java.io.Serializable{
     private final String name;
-    private final List<Integer> location;
-    private final Map<String, Integer> priceIndex;
+    private List<Integer> location;
+    private Map<String, Integer> priceIndex;
 
     /**
      * city object (variance amounts: 4, 10, 5, 10, 5, 100, 10, 5, 150, 100)
@@ -94,5 +94,13 @@ public class City implements java.io.Serializable{
 
     public Map<String, Integer> getPriceIndex() {
         return Collections.unmodifiableMap(priceIndex);
+    }
+
+    public void setPriceIndex(Map<String, Integer> priceIndex) {
+        this.priceIndex = priceIndex;
+    }
+
+    public void setLocation(List<Integer> location) {
+        this.location = location;
     }
 }

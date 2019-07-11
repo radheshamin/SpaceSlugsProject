@@ -4,13 +4,23 @@ import android.support.annotation.NonNull;
 
 import java.util.HashMap;
 
+/**
+ * This is a class of the spaceship object
+ */
 public class SpaceShip {
-    private int cargoSpace;
+    private final int cargoSpace;
     private HashMap<String,Integer> goods;
     private int fuel;
     private final int maxFuel;
-    private String name;
+    private final String name;
 
+    /**
+     * Constructor for a SpaceShip
+     * @param name name of spaceship
+     * @param fuel fuel of spaceship
+     * @param maxFuel max fuel of spaceship
+     * @param cargoSpace cargo space of spaceship
+     */
     public SpaceShip(String name, int fuel, int maxFuel, int cargoSpace) {
         this.cargoSpace = cargoSpace;
         this.name = name;
@@ -29,7 +39,10 @@ public class SpaceShip {
         this.maxFuel = maxFuel;
     }
 
-
+    /**
+     * method to get cargo space left in a spaceship
+     * @return cargo space left in the spaceship
+     */
     public int getCargoSpaceLeft() {
         int total = 0;
         for (String key: goods.keySet()) {
@@ -37,25 +50,59 @@ public class SpaceShip {
         }
         return cargoSpace - total;
     }
+
+    /**
+     * method to set the fuel of spaceship
+     * @param fuel new amount of fuel of the spaceship
+     */
     public void setFuel(int fuel) {
         this.fuel = fuel;
     }
+
+    /**
+     * method to get the fuel of spaceship
+     * @return the amount of fuel of the spaceship
+     */
     public int getFuel() {
         return fuel;
     }
+
+    /**
+     * method to set the goods of spaceship
+     * @param goods new collection of goods in the spaceship
+     */
     public void setGoods(HashMap<String, Integer> goods){
         this.goods = goods;
     }
+
+    /**
+     * method to get the goods of spaceship
+     * @return collection of goods in the spaceship
+     */
     public HashMap<String, Integer> getGoods() {
         return goods;
     }
+
+    /**
+     * method to get the name of spaceship
+     * @return name of the spaceship
+     */
     public String getName() {
         return name;
     }
+
+    /**
+     * method to get the max fuel of spaceship
+     * @return maximum amount of fuel of the spaceship
+     */
     public int getMaxFuel() {
         return maxFuel;
     }
 
+    /**
+     * method to convert a spaceship object to string
+     * @return a string that prints the name, fuel, all goods, and cargo space left of the spaceship
+     */
     @NonNull
     @Override
     public String toString() {
