@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 import edu.gatech.cs2340.spacetraders.R;
@@ -191,7 +192,7 @@ public class PoliceEncounterActivity extends AppCompatActivity {
         shipInfo.setText(ship.toString());
         playerInfo.setText(player.toString());
         shipInfo.setText(ship.toString());
-        StringBuilder continueText = new StringBuilder("Continue");
+        CharSequence continueText = new StringBuilder("Continue");
         truth.setText(continueText);
         truth.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -226,10 +227,10 @@ public class PoliceEncounterActivity extends AppCompatActivity {
         Intent detail = new Intent(PoliceEncounterActivity.this,
                 MarketplaceActivity.class);
 
-        Planet planet = (Planet) getIntent().getSerializableExtra(
+        Serializable planet = (Planet) getIntent().getSerializableExtra(
                 PlanetDetailActivity.EXTRA_PLANET);
         detail.putExtra(EXTRA_PLANET, planet);
-        City city =(City) getIntent().getSerializableExtra(PlanetDetailActivity.EXTRA_CITY);
+        Serializable city =(City) getIntent().getSerializableExtra(PlanetDetailActivity.EXTRA_CITY);
         detail.putExtra(EXTRA_CITY, city);
 
         startActivity(detail);
