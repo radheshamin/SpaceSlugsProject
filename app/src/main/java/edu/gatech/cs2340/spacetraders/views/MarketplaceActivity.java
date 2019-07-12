@@ -115,18 +115,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         priceIndex = city.getPriceIndex();
 
         TextView waterPrice = findViewById(R.id.water_price);
-        waterAmount = 0;
-        if (priceIndex.get("Water") <= 0) {
-            waterPrice.setText(new StringBuilder("Water cannot be bought or sold here."));
-        } else {
-            waterPrice.setText(new StringBuilder("Price: $").append(priceIndex.get("Water")));
-            if (amountIndex.get("Water") != null) {
-                waterAmount = amountIndex.get("Water");
-            } else {
-                waterAmount = ((int) (Math.random() * 3)) + 8;
-            }
-        }
-        amountIndex.put("Water", waterAmount);
+        waterAmount = amountHelper(waterPrice, "Water", 3, 8);
         final TextView waterMax = findViewById(R.id.max_water);
         waterMax.setText(new StringBuilder("Amount Of Water Available: ").append(waterAmount));
         buyWater = findViewById(R.id.water_buy);
@@ -148,18 +137,7 @@ public class MarketplaceActivity extends AppCompatActivity {
 
 
         TextView fursPrice =  findViewById(R.id.furs_price);
-        fursAmount = 0;
-        if (priceIndex.get("Furs") <= 0) {
-            fursPrice.setText(new StringBuilder("Furs cannot be bought or sold here."));
-        } else {
-            fursPrice.setText(new StringBuilder("Price: $").append(priceIndex.get("Furs")));
-            if (amountIndex.get("Furs") != null) {
-                fursAmount = amountIndex.get("Furs");
-            } else {
-                fursAmount = ((int) (Math.random() * 3)) + 7;
-            }
-        }
-        amountIndex.put("Furs", fursAmount);
+        fursAmount = amountHelper(fursPrice, "Furs", 3, 7);
         final TextView fursMax = findViewById(R.id.max_furs);
         fursMax.setText(new StringBuilder("Amount Of Furs Available: ").append(fursAmount));
         buyFurs = findViewById(R.id.furs_buy);
@@ -181,18 +159,7 @@ public class MarketplaceActivity extends AppCompatActivity {
 
 
         TextView foodPrice =  findViewById(R.id.food_price);
-        foodAmount = 0;
-        if (priceIndex.get("Food") <= 0) {
-            foodPrice.setText(new StringBuilder("Food cannot be bought or sold here."));
-        } else {
-            foodPrice.setText(new StringBuilder("Price: $").append(priceIndex.get("Food")));
-            if (amountIndex.get("Food") != null) {
-                foodAmount = amountIndex.get("Food");
-            } else {
-                foodAmount = ((int) (Math.random() * 2)) + 7;
-            }
-        }
-        amountIndex.put("Food", foodAmount);
+        foodAmount = amountHelper(foodPrice, "Food", 2, 7);
         final TextView foodMax =  findViewById(R.id.max_food);
         foodMax.setText(new StringBuilder("Amount Of Food Available: ").append(foodAmount));
         buyFood = findViewById(R.id.food_buy);
@@ -214,18 +181,7 @@ public class MarketplaceActivity extends AppCompatActivity {
 
 
         TextView orePrice =  findViewById(R.id.ore_price);
-        oreAmount = 0;
-        if (priceIndex.get("Ore") <= 0) {
-            orePrice.setText(new StringBuilder("Ore cannot be bought or sold here."));
-        } else {
-            orePrice.setText(new StringBuilder("Price: $").append(priceIndex.get("Ore")));
-            if (amountIndex.get("Ore") != null) {
-                oreAmount = amountIndex.get("Ore");
-            } else {
-                oreAmount = ((int) (Math.random() * 3)) + 5;
-            }
-        }
-        amountIndex.put("Ore", oreAmount);
+        oreAmount = amountHelper(orePrice, "Ore", 3, 5);
         final TextView oreMax =  findViewById(R.id.max_ore);
         oreMax.setText(new StringBuilder("Amount Of Ore Available: ").append(oreAmount));
         buyOre = findViewById(R.id.ore_buy);
@@ -247,18 +203,7 @@ public class MarketplaceActivity extends AppCompatActivity {
 
 
         TextView gamesPrice =  findViewById(R.id.games_price);
-        gamesAmount = 0;
-        if (priceIndex.get("Games") <= 0) {
-            gamesPrice.setText(new StringBuilder("Games cannot be bought or sold here."));
-        } else {
-            gamesPrice.setText(new StringBuilder("Price: $").append(priceIndex.get("Games")));
-            if (amountIndex.get("Games") != null) {
-                gamesAmount = amountIndex.get("Games");
-            } else {
-                gamesAmount = ((int) (Math.random() * 2)) + 6;
-            }
-        }
-        amountIndex.put("Games", gamesAmount);
+        gamesAmount = amountHelper(gamesPrice, "Games", 2, 6);
         final TextView gamesMax = findViewById(R.id.max_games);
         gamesMax.setText(new StringBuilder("Amount Of Games Available: ").append(gamesAmount));
         buyGames = findViewById(R.id.games_buy);
@@ -280,18 +225,7 @@ public class MarketplaceActivity extends AppCompatActivity {
 
 
         TextView firearmsPrice =  findViewById(R.id.firearms_price);
-        firearmsAmount = 0;
-        if (priceIndex.get("Firearms") <= 0) {
-            firearmsPrice.setText(new StringBuilder("Firearms cannot be bought or sold here."));
-        } else {
-            firearmsPrice.setText(new StringBuilder("Price: $").append(priceIndex.get("Firearms")));
-            if (amountIndex.get("Firearms") != null) {
-                firearmsAmount = amountIndex.get("Firearms");
-            } else {
-                firearmsAmount = ((int) (Math.random() * 2)) + 4;
-            }
-        }
-        amountIndex.put("Firearms", firearmsAmount);
+        firearmsAmount = amountHelper(firearmsPrice, "Firearms", 2, 4);
         final TextView firearmsMax =  findViewById(R.id.max_firearms);
         firearmsMax.setText(new StringBuilder("Amount Of Firearms Available: ")
                 .append(firearmsAmount));
@@ -316,18 +250,7 @@ public class MarketplaceActivity extends AppCompatActivity {
 
 
         TextView medicinePrice = findViewById(R.id.medicine_price);
-        medicineAmount = 0;
-        if (priceIndex.get("Medicine") <= 0) {
-            medicinePrice.setText(new StringBuilder("Medicine cannot be bought or sold here."));
-        } else {
-            medicinePrice.setText(new StringBuilder("Price: $").append(priceIndex.get("Medicine")));
-            if (amountIndex.get("Medicine") != null) {
-                medicineAmount = amountIndex.get("Medicine");
-            } else {
-                medicineAmount = ((int) (Math.random() * 1)) + 5;
-            }
-        }
-        amountIndex.put("Medicine", medicineAmount);
+        medicineAmount = amountHelper(medicinePrice, "Medicine", 1, 5);
         final TextView medicineMax = findViewById(R.id.max_medicine);
         medicineMax.setText(new StringBuilder("Amount Of Medicine Available: ")
                 .append(medicineAmount));
@@ -352,18 +275,7 @@ public class MarketplaceActivity extends AppCompatActivity {
 
 
         TextView machinesPrice =  findViewById(R.id.machines_price);
-        machinesAmount = 0;
-        if (priceIndex.get("Machines") <= 0) {
-            machinesPrice.setText(new StringBuilder("Machines cannot be bought or sold here."));
-        } else {
-            machinesPrice.setText(new StringBuilder("Price: $").append(priceIndex.get("Machines")));
-            if (amountIndex.get("Machines") != null) {
-                machinesAmount = amountIndex.get("Machines");
-            } else {
-                machinesAmount = ((int) (Math.random() * 2)) + 3;
-            }
-        }
-        amountIndex.put("Machines", machinesAmount);
+        machinesAmount = amountHelper(machinesPrice, "Machines", 2, 3);
         final TextView machinesMax = findViewById(R.id.max_machines);
         machinesMax.setText(new StringBuilder("Amount Of Machines Available: ")
                 .append(machinesAmount));
@@ -388,19 +300,7 @@ public class MarketplaceActivity extends AppCompatActivity {
 
 
         TextView narcoticsPrice = findViewById(R.id.narcotics_price);
-        narcoticsAmount = 0;
-        if (priceIndex.get("Narcotics") <= 0) {
-            narcoticsPrice.setText(new StringBuilder("Narcotics cannot be bought or sold here."));
-        } else {
-            narcoticsPrice.setText(new StringBuilder("Price: $")
-                    .append(priceIndex.get("Narcotics")));
-            if (amountIndex.get("Narcotics") != null) {
-                narcoticsAmount = amountIndex.get("Narcotics");
-            } else {
-                narcoticsAmount = ((int) (Math.random() * 2)) + 4;
-            }
-        }
-        amountIndex.put("Narcotics", narcoticsAmount);
+        narcoticsAmount = amountHelper(narcoticsPrice, "Narcotics", 2, 4);
         final TextView narcoticsMax = findViewById(R.id.max_narcotics);
         narcoticsMax.setText(new StringBuilder("Amount Of Narcotics Available: ")
                 .append(narcoticsAmount));
@@ -425,18 +325,7 @@ public class MarketplaceActivity extends AppCompatActivity {
 
 
         TextView robotsPrice =  findViewById(R.id.robots_price);
-        robotsAmount = 0;
-        if (priceIndex.get("Robots") <= 0) {
-            robotsPrice.setText(new StringBuilder("Robots cannot be bought or sold here."));
-        } else {
-            robotsPrice.setText(new StringBuilder("Price: $").append(priceIndex.get("Robots")));
-            if (amountIndex.get("Robots") != null) {
-                robotsAmount = amountIndex.get("Robots");
-            } else {
-                robotsAmount = ((int) (Math.random() * 2)) + 2;
-            }
-        }
-        amountIndex.put("Robots", robotsAmount);
+        robotsAmount = amountHelper(robotsPrice, "Robots", 2, 2);
         final TextView robotsMax =  findViewById(R.id.max_robots);
         robotsMax.setText(new StringBuilder("Amount Of Robots Available: ").append(robotsAmount));
         buyRobots = findViewById(R.id.robots_buy);
@@ -461,21 +350,39 @@ public class MarketplaceActivity extends AppCompatActivity {
         refillFuel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ((player.getMoney() >= 50) && (ship.getFuel() != ship.getMaxFuel())) {
+                int fuelCost = 50;
+                if ((player.getMoney() >= fuelCost) && (ship.getFuel() != ship.getMaxFuel())) {
                     ship.setFuel(ship.getMaxFuel());
-                    player.setMoney(player.getMoney() - 50);
+                    player.setMoney(player.getMoney() - fuelCost);
                     playerviewModel.addPlayer(player);
                     shipViewModel.setShip(ship);
                     playerInfo.setText(new StringBuilder("Money: $").append(player.getMoney()));
                     shipInfo.setText(ship.toString());
                     fuelText.setText(new StringBuilder("You Have Max Fuel"));
-                } else if (player.getMoney() < 50){
+                } else if (player.getMoney() < fuelCost){
                     fuelText.setText(new StringBuilder("You Cannot Afford To Buy Fuel"));
                 } else if (ship.getFuel() == ship.getMaxFuel()) {
                     fuelText.setText(new StringBuilder("You Have Max Fuel"));
                 }
             }
         });
+    }
+
+    private int amountHelper(TextView price, String good,
+                             int varianceAmount, int baseAmount) {
+        int itemAmount = 0;
+        if (priceIndex.get(good) <= 0) {
+            price.setText(new StringBuilder(good).append(" cannot be bought or sold here."));
+        } else {
+            price.setText(new StringBuilder("Price: $").append(priceIndex.get(good)));
+            if (amountIndex.get(good) != null) {
+                itemAmount = amountIndex.get(good);
+            } else {
+                itemAmount = ((int) (Math.random() * varianceAmount)) + baseAmount;
+            }
+        }
+        amountIndex.put(good, itemAmount);
+        return itemAmount;
     }
 
     private int buttonHelper(String good, TextView max, EditText buy, int itemAmount) {
