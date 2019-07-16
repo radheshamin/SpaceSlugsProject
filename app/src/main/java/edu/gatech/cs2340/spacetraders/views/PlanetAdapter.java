@@ -17,6 +17,9 @@ import edu.gatech.cs2340.spacetraders.entity.Planet;
 import edu.gatech.cs2340.spacetraders.entity.Player;
 import edu.gatech.cs2340.spacetraders.entity.SpaceShip;
 
+/**
+ * planet adapter to display all planets in home screen
+ */
 public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.CityViewHolder> {
 
     private List<City> cityList = new ArrayList<>();
@@ -51,10 +54,12 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.CityViewHo
 
         //now use the view holder to set the appropriate information
         holder.name.setText(new StringBuilder("City: ").append(city.getName()));
-        holder.location.setText(new StringBuilder("Location On Planet: " ).append(city.getLocation().toString()));
-        if (player.getCoordinates().get(0) < 0 || player.getCoordinates().get(1) < 0){
+        holder.location.setText(new StringBuilder("Location On Planet: " )
+                .append(city.getLocation().toString()));
+        if ((player.getCoordinates().get(0) < 0) || (player.getCoordinates().get(1) < 0)){
             holder.travel.setText(new StringBuilder("Travel To This Planet And City"));
-        } else if (player.getCurrentPlanet().equals(planet.getName()) && player.getLocation().equals(city.getLocation())) {
+        } else if (player.getCurrentPlanet().equals(planet.getName()) &&
+                player.getLocation().equals(city.getLocation())) {
             holder.travel.setText(new StringBuilder("Visit Marketplace"));
         } else if (player.getCurrentPlanet().equals(planet.getName())){
             holder.travel.setText(new StringBuilder("Travel To This City"));
@@ -69,7 +74,9 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.CityViewHo
     }
     @Override
     public int getItemCount() {
-        if (cityList == null) return 0;
+        if (cityList == null) {
+            return 0;
+        }
         return cityList.size();
     }
 
@@ -78,25 +85,37 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.CityViewHo
         notifyDataSetChanged();
     }
 
+    /**
+     * setter for player
+     * @param player player info
+     */
     public void setPlayer(Player player) {
         this.player = player;
         notifyDataSetChanged();
     }
 
+    /**
+     * setter for planet
+     * @param planet planet info
+     */
     public void setPlanet(Planet planet) {
         this.planet = planet;
         notifyDataSetChanged();
     }
 
+    /**
+     * setter for ship
+     * @param ship spaceship info
+     */
     public void setShip (SpaceShip ship) {
         this.ship = ship;
     }
 
     class CityViewHolder extends RecyclerView.ViewHolder {
         //View holder needs reference to each widget in the individual item in the list
-        private TextView name;
-        private TextView location;
-        private Button travel;
+        private final TextView name;
+        private final TextView location;
+        private final Button travel;
 
 
         /**
@@ -117,7 +136,7 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.CityViewHo
                 public void onClick(View view) {
                     int position = getAdapterPosition();
 
-                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                    if ((listener != null) && (position != RecyclerView.NO_POSITION)) {
                         listener.onTravelClicked(cityList.get(position));
                     }
                 }
@@ -125,7 +144,15 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.CityViewHo
         }
     }
 
+    /**
+     * class to allow planet to be clicked on to set action
+     */
     public interface OnTravelClickListener {
+
+        /**
+         * travel to a city button
+         * @param city city to travel to
+         */
         void onTravelClicked(City city);
     }
 

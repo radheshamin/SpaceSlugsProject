@@ -6,10 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * city class for cities of planets
+ */
 public class City implements java.io.Serializable{
     private final String name;
-    private List<Integer> location;
+    private final List<Integer> location;
     private Map<String, Integer> priceIndex;
 
     /**
@@ -84,23 +86,36 @@ public class City implements java.io.Serializable{
         }
     }
 
+    /**
+     * getter for name
+     * @return name of city
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * getter for location
+     * @return name of location of city
+     */
     public List<Integer> getLocation() {
         return Collections.unmodifiableList(location);
     }
 
+    /**
+     * getter for price index
+     * @return price index of city
+     */
     public Map<String, Integer> getPriceIndex() {
         return Collections.unmodifiableMap(priceIndex);
     }
 
+    /**
+     * setter for price index
+     * @param priceIndex price index of city
+     */
     public void setPriceIndex(Map<String, Integer> priceIndex) {
         this.priceIndex = priceIndex;
     }
 
-    public void setLocation(List<Integer> location) {
-        this.location = location;
-    }
 }

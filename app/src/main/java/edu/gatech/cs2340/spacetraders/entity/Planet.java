@@ -102,7 +102,7 @@ public enum Planet {
 
     /**
      * method to set the technology level of the planet
-     *
+     * @param techLevel tech level of planet
      */
     public void setTechLevel(int techLevel) {
         this.techLevel = techLevel;
@@ -110,7 +110,7 @@ public enum Planet {
 
     /**
      * method to set the resources of the planet
-     *
+     * @param resources resource level of planet
      */
     public void setResources(int resources) {
         this.resources = resources;
