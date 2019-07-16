@@ -12,12 +12,12 @@ import edu.gatech.cs2340.spacetraders.model.Model;
 import edu.gatech.cs2340.spacetraders.model.PlayerInteractor;
 
 /**
- * This viewmodel would support activities that need to create player
+ * This viewModel would support activities that need to create player
  *
  */
 public class PlayerViewModel extends AndroidViewModel {
 
-    private PlayerInteractor interactor;
+    private final PlayerInteractor interactor;
 
     public PlayerViewModel(@NonNull Application application) {
         super(application);

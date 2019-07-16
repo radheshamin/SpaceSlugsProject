@@ -9,12 +9,12 @@ import edu.gatech.cs2340.spacetraders.model.Model;
 import edu.gatech.cs2340.spacetraders.model.ShipInteractor;
 
 /**
- * * This viewmodel would support activities that need to update ship
+ * * This viewModel would support activities that need to update ship
         *
         */
 public class ShipViewModel extends AndroidViewModel {
 
-    private ShipInteractor interactor;
+    private final ShipInteractor interactor;
 
     public ShipViewModel(@NonNull Application application) {
         super(application);
