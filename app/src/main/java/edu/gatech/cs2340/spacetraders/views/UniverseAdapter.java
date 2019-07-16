@@ -14,6 +14,9 @@ import edu.gatech.cs2340.spacetraders.R;
 import edu.gatech.cs2340.spacetraders.entity.City;
 import edu.gatech.cs2340.spacetraders.entity.Planet;
 
+/**
+ * Adapter for the Universe. Extends the RecyclerView.
+ */
 public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.PlanetViewHolder> {
 
     private List<Planet> planetList = new ArrayList<>();
@@ -45,21 +48,25 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Planet
         StringBuilder cities = new StringBuilder();
         for (City c : planet.getCities()) {
             cities.append(c.getName());
-            if (planet.getCities().indexOf(c) != planet.getCities().size() - 1) {
+            if ((planet.getCities().indexOf(c)) != (planet.getCities().size() - 1)) {
                 cities.append(", ");
             }
         }
         holder.cities.setText(new StringBuilder("Cities: ").append(cities));
-        holder.coordinates.setText(new StringBuilder("Coordinates: ").append(planet.getCoordinates().toString()));
+        holder.coordinates.setText(new StringBuilder("Coordinates: ")
+                .append(planet.getCoordinates().toString()));
         holder.techLevel.setText(new StringBuilder("Tech Level: ").append(planet.getTechLevel()));
-        holder.resourceLevel.setText(new StringBuilder("Resource Type: ").append(planet.getResources()));
+        holder.resourceLevel.setText(new StringBuilder("Resource Type: ").
+                append(planet.getResources()));
         holder.name.setText(planet.getName());
 
 
     }
     @Override
     public int getItemCount() {
-        if (planetList == null) return 0;
+        if (planetList == null) {
+            return 0;
+        }
         return planetList.size();
     }
 
@@ -70,11 +77,11 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Planet
 
     class PlanetViewHolder extends RecyclerView.ViewHolder {
         //View holder needs reference to each widget in the individual item in the list
-        private TextView cities;
-        private TextView coordinates;
-        private TextView techLevel;
-        private TextView resourceLevel;
-        private TextView name;
+        private final TextView cities;
+        private final TextView coordinates;
+        private final TextView techLevel;
+        private final TextView resourceLevel;
+        private final TextView name;
 
 
         /**
@@ -97,7 +104,7 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Planet
                 public void onClick(View view) {
                     int position = getAdapterPosition();
 
-                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                    if ((listener != null) && (position != RecyclerView.NO_POSITION)) {
                         listener.onPlanetClicked(planetList.get(position));
                     }
                 }
@@ -107,6 +114,10 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Planet
     }
 
     public interface OnPlanetClickListener {
+        /**
+         * Defines the action that occurs when the planet is clicked
+         * @param planet the planet which was clicked
+         */
         void onPlanetClicked(Planet planet);
     }
 

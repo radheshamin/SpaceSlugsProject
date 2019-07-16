@@ -13,13 +13,14 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 import edu.gatech.cs2340.spacetraders.R;
-import edu.gatech.cs2340.spacetraders.entity.City;
-import edu.gatech.cs2340.spacetraders.entity.Planet;
 import edu.gatech.cs2340.spacetraders.entity.Player;
 import edu.gatech.cs2340.spacetraders.entity.SpaceShip;
 import edu.gatech.cs2340.spacetraders.viewmodels.PlayerViewModel;
 import edu.gatech.cs2340.spacetraders.viewmodels.ShipViewModel;
-
+/**
+ * Police Encounter Activity class. Encounters with police occur randomly and the player has the
+ * option to tell the truth or bluff about the illegal items they may have.
+ */
 public class PoliceEncounterActivity extends AppCompatActivity {
 
     public static final String EXTRA_CITY = "edu.gatech.cs2340.spacetraders.views.EXTRA_CITY";
@@ -58,10 +59,13 @@ public class PoliceEncounterActivity extends AppCompatActivity {
 
         goods = ship.getGoods();
         money = player.getMoney();
-        illegalMoney = goods.get("Firearms") * 1250;
-        illegalMoney += goods.get("Narcotics") * 3500;
+        int firearmPrice = 1250;
+        illegalMoney = goods.get("Firearms") * firearmPrice;
+        int narcoticPrice = 3500;
+        illegalMoney += goods.get("Narcotics") * narcoticPrice;
         illegalAmount = goods.get("Firearms");
         illegalAmount += goods.get("Narcotics");
+
 
         result = findViewById(R.id.result);
 
@@ -72,7 +76,8 @@ public class PoliceEncounterActivity extends AppCompatActivity {
                 goods.put("Firearms", 0);
                 goods.put("Narcotics", 0);
                 ship.setGoods(goods);
-                player.setMoney(money - ((int)(illegalMoney * .1)));
+                double truthPenalty = 0.1;
+                player.setMoney(money - ((int)(illegalMoney * truthPenalty)));
                 shipViewModel.setShip(ship);
                 playerViewModel.addPlayer(player);
                 if (illegalAmount == 0) {
@@ -82,13 +87,15 @@ public class PoliceEncounterActivity extends AppCompatActivity {
                 } else {
                     result.setText(new StringBuilder(
                             "You surrendered your illegal goods and paid a fine of $")
-                            .append((int) (illegalMoney * .1))
+                            .append((int) (illegalMoney * truthPenalty))
                             .append(". Click any of the buttons to continue."));
                 }
                 setContinue();
             }
         });
 
+
+        final double encounterDifficulty = 0.25;
         bluff = findViewById(R.id.bluff);
         bluff.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,13 +105,13 @@ public class PoliceEncounterActivity extends AppCompatActivity {
                     goods.put("Firearms", 0);
                     goods.put("Narcotics", 0);
                     ship.setGoods(goods);
-                    player.setMoney(money - ((int)(illegalMoney * .25)));
+                    player.setMoney(money - ((int)(illegalMoney * encounterDifficulty)));
                     shipViewModel.setShip(ship);
                     playerViewModel.addPlayer(player);
                     result.setText(new StringBuilder(
                             "The police caught your bluff." +
                                     " You forfeited your illegal goods and paid a fine of $")
-                            .append(((int)(illegalMoney * .25))).append(
+                            .append(((int)(illegalMoney * encounterDifficulty))).append(
                             ". Click any of the buttons to continue."));
                 } else {
                     result.setText(new StringBuilder(
@@ -134,12 +141,12 @@ public class PoliceEncounterActivity extends AppCompatActivity {
                         goods.put("Firearms", 0);
                         goods.put("Narcotics", 0);
                         ship.setGoods(goods);
-                        player.setMoney(money - ((int)(illegalMoney * .25)));
+                        player.setMoney(money - ((int)(illegalMoney * encounterDifficulty)));
                         shipViewModel.setShip(ship);
                         playerViewModel.addPlayer(player);
                         result.setText(new StringBuilder("The police didn't accept your bribe. ")
                                 .append("You forfeited your illegal goods and paid a fine of $")
-                                .append((int)(illegalMoney * .25))
+                                .append((int)(illegalMoney * encounterDifficulty))
                                 .append(". Click any of the buttons to continue."));
                     }
                 }
@@ -156,13 +163,13 @@ public class PoliceEncounterActivity extends AppCompatActivity {
                     goods.put("Firearms", 0);
                     goods.put("Narcotics", 0);
                     ship.setGoods(goods);
-                    player.setMoney(money - ((int)(illegalMoney * .25)));
+                    player.setMoney(money - ((int)(illegalMoney * encounterDifficulty)));
                     shipViewModel.setShip(ship);
                     playerViewModel.addPlayer(player);
                     result.setText(new StringBuilder(
                             "The police caught you while you were attempting to flee. ")
                             .append("You forfeited your illegal goods and paid a fine of $")
-                            .append((int)(illegalMoney * .25))
+                            .append((int)(illegalMoney * encounterDifficulty))
                             .append(". Click any of the buttons to continue."));
                 } else {
                     result.setText(new StringBuilder("You successfully fled from the police. ")
@@ -184,7 +191,7 @@ public class PoliceEncounterActivity extends AppCompatActivity {
 
     }
 
-    public void setContinue() {
+    private void setContinue() {
         final TextView playerInfo = findViewById(R.id.player);
         playerInfo.setText(player.toString());
 
@@ -223,14 +230,14 @@ public class PoliceEncounterActivity extends AppCompatActivity {
         });
     }
 
-    public void finishEncounter() {
+    private void finishEncounter() {
         Intent detail = new Intent(PoliceEncounterActivity.this,
                 MarketplaceActivity.class);
 
-        Serializable planet = (Planet) getIntent().getSerializableExtra(
+        Serializable planet = getIntent().getSerializableExtra(
                 PlanetDetailActivity.EXTRA_PLANET);
         detail.putExtra(EXTRA_PLANET, planet);
-        Serializable city =(City) getIntent().getSerializableExtra(PlanetDetailActivity.EXTRA_CITY);
+        Serializable city = getIntent().getSerializableExtra(PlanetDetailActivity.EXTRA_CITY);
         detail.putExtra(EXTRA_CITY, city);
 
         startActivity(detail);

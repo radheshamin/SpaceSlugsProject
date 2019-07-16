@@ -53,7 +53,8 @@ public class PlanetDetailActivity extends AppCompatActivity {
         planetText.setText(planet.getName());
 
         TextView location = findViewById(R.id.coordinates);
-        location.setText(new StringBuilder("Coordinates: ").append(planet.getCoordinates().toString()));
+        location.setText(new StringBuilder("Coordinates: ")
+                .append(planet.getCoordinates().toString()));
 
         TextView techLevel = findViewById(R.id.tech_level);
         techLevel.setText(new StringBuilder("Tech Level: ").append(planet.getTechLevel()));
@@ -76,27 +77,33 @@ public class PlanetDetailActivity extends AppCompatActivity {
         adapter.setOnTravelClickListener(new PlanetAdapter.OnTravelClickListener() {
             @Override
             public void onTravelClicked(City city) {
-                if (player.getCoordinates().get(0) < 0 || player.getCoordinates().get(1) < 0 && ship.getFuel() >= 5) {
+                if (((player.getCoordinates().get(0) < 0) || (player.getCoordinates().get(1) < 0))
+                        && (ship.getFuel() >= 5)) {
                     ship.setFuel(ship.getFuel() - 5);
                     shipViewModel.setShip(ship);
                     travel(city);
-                } else if (!player.getCurrentPlanet().equals(planet.getName()) && ship.getFuel() >= 5) {
+                } else if ((!player.getCurrentPlanet().equals(planet.getName()))
+                        && (ship.getFuel() >= 5)) {
                     ship.setFuel(ship.getFuel() - 5);
                     shipViewModel.setShip(ship);
                     travel(city);
-                } else if (player.getCurrentPlanet().equals(planet.getName())
-                        && (player.getLocation().get(0) < 0 || player.getLocation().get(1) < 0)) {
+                } else if (((player.getCurrentPlanet().equals(planet.getName()))
+                        && (player.getLocation().get(0) < 0))
+                        || (player.getLocation().get(1) < 0)) {
                     travel(city);
                 } else if (player.getCurrentPlanet().equals(planet.getName())
                         && (!player.getLocation().equals(city.getLocation()))) {
                     travel(city);
                 } else if (player.getCurrentPlanet().equals(planet.getName())
                         && (player.getLocation().equals(city.getLocation()))) {
-                    Intent cityIntent = new Intent(PlanetDetailActivity.this, MarketplaceActivity.class);
+                    Intent cityIntent = new Intent(
+                            PlanetDetailActivity.this, MarketplaceActivity.class);
                     cityIntent.putExtra(EXTRA_CITY, city);
                     cityIntent.putExtra(EXTRA_PLANET, planet);
                     if (getIntent().hasExtra(HomeScreenActivity.CITY_AMOUNT)) {
-                        cityIntent.putExtra(CITY_AMOUNT, getIntent().getSerializableExtra(MarketplaceActivity.CITY_AMOUNT));
+                        cityIntent.putExtra(CITY_AMOUNT, getIntent(
+
+                        ).getSerializableExtra(MarketplaceActivity.CITY_AMOUNT));
                     }
                     startActivity(cityIntent);
                 }
@@ -111,14 +118,19 @@ public class PlanetDetailActivity extends AppCompatActivity {
         super.onBackPressed();
         Intent planetDetail = new Intent(PlanetDetailActivity.this, HomeScreenActivity.class);
         if (getIntent().hasExtra(MarketplaceActivity.CITY_AMOUNT)) {
-            planetDetail.putExtra(CITY_AMOUNT, getIntent().getSerializableExtra(MarketplaceActivity.CITY_AMOUNT));
+            planetDetail.putExtra(CITY_AMOUNT, getIntent().getSerializableExtra(
+                    MarketplaceActivity.CITY_AMOUNT));
         }
         startActivity(planetDetail);
         finish();
 
     }
 
-    public void travel(City city) {
+    /**
+     * This method allows the user to travel to a different city.
+     * @param city the city to which to travel
+     */
+    private void travel(City city) {
         player.setCoordinates(planet.getCoordinates());
         player.setLocation(city.getLocation());
         playerViewModel.addPlayer(player);
