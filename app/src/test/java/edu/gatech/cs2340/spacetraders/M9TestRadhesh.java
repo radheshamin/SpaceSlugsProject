@@ -13,6 +13,22 @@ import static org.junit.Assert.*;
 
 public class M9TestRadhesh {
 
+    /**
+     * Naboo 61,66
+     * Hoth 46,84
+     * Tatooine 82,63
+     * Coruscant 26,68
+     * Dagobah 32,24
+     * Alderaan 25,26
+     * Endor 36,67
+     * Bespin 23,46
+     * Cantonica 22,22
+     * Jakku 52,58
+     * Citadel 0,0
+     * Thessia 84,42
+     * Virmire 57,26
+     * Normandy 66,39
+     */
     @Test
     public void testPlayerCurrentPlanet() {
         Player player = new Player("Rad", 4, 4, 4, 4, "Easy", -1, -1);
@@ -40,20 +56,33 @@ public class M9TestRadhesh {
         assertNull(player.getCurrentPlanet());
     }
 
+    /**
+     * Good baseprice, increase, baseTech, DR, IR
+     * Water 30, 3, 0, 4, 3
+     * Furs 250, 10, 0, 7, 8
+     * Food 100, 5, 1, 5, 6
+     * Ore 350, 20, 2, 1, 2
+     * Games 250, -10, 3, 11, not
+     * Firearms 1250, -75, 3, 12, not
+     * Medicine 650, -20, 4, 10, not
+     * Machines 900, -30, 4, not, not
+     * Narcotics 3500, -125, 5, 9, not
+     * Robots 5000, -150, 6, not, not
+     */
     @Test
     public void testCalculateGoodPrice() {
-        City city = new City("City", 0, 0, 9, 9);
+        City city = new City("City", 0, 0, 7, 9);
         Map<String, Integer> priceIndex = city.getPriceIndex();
-        assertEquals((Integer) 57, priceIndex.get("Water"));
-        assertEquals((Integer) 340, priceIndex.get("Furs"));
-        assertEquals((Integer) 140, priceIndex.get("Food"));
-        assertEquals((Integer) 490, priceIndex.get("Ore"));
-        assertEquals((Integer) 190, priceIndex.get("Games"));
-        assertEquals((Integer) 800, priceIndex.get("Firearms"));
-        assertEquals((Integer) 550, priceIndex.get("Medicine"));
-        assertEquals((Integer) 750, priceIndex.get("Machines"));
-        assertEquals((Integer) 1500, priceIndex.get("Narcotics"));
-        assertEquals((Integer) 4550, priceIndex.get("Robots"));
+        assertEquals((Integer) 51, priceIndex.get("Water"));
+        assertEquals((Integer) 320, priceIndex.get("Furs"));
+        assertEquals((Integer) 130, priceIndex.get("Food"));
+        assertEquals((Integer) 450, priceIndex.get("Ore"));
+        assertEquals((Integer) 210, priceIndex.get("Games"));
+        assertEquals((Integer) 950, priceIndex.get("Firearms"));
+        assertEquals((Integer) 590, priceIndex.get("Medicine"));
+        assertEquals((Integer) 810, priceIndex.get("Machines"));
+        assertEquals((Integer) 1625, priceIndex.get("Narcotics"));
+        assertEquals((Integer) 4850, priceIndex.get("Robots"));
 
         city = new City("City", 0, 0, 4, 5);
         priceIndex = city.getPriceIndex();
@@ -106,6 +135,71 @@ public class M9TestRadhesh {
         assertEquals((Integer) 0, priceIndex.get("Machines"));
         assertEquals((Integer) 0, priceIndex.get("Narcotics"));
         assertEquals((Integer) 0, priceIndex.get("Robots"));
+
+        city = new City("City", 0, 0, 5, 6);
+        priceIndex = city.getPriceIndex();
+        assertEquals((Integer) 45, priceIndex.get("Water"));
+        assertEquals((Integer) 300, priceIndex.get("Furs"));
+        assertEquals((Integer) 240, priceIndex.get("Food"));
+        assertEquals((Integer) 410, priceIndex.get("Ore"));
+        assertEquals((Integer) 230, priceIndex.get("Games"));
+        assertEquals((Integer) 1100, priceIndex.get("Firearms"));
+        assertEquals((Integer) 630, priceIndex.get("Medicine"));
+        assertEquals((Integer) 870, priceIndex.get("Machines"));
+        assertEquals((Integer) 3500, priceIndex.get("Narcotics"));
+        assertEquals((Integer) 0, priceIndex.get("Robots"));
+
+        city = new City("City", 0, 0, 1, 4);
+        priceIndex = city.getPriceIndex();
+        assertEquals((Integer) 16, priceIndex.get("Water"));
+        assertEquals((Integer) 260, priceIndex.get("Furs"));
+        assertEquals((Integer) 100, priceIndex.get("Food"));
+        assertEquals((Integer) 0, priceIndex.get("Ore"));
+        assertEquals((Integer) 0, priceIndex.get("Games"));
+        assertEquals((Integer) 0, priceIndex.get("Firearms"));
+        assertEquals((Integer) 0, priceIndex.get("Medicine"));
+        assertEquals((Integer) 0, priceIndex.get("Machines"));
+        assertEquals((Integer) 0, priceIndex.get("Narcotics"));
+        assertEquals((Integer) 0, priceIndex.get("Robots"));
+
+        city = new City("City", 0, 0, 2, 1);
+        priceIndex = city.getPriceIndex();
+        assertEquals((Integer) 36, priceIndex.get("Water"));
+        assertEquals((Integer) 270, priceIndex.get("Furs"));
+        assertEquals((Integer) 105, priceIndex.get("Food"));
+        assertEquals((Integer) 175, priceIndex.get("Ore"));
+        assertEquals((Integer) 0, priceIndex.get("Games"));
+        assertEquals((Integer) 0, priceIndex.get("Firearms"));
+        assertEquals((Integer) 0, priceIndex.get("Medicine"));
+        assertEquals((Integer) 0, priceIndex.get("Machines"));
+        assertEquals((Integer) 0, priceIndex.get("Narcotics"));
+        assertEquals((Integer) 0, priceIndex.get("Robots"));
+
+        city = new City("City", 0, 0, 7, 10);
+        priceIndex = city.getPriceIndex();
+        assertEquals((Integer) 51, priceIndex.get("Water"));
+        assertEquals((Integer) 320, priceIndex.get("Furs"));
+        assertEquals((Integer) 130, priceIndex.get("Food"));
+        assertEquals((Integer) 450, priceIndex.get("Ore"));
+        assertEquals((Integer) 210, priceIndex.get("Games"));
+        assertEquals((Integer) 950, priceIndex.get("Firearms"));
+        assertEquals((Integer) 295, priceIndex.get("Medicine"));
+        assertEquals((Integer) 810, priceIndex.get("Machines"));
+        assertEquals((Integer) 3250, priceIndex.get("Narcotics"));
+        assertEquals((Integer) 4850, priceIndex.get("Robots"));
+
+        city = new City("City", 0, 0, 7, 3);
+        priceIndex = city.getPriceIndex();
+        assertEquals((Integer) 102, priceIndex.get("Water"));
+        assertEquals((Integer) 320, priceIndex.get("Furs"));
+        assertEquals((Integer) 130, priceIndex.get("Food"));
+        assertEquals((Integer) 450, priceIndex.get("Ore"));
+        assertEquals((Integer) 210, priceIndex.get("Games"));
+        assertEquals((Integer) 950, priceIndex.get("Firearms"));
+        assertEquals((Integer) 590, priceIndex.get("Medicine"));
+        assertEquals((Integer) 810, priceIndex.get("Machines"));
+        assertEquals((Integer) 3250, priceIndex.get("Narcotics"));
+        assertEquals((Integer) 4850, priceIndex.get("Robots"));
     }
 }
 

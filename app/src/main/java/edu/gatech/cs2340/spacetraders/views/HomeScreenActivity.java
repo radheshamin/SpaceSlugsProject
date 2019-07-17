@@ -138,7 +138,7 @@ public class HomeScreenActivity extends AppCompatActivity {
                 Log.d("Check Planets", contents);
                 if (!"".equals(contents)) {
                      levels = new Gson().fromJson(contents, mapType);
-                     Log.d("Hashmap", levels.toString());
+                     Log.d("HashMap", levels.toString());
                      for (Planet planet: levels.keySet()) {
                          planet.setTechLevel((levels.get(planet)).get(0));
                          planet.setResources((levels.get(planet)).get(1));
