@@ -2,7 +2,9 @@ package edu.gatech.cs2340.spacetraders.entity;
 
 import android.support.annotation.NonNull;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This is a class of the spaceship object
@@ -79,16 +81,8 @@ public class SpaceShip {
      * method to get the goods of spaceship
      * @return collection of goods in the spaceship
      */
-    public HashMap<String, Integer> getGoods() {
-        return goods;
-    }
-
-    /**
-     * method to get the name of spaceship
-     * @return name of the spaceship
-     */
-    public String getName() {
-        return name;
+    public Map<String, Integer> getGoods() {
+        return Collections.unmodifiableMap(goods);
     }
 
     /**

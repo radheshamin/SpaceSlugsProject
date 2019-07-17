@@ -82,7 +82,7 @@ public class MarketplaceActivity extends AppCompatActivity {
         shipViewModel = ViewModelProviders.of(this).get(ShipViewModel.class);
         player = playerviewModel.getPlayer();
         ship = shipViewModel.getShip();
-        goods = ship.getGoods();
+        goods = (HashMap<String,Integer>) ship.getGoods();
 
         if (getIntent().hasExtra(PlanetDetailActivity.EXTRA_CITY)) {
             city = (City) getIntent().getSerializableExtra(PlanetDetailActivity.EXTRA_CITY);

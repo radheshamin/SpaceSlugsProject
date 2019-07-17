@@ -20,6 +20,10 @@ public class HaoranZhangUnitTest {
                 5, "Normal", 84, 42);
         String testPlanet = testPlayer.getCurrentPlanet();
         assertEquals("Thessia", testPlanet);
+        Player testPlayer2 = new Player("Test2",5,5,5,
+                5,"Normal",50,50);
+        String testPlanet2 = testPlayer2.getCurrentPlanet();
+        assertNull(testPlanet2);
     }
 
     /**

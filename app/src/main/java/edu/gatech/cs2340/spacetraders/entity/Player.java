@@ -24,7 +24,7 @@ public class Player {
     private final String difficulty;
     private int money;
 
-    public static List<String> legalDifficulties = Arrays.asList("Beginner", "Easy",
+    public static final List<String> legalDifficulties = Arrays.asList("Beginner", "Easy",
             "Normal", "Hard", "Impossible");
 
     /**
@@ -38,8 +38,10 @@ public class Player {
      * @param coordinateX coordinate x of player
      * @param coordinateY coordinate y of player
      */
-    public Player (String name, int pilotSkill, int fighterSkill, int traderSkill, int engineerSkill,
-                   String difficulty, int coordinateX, int coordinateY) {
+    public Player (String name, int pilotSkill, int fighterSkill,
+                   int traderSkill, int engineerSkill,
+                   String difficulty,
+                   int coordinateX, int coordinateY) {
         this.name = name;
         this.pilotSkill = pilotSkill;
         this.fighterSkill = fighterSkill;
@@ -53,22 +55,6 @@ public class Player {
         location.add(-1);
         location.add(-1);
         this.money = 1000;
-    }
-
-    /**
-     * method to get the name of player
-     * @return name of the player
-     */
-    public String getName () {
-        return name;
-    }
-
-    /**
-     * method to set the name of player
-     * @param name new name of the player
-     */
-    public void setName(String name) {
-		this.name = name;
     }
 
     /**
@@ -140,7 +126,8 @@ public class Player {
     @Override
     @NonNull
     public String toString() {
-        return String.format(Locale.getDefault(), "Player Name: %s, Money: $%d, Pilot: %d, Fighter: %d, Trader: %d, Engineer: %d, " +
+        return String.format(Locale.getDefault(), "Player Name: %s," +
+                        " Money: $%d, Pilot: %d, Fighter: %d, Trader: %d, Engineer: %d, " +
                         "Difficulty: %s.", name, money, pilotSkill, fighterSkill, traderSkill,
                 engineerSkill, difficulty);
     }

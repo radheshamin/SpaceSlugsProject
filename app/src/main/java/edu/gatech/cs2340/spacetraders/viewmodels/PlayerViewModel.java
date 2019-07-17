@@ -19,22 +19,42 @@ public class PlayerViewModel extends AndroidViewModel {
 
     private final PlayerInteractor interactor;
 
+    /**
+     * view model to access player info
+     * @param application application of game
+     */
     public PlayerViewModel(@NonNull Application application) {
         super(application);
         interactor = Model.getInstance().getPlayerInteractor();
 
     }
 
-    public void addPlayer (Player player) {
+    /**
+     * set player info in repository
+     * @param player player info
+     */
+    public void addPlayer(Player player) {
         interactor.addPlayer(player);
 
     }
 
+    /**
+     * getter for player
+     * @return player info
+     */
     public Player getPlayer() {
         return interactor.getPlayer();
     }
 
+    /**
+     * getter for universe
+     * @return universe as list of planets
+     */
     public List<Planet> getUniverse() {return interactor.getUniverse(); }
 
+    /**
+     * setter for universe
+     * @param universe list of planets to make universe
+     */
     public void setUniverse(List<Planet> universe) {interactor.setUniverse(universe); }
 }

@@ -57,7 +57,7 @@ public class PoliceEncounterActivity extends AppCompatActivity {
         final TextView shipInfo = findViewById(R.id.ship);
         shipInfo.setText(ship.toString());
 
-        goods = ship.getGoods();
+        goods = (HashMap<String, Integer>) ship.getGoods();
         money = player.getMoney();
         int firearmPrice = 1250;
         illegalMoney = goods.get("Firearms") * firearmPrice;

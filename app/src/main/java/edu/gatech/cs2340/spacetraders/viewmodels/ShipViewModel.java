@@ -16,17 +16,29 @@ public class ShipViewModel extends AndroidViewModel {
 
     private final ShipInteractor interactor;
 
+    /**
+     * view model to access ship info
+     * @param application application of game
+     */
     public ShipViewModel(@NonNull Application application) {
         super(application);
         interactor = Model.getInstance().getShipInteractor();
 
     }
 
+    /**
+     * setter for ship
+     * @param ship ship info
+     */
     public void setShip (SpaceShip ship) {
         interactor.setShip(ship);
 
     }
 
+    /**
+     * getter for ship
+     * @return spaceship info
+     */
     public SpaceShip getShip() {
         return interactor.getShip();
     }

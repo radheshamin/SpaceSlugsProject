@@ -20,6 +20,10 @@ import edu.gatech.cs2340.spacetraders.entity.SpaceShip;
 import edu.gatech.cs2340.spacetraders.viewmodels.PlayerViewModel;
 import edu.gatech.cs2340.spacetraders.viewmodels.ShipViewModel;
 
+/**
+ * activity for configuration of player if previous
+ * configuration was invalid
+ */
 public class ConfigurationRedoActivity extends AppCompatActivity {
 
     /** local instance of view model */
@@ -47,7 +51,8 @@ public class ConfigurationRedoActivity extends AppCompatActivity {
         engineerSpinner = findViewById(R.id.engineer_spinner);
         difficultySpinner = findViewById(R.id.difficulty_spinner);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Player.legalDifficulties);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, Player.legalDifficulties);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         difficultySpinner.setAdapter(adapter);
 
@@ -55,7 +60,8 @@ public class ConfigurationRedoActivity extends AppCompatActivity {
         for (int i = 0; i <= 16; i++) {
             skillPoints.add(i);
         }
-        ArrayAdapter<Integer> skillAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, skillPoints);
+        ArrayAdapter<Integer> skillAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, skillPoints);
         skillAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         pilotSpinner.setAdapter(skillAdapter);
         fighterSpinner.setAdapter(skillAdapter);
@@ -66,7 +72,7 @@ public class ConfigurationRedoActivity extends AppCompatActivity {
         beginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBeginPressed(view);
+                onBeginPressed();
             }
         });
 
@@ -78,9 +84,8 @@ public class ConfigurationRedoActivity extends AppCompatActivity {
     /**
      * Button handler for the add new student button
      *
-     * @param view the button that was pressed
      */
-    public void onBeginPressed(View view) {
+    public void onBeginPressed() {
         Log.d("Edit", "Begin Button Pressed");
 
         if (((int) pilotSpinner.getSelectedItem() + (int) fighterSpinner.getSelectedItem() +
@@ -91,9 +96,12 @@ public class ConfigurationRedoActivity extends AppCompatActivity {
             startActivity(intent);
         } else {
 
-            Player player = new Player(nameField.getText().toString(), (int) pilotSpinner.getSelectedItem(),
-                    (int) fighterSpinner.getSelectedItem(), (int) traderSpinner.getSelectedItem(),
-                    (int) engineerSpinner.getSelectedItem(), (String) difficultySpinner.getSelectedItem(), -1, -1);
+            Player player = new Player(nameField.getText().toString(),
+                    (int) pilotSpinner.getSelectedItem(),
+                    (int) fighterSpinner.getSelectedItem(),
+                    (int) traderSpinner.getSelectedItem(),
+                    (int) engineerSpinner.getSelectedItem(),
+                    (String) difficultySpinner.getSelectedItem(), -1, -1);
             configurationViewModel.addPlayer(player);
 
             SpaceShip ship = new SpaceShip("Gnat", 15, 15, 15);

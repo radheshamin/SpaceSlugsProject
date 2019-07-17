@@ -8,6 +8,9 @@ import android.widget.Button;
 
 import edu.gatech.cs2340.spacetraders.R;
 
+/**
+ * activity with description of how to play game
+ */
 public class MainActivity extends AppCompatActivity {
 
     public static final String CHECK = "edu.gatech.cs2340.spacetraders.views.CHECK";

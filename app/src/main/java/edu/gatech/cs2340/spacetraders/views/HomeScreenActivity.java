@@ -36,6 +36,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * activity for home screen of app with planet lists
+ */
 public class HomeScreenActivity extends AppCompatActivity {
 
     private Player player;
@@ -120,7 +123,7 @@ public class HomeScreenActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            Map<Planet, List<Integer>> levels = new HashMap<>();
+            Map<Planet, List<Integer>> levels;
             Type mapType = new TypeToken<Map<Planet, List<Integer>>>() {
             }.getType();
             File planetFile = new File(path, "Planets.json");
@@ -135,17 +138,17 @@ public class HomeScreenActivity extends AppCompatActivity {
                 Log.d("Check Planets", contents);
                 if (!"".equals(contents)) {
                      levels = new Gson().fromJson(contents, mapType);
-                     Log.d("Hashmap", levels.toString());
+                     Log.d("HashMap", levels.toString());
                      for (Planet planet: levels.keySet()) {
-                         planet.setTechLevel(levels.get(planet).get(0));
-                         planet.setResources(levels.get(planet).get(1));
+                         planet.setTechLevel((levels.get(planet)).get(0));
+                         planet.setResources((levels.get(planet)).get(1));
                      }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            Map<String, Map<String,Integer>> priceIndeces = new HashMap<>();
+            Map<String, Map<String,Integer>> priceIndeces;
             Type mapCities = new TypeToken<Map<String, Map<String,Integer>>>() {
             }.getType();
             File cityFile = new File(path, "Cities.json");
@@ -190,10 +193,12 @@ public class HomeScreenActivity extends AppCompatActivity {
 
         TextView coordinates = findViewById(R.id.location);
         if ((player.getCoordinates().get(0) == -1) || (player.getCoordinates().get(1) == -1)) {
-            CharSequence coordinatesList = new StringBuilder("You are on your ship. Visit a planet.");
+            CharSequence coordinatesList =
+                    new StringBuilder("You are on your ship. Visit a planet.");
             coordinates.setText(coordinatesList);
         } else {
-            CharSequence coordinatesList = new StringBuilder("Coordinates: " + player.getCoordinates().toString());
+            CharSequence coordinatesList =
+                    new StringBuilder("Coordinates: " + player.getCoordinates().toString());
             coordinates.setText(coordinatesList);
         }
 
@@ -214,7 +219,8 @@ public class HomeScreenActivity extends AppCompatActivity {
                 Intent intent = new Intent(HomeScreenActivity.this, PlanetDetailActivity.class);
                 intent.putExtra(EXTRA_PLANET, planet);
                 if (getIntent().hasExtra(MarketplaceActivity.CITY_AMOUNT)) {
-                    intent.putExtra(CITY_AMOUNT, getIntent().getSerializableExtra(MarketplaceActivity.CITY_AMOUNT));
+                    intent.putExtra(CITY_AMOUNT,
+                            getIntent().getSerializableExtra(MarketplaceActivity.CITY_AMOUNT));
                 }
                 startActivity(intent);
             }

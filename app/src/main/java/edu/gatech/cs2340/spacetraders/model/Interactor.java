@@ -5,7 +5,7 @@ package edu.gatech.cs2340.spacetraders.model;
  */
 abstract class Interactor {
 
-    private Repository myRepository;
+    private final Repository myRepository;
 
     /**
      * constructor of an interactor
