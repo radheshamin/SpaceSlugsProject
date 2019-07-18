@@ -14,7 +14,7 @@ import java.util.Locale;
 public class Player {
 
     /** name, skills, and difficulty of player */
-    private String name;
+    private final String name;
     private final int pilotSkill;
     private final int fighterSkill;
     private final int traderSkill;
